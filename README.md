@@ -13,7 +13,7 @@ Now you will have configuration and commands for many DKAN needs.
 
 ## Testing
 
-This addon uses BATS for testing.
+This addon uses [BATS](https://bats-core.readthedocs.io/en/stable/) for testing.
 
 Get the BATS system by running:
 ```shell
