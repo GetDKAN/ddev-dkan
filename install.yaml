@@ -52,6 +52,10 @@ pre_install_actions:
 project_files:
   - commands/web/dkan-test-phpunit
   - commands/web/dkan-test-users
+  - commands/web/dkan-frontend-build
+  - commands/web/dkan-frontend-install
+  - commands/web/dkan-frontend-test
+  - commands/web/dkan-make-dev-site
 
 # List of files and directories that are copied into the global .ddev directory
 # DDEV environment variables can be interpolated into these filenames
