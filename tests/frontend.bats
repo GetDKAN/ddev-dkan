@@ -24,7 +24,7 @@ setup() {
   ddev drush pm-enable dkan -y
 }
 
-_teardown() {
+teardown() {
   set -eu -o pipefail
   echo "teardown..."
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
@@ -38,4 +38,5 @@ _teardown() {
 
   ddev dkan-frontend-install
   ddev dkan-frontend-build
+  ddev dkan-frontend-test
 }
