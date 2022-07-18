@@ -50,12 +50,14 @@ pre_install_actions:
 # if it hasn't been modified by the user.
 # DDEV environment variables can be interpolated into these filenames
 project_files:
+  - config.yaml
   - commands/web/dkan-test-phpunit
   - commands/web/dkan-test-users
   - commands/web/dkan-frontend-build
   - commands/web/dkan-frontend-install
   - commands/web/dkan-frontend-test
   - commands/web/dkan-make-dev-site
+  - web-build/Dockerfile
 
 # List of files and directories that are copied into the global .ddev directory
 # DDEV environment variables can be interpolated into these filenames

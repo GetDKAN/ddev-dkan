@@ -41,4 +41,6 @@ mv docroot/data-catalog-app-$FRONTEND_VCS_REF docroot/frontend
 #ln -s $PWD/$FRONTEND_DIR $FRONTEND_DOCROOT_DIR
 
 cd $FRONTEND_DOCROOT_DIR || exit
-npm install
+# Don't fill the screen with warnings, only errors.
+# TODO: Make sure we don't miss important warnings.
+npm --loglevel=error install

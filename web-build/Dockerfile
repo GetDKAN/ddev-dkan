@@ -1,10 +1,31 @@
+#ddev-generated
 # Cypress.io requirements
 # https://docs.cypress.io/guides/continuous-integration/introduction#Dependencies
 
 ARG BASE_IMAGE
 FROM $BASE_IMAGE
 
-# Given that ddev has installed python3-pip, we can grab yq.
+RUN apt-get update && apt-get install -y \
+  chromium \
+  chromium-driver \
+  g++ \
+  libgtk2.0-0 \
+  libgtk-3-0 \
+  libgbm-dev \
+  libnotify-dev \
+  libgconf-2-4 \
+  libnss3 \
+  libxss1 \
+  libasound2 \
+  libxtst6 \
+  make \
+  python2 \
+  python3-pip \
+  unzip \
+  wget \
+  xauth \
+  xvfb
+
 RUN pip3 install yq
 
 # TODO We're currently using 8.7.0 of Cypress in our CI builds, but we should

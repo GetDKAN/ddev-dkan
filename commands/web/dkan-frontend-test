@@ -13,7 +13,7 @@ npm cache verify
 # We do this because we want npm install to fail CI and other
 # processes if it can't build for some reason.
 if [ -f 'package.json' ]; then
-  npm install
+  npm --loglevel=error install
 else
   echo "No package.json file present... skipping NPM INSTALL step."
 fi
