@@ -1,4 +1,5 @@
 #!/bin/bash
+#ddev-generated
 
 ## Description: Add the frontend for DKAN.
 ## Usage: dkan-frontend-install

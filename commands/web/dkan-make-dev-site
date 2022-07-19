@@ -1,4 +1,5 @@
 #!/bin/bash
+#ddev-generated
 
 ## Description: Build out a DKAN site suitable for dev or testing under CI.
 ## Usage: dkan-make-dev-site

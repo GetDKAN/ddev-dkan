@@ -1,4 +1,5 @@
 #!/bin/bash
+#ddev-generated
 
 ## Description: Add users to the site for QA.
 ## Usage: dkan-test-users [path] [--remove]

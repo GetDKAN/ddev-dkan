@@ -1,4 +1,5 @@
 #!/bin/bash
+#ddev-generated
 
 ## Description: Run Cypress tests for the frontend app.
 ## Usage: dkan-frontend-test

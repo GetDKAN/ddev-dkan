@@ -14,7 +14,7 @@ setup() {
   ddev config --project-name=${PROJNAME}
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get ${DIR}
-  ddev restart
+  ddev start -y
 
   ddev composer create getdkan/recommended-project:@dev --no-interaction -y
   ddev config --project-name=${PROJNAME}
@@ -33,10 +33,8 @@ teardown() {
 
 @test "install and build the frontend app" {
   set -eu -o pipefail
-  cd ${TESTDIR}
-  echo "fake!"
 
-#  ddev dkan-frontend-install
- # ddev dkan-frontend-build
+  ddev dkan-frontend-install
+  ddev dkan-frontend-build
   #ddev dkan-frontend-test
 }
