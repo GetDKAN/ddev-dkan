@@ -23,7 +23,7 @@ setup() {
   ddev drush pm-enable dkan -y
 }
 
-_teardown() {
+teardown() {
   set -eu -o pipefail
   echo "teardown..."
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
