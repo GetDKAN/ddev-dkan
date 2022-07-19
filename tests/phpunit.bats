@@ -12,7 +12,6 @@ setup() {
   ddev delete -Oy ${PROJNAME} || true
   cd "${TESTDIR}"
   ddev config --project-name=${PROJNAME}
-  ddev start
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get ${DIR}
   ddev restart
@@ -36,6 +35,8 @@ teardown() {
   set -eu -o pipefail
   cd ${TESTDIR}
 
+  # Run a test group that does not exist, since we're not actually testing
+  # PHP code here.
   run ddev dkan-test-phpunit --group this-group-should-not-exist
   assert_output --partial 'Starting PHPUnit test run'
 }

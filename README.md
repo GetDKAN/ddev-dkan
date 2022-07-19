@@ -2,12 +2,18 @@
 
 ## What is dkan-ddev-addon?
 
-Next time you're doing a ddev local development site, you can say this:
-```shell
-ddev get getdkan/dkan-ddev-addon
-ddev restart
-```
-Now you will have configuration and commands for many DKAN needs.
+DKAN DDev Addon provides some glue scripts and config for doing local development of
+DKAN itself and also DKAN-related Drupal sites.
+
+## Install
+
+Install DDev.
+
+Install Docker.
+
+Run Docker.
+
+Do ddev stuff.....
 
 ## TODO: All the docs for your reading enjoyment.
 
