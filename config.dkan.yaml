@@ -43,7 +43,7 @@ web_environment:
   - PHP_MEM_LIMIT=256M
   - PHP_CLI_MEM_LIMIT=512M
 
-# Key features of ddev's config.yaml:
+# Key features of ddev's config.dkan.yaml:
 
 # name: <projectname> # Name of the project, automatically provides
 #   http://projectname.ddev.site and https://projectname.ddev.site
