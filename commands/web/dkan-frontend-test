@@ -1,0 +1,50 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Run Cypress tests for the frontend app.
+## Usage: dkan-frontend-test
+
+PROJECT_DIR=$PWD
+DKAN_DIR=docroot/modules/contrib/dkan
+
+# Perform these lengthly tasks before adding fixture users.
+cd $DKAN_DIR || exit 1
+npm cache verify
+# If there is no package.json we shouldn't try to npm install.
+# We do this because we want npm install to fail CI and other
+# processes if it can't build for some reason.
+if [ -f 'package.json' ]; then
+  npm --loglevel=error install
+else
+  echo "No package.json file present... skipping NPM INSTALL step."
+fi
+npx cypress install
+echo " ** Cypress info:"
+npx cypress verify
+npx cypress info
+mkdir -p dkan/cypress/tmp && mkdir -p dkan/cypress/results
+
+# Add fixture users.
+cd $PROJECT_DIR || exit 1
+./.ddev/commands/web/dkan-test-users
+
+# Run the tests.
+cd $DKAN_DIR || exit 1
+# Ensure Cypress is installed.
+npx cypress install
+npx cypress verify
+npx cypress info
+# Do it to it.
+CYPRESS_baseUrl=$DDEV_PRIMARY_URL \
+  npx cypress run \
+  --headless \
+  --browser=chromium \
+  --reporter=junit \
+  --reporter-options "mochaFile=cypress/results/output.xml"
+TEST_RESULT=$?
+
+# Remove fixture users.
+cd $PROJECT_DIR || exit 1
+./.ddev/commands/web/dkan-test-users --remove
+
+exit $TEST_RESULT
