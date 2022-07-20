@@ -6,6 +6,7 @@
 
 # User instructions:
 # ddev config --project-name=foo
+# ddev get getdkan/dkan-ddev-addon
 # ddev composer create getdkan/recommended-project
 # ddev dkan-demo
 # ddev launch
@@ -14,10 +15,14 @@
 # TODO: how to composer create-project from within ddev?
 #composer create-project getdkan/recommended-project:@stable
 
+# Remove this module from the file system so we don't break the build.
+rm -rf docroot/modules/contrib/select_or_other
+
+composer require getdkan/dkan:2.x-dev --update-with-all-dependencies --no-interaction
 
 # install
 drush site:install standard --site-name="DKAN" -y
-drush pm-enable dkan config_update_ui -y
+drush pm-enable dkan config_update_ui dkan_js_frontend -y
 drush config-set system.performance css.preprocess 0 -y
 drush config-set system.performance js.preprocess 0 -y
 mkdir -p sites/default/files/uploaded_resources
