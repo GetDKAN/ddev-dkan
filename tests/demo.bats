@@ -9,7 +9,6 @@ setup() {
   cd "${TESTDIR}"
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
-#  ddev start -y
 }
 
 teardown() {
@@ -25,4 +24,5 @@ teardown() {
   cd ${TESTDIR}
   ddev composer create getdkan/recommended-project:@dev -y
   ddev dkan-demo
+  wget https://${PROJNAME}.ddev.site/home
 }
