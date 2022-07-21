@@ -14,7 +14,6 @@ setup() {
   ddev config --project-name=${PROJNAME}
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get ${DIR}
-  ddev start -y
 
   ddev composer create getdkan/recommended-project:@dev --no-interaction -y
   ddev config --project-name=${PROJNAME}
