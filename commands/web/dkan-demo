@@ -16,7 +16,7 @@
 
 
 # install
-drush site:install standard --site-name="DKAN" -y
+drush site:install standard --site-name="DKAN Demo" -y
 drush pm-enable dkan dkan_js_frontend config_update_ui -y
 drush config-set system.performance css.preprocess 0 -y
 drush config-set system.performance js.preprocess 0 -y
@@ -38,5 +38,7 @@ drush sapi-i
 ./.ddev/commands/web/dkan-frontend-build
 
 drush cr
+
+echo "Demo site build complete. Type 'ddev launch' to visit the site."
 
 #launch
