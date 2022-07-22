@@ -30,7 +30,21 @@ composer require getdkan/$FRONTEND_THEME
 drush theme:enable $FRONTEND_THEME
 drush config-set system.theme default $FRONTEND_THEME -y
 
+drush pm-enable dkan_js_frontend -y
+
 # TODO: Glean frontend ref info from dkan module.
+DKAN_MODULE_PATH=$(composer show --format=json getdkan/dkan | jq -r '.path')
+echo $DKAN_MODULE_PATH
+#cd $DKAN_MODULE_PATH
+#composer config extra.dkan-frontend
+DKAN_FRONTEND_CONFIG=$(composer config extra.dkan-frontend)
+echo $DKAN_FRONTEND_CONFIG
+#if [ ! -z $DKAN_FRONTEND_CONFIG ]; then
+#  echo $DKAN_FRONTEND_CONFIG | jq -r '.url'
+#fi
+
+#composer show --format=json getdkan/dkan | jq -r '.path'
+
 # cd docroot/modules/contrib/dkan
 # composer config extra | jq .
 

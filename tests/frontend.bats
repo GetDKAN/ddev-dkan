@@ -35,5 +35,5 @@ teardown() {
 
   ddev dkan-frontend-install
   ddev dkan-frontend-build
-  #ddev dkan-frontend-test
+  ddev dkan-frontend-test
 }
