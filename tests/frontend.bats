@@ -1,8 +1,8 @@
 setup() {
   set -eu -o pipefail
 
-#  load 'test_helper/bats-support/load'
-#  load 'test_helper/bats-assert/load'
+  load 'test_helper/bats-support/load'
+  load 'test_helper/bats-assert/load'
 
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
   export PROJNAME=test-dkan-ddev-addon
@@ -35,5 +35,7 @@ teardown() {
 
   ddev dkan-frontend-install
   ddev dkan-frontend-build
-  ddev dkan-frontend-test
+  # run the tests, but ignore the pass/fail. We only care if they ran.
+  run ddev dkan-frontend-test
+  assert_text --partial '(Run Finished)'
 }
