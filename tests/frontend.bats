@@ -37,5 +37,5 @@ teardown() {
   ddev dkan-frontend-build
   # run the tests, but ignore the pass/fail. We only care if they ran.
   run ddev dkan-frontend-test
-  assert_text --partial '(Run Finished)'
+  assert_output --partial '(Run Finished)'
 }
