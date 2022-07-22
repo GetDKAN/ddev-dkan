@@ -2,4 +2,5 @@
 
 The DKAN DDEv Addon is really neeto.
 
-[Commands](commands/)
+- [Getting started](getting-started.md)
+- [Testing the DKAN module](testing-dkan.md)
