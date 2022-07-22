@@ -1,4 +1,5 @@
-name: dkan-ddev-addon
+#ddev-generated
+
 type: drupal9
 docroot: docroot
 php_version: "7.4"
