@@ -6,9 +6,6 @@ setup() {
   mkdir -p $TESTDIR
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} || true
-  cd "${TESTDIR}"
-  ddev config --project-name=${PROJNAME}
-  ddev get ${DIR}
 }
 
 teardown() {
@@ -22,6 +19,8 @@ teardown() {
 @test "install a demo site" {
   set -eu -o pipefail
   cd ${TESTDIR}
+  ddev config --project-name=${PROJNAME}
+  ddev get ${DIR}
   ddev composer create getdkan/recommended-project:@dev -y
   ddev dkan-demo
   wget https://${PROJNAME}.ddev.site/home

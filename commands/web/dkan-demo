@@ -22,8 +22,8 @@ drush config-set system.performance css.preprocess 0 -y
 drush config-set system.performance js.preprocess 0 -y
 mkdir -p sites/default/files/uploaded_resources
 mkdir -p sites/default/files/resources
-#chmod -R 777 sites/default/files
-#chmod u+w sites/default
+chmod -R 777 sites/default/files
+chmod u+w sites/default
 
 # install sample
 drush en sample_content -y
