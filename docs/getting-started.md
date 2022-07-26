@@ -1,5 +1,15 @@
 # Getting started with DKAN DDev Addon
 
+## NOTE: During development....
+
+Instead of `ddev get getdkan/dkan-ddev-addon`, use the tarball file from the repo, like this:
+
+    ddev get https://github.com/GetDKAN/dkan-ddev-addon/archive/refs/heads/main.tar.gz
+
+If you desire a different addon repo branch, substitute its name for 'main.'
+
+TODO: Make a release and add the addon tag to our repo so DDev can find it.
+
 ## Start a new DKAN site
 
 First set up for using DKAN:
@@ -26,7 +36,7 @@ Now we have a useful DKAN-based Drupal site, so let's take a look, and use the
 standard tools to log in:
 
     ddev launch
-    ddev status-report
+    ddev drush status-report
     ddev drush uli
 
 ### TODO
