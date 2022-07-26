@@ -1,7 +1,7 @@
 setup() {
   set -eu -o pipefail
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
-  export PROJNAME=dkan-ddev-addon
+  export PROJNAME=test-dkan-ddev-addon
   export TESTDIR=~/tmp/$PROJNAME
   mkdir -p $TESTDIR
   export DDEV_NON_INTERACTIVE=true
