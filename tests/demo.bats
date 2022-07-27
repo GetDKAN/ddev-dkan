@@ -8,7 +8,7 @@ setup() {
   ddev delete -Oy ${PROJNAME} || true
 }
 
-teardown() {
+_teardown() {
   set -eu -o pipefail
   echo "teardown..."
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
@@ -22,6 +22,10 @@ teardown() {
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
   ddev composer create getdkan/recommended-project:@dev -y
+  # Shuffle around the settings file until ddev can do it for us.
+  # TODO: Change this after ddev 1.19.6 release.
+  cat .ddev/misc/settings.dkan-snippet.php.txt >> docroot/sites/default/settings.php
+  cp .ddev/misc/settings.dkan.php docroot/sites/default/settings.dkan.php
   ddev dkan-demo
   wget https://${PROJNAME}.ddev.site/home
 }
