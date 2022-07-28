@@ -8,7 +8,7 @@ setup() {
   ddev delete -Oy ${PROJNAME} || true
 }
 
-_teardown() {
+teardown() {
   set -eu -o pipefail
   echo "teardown..."
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )

@@ -9,9 +9,7 @@ file. After DDev 1.19.6 is released, this will (hopefully) not be required.
     ddev composer create getdkan/recommended-project:@dev -y
     # At this point, we must add a configuration to settings.php
     # This should change after DDev 1.19.6 is released.
-// Automatically generated include for settings managed by ddev.
-if (file_exists(__DIR__ . '/settings.ddev.php') && getenv('IS_DDEV_PROJECT') == 'true') {
-include __DIR__ . '/settings.ddev.php';
-}
+    cat .ddev/misc/settings.dkan-snippet.php.txt >> docroot/sites/default/settings.php
+    cp .ddev/misc/settings.dkan.php docroot/sites/default/settings.dkan.php
 
     ddev dkan-demo
