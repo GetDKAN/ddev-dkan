@@ -5,17 +5,9 @@
 DKAN DDev Addon provides some glue scripts and config for doing local development of
 DKAN itself and also DKAN-related Drupal sites.
 
-## Install
+## Documentation
 
-Install DDev.
-
-Install Docker.
-
-Run Docker.
-
-Do ddev stuff.....
-
-## TODO: All the docs for your reading enjoyment.
+Documentation lives in Github Pages: https://getdkan.github.io/dkan-ddev-addon/
 
 ## Testing
 
