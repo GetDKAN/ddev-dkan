@@ -18,10 +18,14 @@ First set up for using DKAN:
     mkdir my-project && cd my_project
     # Give DDev just enough configuration to get started.
     ddev config --auto
-    # Use DDev to build the template project using Composer.
-    ddev composer create getdkan/recommended-project:@dev --no-interaction -y
     # Grab the addon so you get the fun stuff.
     ddev get getdkan/dkan-ddev-addon
+    # Use DDev to build the template project using Composer.
+    ddev composer create getdkan/recommended-project:@dev --no-interaction -y
+    # At this point, we must add a configuration to settings.php
+    # This should change after DDev 1.19.6 is released.
+    cat .ddev/misc/settings.dkan-snippet.php.txt >> docroot/sites/default/settings.php
+    cp .ddev/misc/settings.dkan.php docroot/sites/default/settings.dkan.php
     # Restart so DDev can make sure everything's where it should be.
     ddev restart
 
