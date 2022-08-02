@@ -1,19 +1,31 @@
 #!/bin/bash
 #ddev-generated
 
-## Description: Build the Drupal codebase for a DKAN site.
-## Usage: dkan-init
+## Description: Build the codebase for local DKAN module development.
+## Usage: dkan-init-moduledev
+## ProjectTypes: drupal9
 
 # User instructions:
 # ddev config --project-name=foo
 # ddev get getdkan/dkan-ddev-addon
-# ddev dkan-init
+# ddev dkan-init-moduledev
 # ddev launch
 
-ddev restart
-ddev composer create getdkan/recommended-project:@dev -y
+export DKAN_REPO=git@github.com:GetDKAN/dkan.git
+export DKAN_REPO_BRANCH=2.x
+
+echo " ** Checking for commands..."
+command -v git
+
+ddev composer create getdkan/recommended-project:@dev -y --no-install
+
+git clone -b $DKAN_REPO_BRANCH $DKAN_REPO $DDEV_APPROOT/dkan
+
+ddev composer config repositories.dkan path dkan
+ddev composer require getdkan/dkan:@dev --no-install
 # While we're waiting for https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
-ddev composer require drupal/pathauto:^1.10
+ddec composer require drupal/pathauto:^1.10
+ddev composer install
 
 # TODO: Adjust the settings files for public urls.
 

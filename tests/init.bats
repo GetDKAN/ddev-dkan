@@ -11,7 +11,7 @@ setup() {
   ddev get ${DIR}
 }
 
-_teardown() {
+teardown() {
   set -eu -o pipefail
   echo "teardown..."
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
@@ -19,10 +19,20 @@ _teardown() {
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
-@test "install from directory" {
+@test "dkan-init" {
   set -eu -o pipefail
   cd ${TESTDIR}
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
 
   ddev dkan-init
+  ddev drush uli
+}
+
+@test "dkan-init-moduledev" {
+  set -eu -o pipefail
+  cd ${TESTDIR}
+  echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
+
+  ddev dkan-init-moduledev
+  ddev drush uli
 }
