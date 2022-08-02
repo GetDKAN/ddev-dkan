@@ -11,7 +11,7 @@
 # ddev dkan-init-moduledev
 # ddev launch
 
-export DKAN_REPO=git@github.com:GetDKAN/dkan.git
+export DKAN_REPO=https://github.com/GetDKAN/dkan.git
 export DKAN_REPO_BRANCH=2.x
 
 echo " ** Checking for commands..."
