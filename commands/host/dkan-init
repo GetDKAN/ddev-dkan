@@ -10,10 +10,10 @@
 # ddev dkan-init
 # ddev launch
 
-ddev restart
-ddev composer create getdkan/recommended-project:@dev -y
+ddev composer create getdkan/recommended-project:@dev -y --no-install
 # While we're waiting for https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
 ddev composer require drupal/pathauto:^1.10
+ddev composer install
 
 # TODO: Adjust the settings files for public urls.
 
