@@ -1,0 +1,26 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Build the Drupal codebase for a DKAN site.
+## Usage: dkan-init
+
+# User instructions:
+# ddev config --project-name=foo
+# ddev get getdkan/dkan-ddev-addon
+# ddev dkan-init
+# ddev launch
+
+ddev restart
+ddev composer create getdkan/recommended-project:@dev -y
+
+# TODO: Adjust the settings files for public urls.
+
+# install
+ddev drush site:install standard --site-name="DKAN" -y
+ddev drush pm-enable dkan config_update_ui -y
+ddev drush config-set system.performance css.preprocess 0 -y
+ddev drush config-set system.performance js.preprocess 0 -y
+
+ddev drush cr
+
+echo "Site build complete. Type 'ddev launch' to visit the site."
