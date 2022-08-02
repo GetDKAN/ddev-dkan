@@ -29,7 +29,7 @@ jobs:
 
     strategy:
       matrix:
-        ddev_version: [stable, HEAD]
+        ddev_version: [stable]
 #        ddev_version: [stable, edge, HEAD, PR]
       fail-fast: false
 
@@ -63,7 +63,7 @@ jobs:
         mv ddev /usr/local/bin/ddev && chmod +x /usr/local/bin/ddev
 
     - name: Download docker images
-      run: | 
+      run: |
         mkdir junk && pushd junk && ddev config --auto && ddev debug download-images >/dev/null
         docker pull memcached:1.6 >/dev/null
     - name: tmate debugging session
