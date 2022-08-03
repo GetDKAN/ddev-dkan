@@ -16,7 +16,7 @@ setup() {
   ddev get ${DIR}
 
   ddev composer create getdkan/recommended-project:@dev --no-interaction -y
-  # While we're waiting for https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
+  # TODO: Change this after https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
   ddev composer require drupal/pathauto:^1.10
 
   ddev drush si -y
