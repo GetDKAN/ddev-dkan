@@ -4,6 +4,8 @@
 ## Description: Add the frontend for DKAN.
 ## Usage: dkan-frontend-install
 
+# TODO: Make a CI flag.
+
 FRONTEND_TMP='src/tmp'
 FRONTEND_DIR='src/frontend'
 FRONTEND_DOCROOT_DIR='docroot/frontend'

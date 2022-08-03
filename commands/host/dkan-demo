@@ -5,7 +5,7 @@
 ## Usage: dkan-demo
 
 # User instructions:
-# ddev config --project-name=foo
+# ddev config --project-name=foo (or --auto)
 # ddev get getdkan/dkan-ddev-addon
 # ddev dkan-demo
 # ddev launch
