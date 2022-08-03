@@ -51,8 +51,8 @@ pre_install_actions:
 # DDEV environment variables can be interpolated into these filenames
 project_files:
   - config.dkan.yaml
+  - commands/host/dkan-demo
   - commands/host/dkan-init
-  - commands/web/dkan-demo
   - commands/web/dkan-frontend-build
   - commands/web/dkan-frontend-install
   - commands/web/dkan-site-install

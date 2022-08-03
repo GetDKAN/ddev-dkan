@@ -1,0 +1,33 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Build and run a demo site for DKAN.
+## Usage: dkan-demo
+
+# User instructions:
+# ddev config --project-name=foo
+# ddev get getdkan/dkan-ddev-addon
+# ddev dkan-demo
+# ddev launch
+
+ddev dkan-init
+
+ddev drush pm-enable dkan dkan_js_frontend config_update_ui -y
+
+mkdir -p sites/default/files/uploaded_resources
+mkdir -p sites/default/files/resources
+
+# install sample
+ddev drush en sample_content -y
+ddev drush dkan:sample-content:create
+ddev drush queue:run datastore_import
+ddev drush dkan:metastore-search:rebuild-tracker
+ddev drush sapi-i
+
+# frontend
+ddev dkan-frontend-install
+ddev dkan-frontend-build
+
+ddev drush cr
+
+echo "Demo site build complete. Type 'ddev launch' to visit the site."
