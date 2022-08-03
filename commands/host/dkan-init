@@ -3,6 +3,7 @@
 
 ## Description: Build the Drupal codebase for a DKAN site.
 ## Usage: dkan-init
+## Flags: [{"Name":"moduledev", "Usage":"Set up the file system for DKAN module development."}]
 
 # User instructions:
 # ddev config --project-name=foo
@@ -10,19 +11,49 @@
 # ddev dkan-init
 # ddev launch
 
+export DKAN_REPO=https://github.com/GetDKAN/dkan.git
+export DKAN_REPO_BRANCH=2.x
+
+echo " ** Checking for commands..."
+command -v git
+
+# Glean flag arguments.
+INIT_MODULEDEV=false
+while :; do
+  case ${1:-} in
+  --moduledev)
+    INIT_MODULEDEV=true
+    echo "*"
+    echo "* Setting up for local DKAN module development"
+    echo "*"
+    shift
+    ;;
+  --) # End of all options.
+    shift
+    break
+    ;;
+  -?*)
+    printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+    ;;
+  *) # Default case: No more options, so break out of the loop.
+    break ;;
+  esac
+  shift
+done
+
 ddev composer create getdkan/recommended-project:@dev -y --no-install
+
+if [ $INIT_MODULEDEV = true ]; then
+  git clone -b $DKAN_REPO_BRANCH $DKAN_REPO $DDEV_APPROOT/dkan
+  ddev composer config repositories.dkan path dkan
+  ddev composer require getdkan/dkan:@dev --no-install
+fi
+
 # While we're waiting for https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
 ddev composer require drupal/pathauto:^1.10
 ddev composer install
 
 # TODO: Adjust the settings files for public urls.
 
-# install
-ddev drush site:install standard --site-name="DKAN" -y
-ddev drush pm-enable dkan config_update_ui -y
-ddev drush config-set system.performance css.preprocess 0 -y
-ddev drush config-set system.performance js.preprocess 0 -y
-
-ddev drush cr
-
+ddev dkan-site-install
 echo "Site build complete. Type 'ddev launch' to visit the site."

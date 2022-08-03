@@ -1,5 +1,9 @@
 setup() {
   set -eu -o pipefail
+
+  load 'test_helper/bats-support/load'
+  load 'test_helper/bats-assert/load'
+
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
   export PROJNAME=test-dkan-ddev-addon
   export TESTDIR=~/tmp/$PROJNAME
@@ -24,8 +28,15 @@ teardown() {
   cd ${TESTDIR}
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
 
-  ddev dkan-init
-  ddev drush uli
+  run ddev dkan-init --help
+  assert_output --partial "--moduledev"
+
+  run ddev dkan-site-install --help
+  assert_output --partial "ddev dkan-site-install [flags]"
+
+  run ddev dkan-init
+  refute_output --partial "Setting up for local DKAN module development"
+  assert_output --partial "Site build complete. Type 'ddev launch' to visit the site."
 }
 
 @test "dkan-init-moduledev" {
@@ -33,6 +44,7 @@ teardown() {
   cd ${TESTDIR}
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
 
-  ddev dkan-init-moduledev
-  ddev drush uli
+  run ddev dkan-init --moduledev
+  assert_output --partial "Setting up for local DKAN module development"
+  assert_output --partial "Site build complete. Type 'ddev launch' to visit the site."
 }
