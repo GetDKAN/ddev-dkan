@@ -5,7 +5,7 @@ setup() {
   load 'test_helper/bats-assert/load'
 
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
-  export PROJNAME=dkan-ddev-addon
+  export PROJNAME=test-dkan-ddev-addon
   export TESTDIR=~/tmp/$PROJNAME
   mkdir -p $TESTDIR
   export DDEV_NON_INTERACTIVE=true
@@ -14,7 +14,6 @@ setup() {
   ddev config --project-name=${PROJNAME}
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get ${DIR}
-  ddev restart
 
   ddev composer create getdkan/recommended-project:@dev --no-interaction -y
   # TODO: Change this after https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389

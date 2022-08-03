@@ -1,0 +1,5 @@
+// Automatically generated include for settings managed by dkan-ddev-addon.
+// #ddev-generated
+if (file_exists(__DIR__ . '/settings.dkan.php') && getenv('IS_DDEV_PROJECT') == 'true') {
+  include __DIR__ . '/settings.dkan.php';
+}

@@ -1,0 +1,12 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Perform site install, including DKAN details.
+## Usage: dkan-site-install
+
+drush site:install standard --site-name="DKAN" -y
+drush pm-enable dkan config_update_ui -y
+drush config-set system.performance css.preprocess 0 -y
+drush config-set system.performance js.preprocess 0 -y
+
+drush cr

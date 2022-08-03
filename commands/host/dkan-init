@@ -1,0 +1,62 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Build the Drupal codebase for a DKAN site.
+## Usage: dkan-init
+## Flags: [{"Name":"moduledev", "Usage":"Set up the file system for DKAN module development."}]
+
+# User instructions:
+# ddev config --project-name=foo (or --auto)
+# ddev get getdkan/dkan-ddev-addon
+# ddev dkan-init
+# ddev launch
+
+export DKAN_REPO=https://github.com/GetDKAN/dkan.git
+export DKAN_REPO_BRANCH=2.x
+
+echo " ** Checking for commands..."
+command -v git
+
+# Glean flag arguments.
+INIT_MODULEDEV=false
+while :; do
+  case ${1:-} in
+  --moduledev)
+    INIT_MODULEDEV=true
+    echo "*"
+    echo "* Setting up for local DKAN module development"
+    echo "*"
+    shift
+    ;;
+  --) # End of all options.
+    shift
+    break
+    ;;
+  -?*)
+    printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+    ;;
+  *) # Default case: No more options, so break out of the loop.
+    break ;;
+  esac
+  shift
+done
+
+ddev composer create getdkan/recommended-project:@dev -y --no-install
+
+if [ $INIT_MODULEDEV = true ]; then
+  git clone -b $DKAN_REPO_BRANCH $DKAN_REPO $DDEV_APPROOT/dkan
+  ddev composer config repositories.dkan path dkan
+  ddev composer require getdkan/dkan:@dev --no-install
+fi
+
+# TODO: Change this after https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
+ddev composer require drupal/pathauto:^1.10 --no-install
+ddev composer install
+
+# Adjust settings for our special case.
+# TODO: Change this after DDev 1.19.6 is released and we can merge hooks.
+cat .ddev/misc/settings.dkan-snippet.php.txt >> docroot/sites/default/settings.php
+cp .ddev/misc/settings.dkan.php docroot/sites/default/settings.dkan.php
+
+ddev dkan-site-install
+echo "Site build complete. Type 'ddev launch' to visit the site."
