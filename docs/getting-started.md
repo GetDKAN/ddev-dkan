@@ -20,21 +20,8 @@ First set up for using DKAN:
     ddev config --auto
     # Grab the addon so you get the fun stuff.
     ddev get getdkan/dkan-ddev-addon
-    # Use DDev to build the template project using Composer.
-    ddev composer create getdkan/recommended-project:@dev --no-interaction -y
-    # At this point, we must add a configuration to settings.php
-    # This should change after DDev 1.19.6 is released.
-    cat .ddev/misc/settings.dkan-snippet.php.txt >> docroot/sites/default/settings.php
-    cp .ddev/misc/settings.dkan.php docroot/sites/default/settings.dkan.php
-    # Restart so DDev can make sure everything's where it should be.
-    ddev restart
-
-If you now type `ddev launch` you'll see that the server is available, and Drupal
-will prompt you to install the site. However, we should use Drush to do that,
-shouldn't we?
-
-    ddev drush site:install -y
-    ddev drush pm-enable dkan -y
+    # Initialize the site.
+    ddev dkan-init
 
 Now we have a useful DKAN-based Drupal site, so let's take a look, and use the
 standard tools to log in:
