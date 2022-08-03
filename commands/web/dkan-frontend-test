@@ -4,11 +4,13 @@
 ## Description: Run Cypress tests for the frontend app.
 ## Usage: dkan-frontend-test
 
+# TODO: Add CI mode.
+
 PROJECT_DIR=$PWD
-DKAN_DIR=docroot/modules/contrib/dkan
+FRONTEND_DIR=docroot/frontend
 
 # Perform these lengthly tasks before adding fixture users.
-cd $DKAN_DIR || exit 1
+cd $FRONTEND_DIR
 npm cache verify
 # If there is no package.json we shouldn't try to npm install.
 # We do this because we want npm install to fail CI and other
@@ -29,7 +31,7 @@ cd $PROJECT_DIR || exit 1
 ./.ddev/commands/web/dkan-test-users
 
 # Run the tests.
-cd $DKAN_DIR || exit 1
+cd $FRONTEND_DIR || exit 1
 # Ensure Cypress is installed.
 npx cypress install
 npx cypress verify

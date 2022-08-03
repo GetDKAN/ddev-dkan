@@ -29,8 +29,11 @@ teardown() {
 @test "install and build the frontend app" {
   set -eu -o pipefail
 
-  ddev dkan-frontend-install
+  run ddev dkan-frontend-install
+  assert_output --partial 'Gathering frontend application'
+
   ddev dkan-frontend-build
+
   # run the tests, but ignore the pass/fail. We only care if they ran.
   run ddev dkan-frontend-test
   assert_output --partial '(Run Finished)'
