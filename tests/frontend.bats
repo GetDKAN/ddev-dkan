@@ -15,13 +15,7 @@ setup() {
   ddev config --project-name=${PROJNAME}
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get ${DIR}
-  ddev composer create getdkan/recommended-project:@dev --no-interaction -y
-  cat .ddev/misc/settings.dkan-snippet.php.txt >> docroot/sites/default/settings.php
-  cp .ddev/misc/settings.dkan.php docroot/sites/default/settings.dkan.php
-  ddev restart
-
-  ddev drush si -y
-  ddev drush pm-enable dkan -y
+  ddev dkan-init
 }
 
 teardown() {

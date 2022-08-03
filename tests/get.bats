@@ -18,7 +18,7 @@ teardown() {
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
-@test "install from directory" {
+@test "get from directory" {
   set -eu -o pipefail
   cd ${TESTDIR}
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
