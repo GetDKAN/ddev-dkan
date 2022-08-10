@@ -6,8 +6,6 @@ setup() {
   mkdir -p $TESTDIR
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} || true
-  cd "${TESTDIR}"
-  ddev config --project-name=${PROJNAME}
 }
 
 teardown() {
@@ -18,10 +16,12 @@ teardown() {
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
-@test "install from directory" {
+@test "install a demo site" {
   set -eu -o pipefail
   cd ${TESTDIR}
-  echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
+
+  ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
-  ddev restart
+  ddev dkan-demo
+  wget https://${PROJNAME}.ddev.site/search
 }
