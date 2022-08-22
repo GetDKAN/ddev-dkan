@@ -20,6 +20,8 @@ First set up for using DKAN:
     ddev config --auto
     # Grab the addon so you get the fun stuff.
     ddev get getdkan/dkan-ddev-addon
+    # Make sure we're using the addon.
+    ddev restart
     # Initialize the site.
     ddev dkan-init
 
