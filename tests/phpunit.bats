@@ -14,7 +14,9 @@ setup() {
   ddev config --project-name=${PROJNAME}
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get ${DIR}
+  ddev restart
 
+  # TODO: Replace this with actual dkan-* commands.
   ddev composer create getdkan/recommended-project:@dev --no-interaction -y
   # TODO: Change this after https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
   ddev composer require drupal/pathauto:^1.10
@@ -39,4 +41,5 @@ teardown() {
   # PHP code here.
   run ddev dkan-test-phpunit --group this-group-should-not-exist
   assert_output --partial 'Starting PHPUnit test run'
+  assert_output --partial 'No tests executed!'
 }
