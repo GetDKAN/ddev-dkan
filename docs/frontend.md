@@ -11,4 +11,9 @@ and for testing...
 
     ddev dkan-frontend-test
 
+The dkan-frontend-test is intended for CI processes. Users are encouraged to
+use local Cypress tooling for testing locally. This is due to an outstanding
+issue with Cypress not running well on M1 Macs.
+See: https://github.com/cypress-io/cypress-docker-images/issues/431
+
 TODO: Document the frontend app discovery process.
