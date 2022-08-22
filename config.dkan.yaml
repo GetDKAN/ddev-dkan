@@ -10,7 +10,7 @@ xdebug_enabled: false
 additional_hostnames: []
 additional_fqdns: []
 database:
-  type: mysql
+  type: "mysql"
   version: "5.7"
 nfs_mount_enabled: false
 mutagen_enabled: false

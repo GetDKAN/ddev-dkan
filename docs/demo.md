@@ -6,6 +6,7 @@ file. After DDev 1.19.6 is released, this will (hopefully) not be required.
     mkdir my-project && cd my-project
     ddev config --auto
     ddev get getdkan/dkan-ddev-addon
+    ddev restart
     ddev composer create getdkan/recommended-project:@dev -y
     # At this point, we must add a configuration to settings.php
     # This should change after DDev 1.19.6 is released.
