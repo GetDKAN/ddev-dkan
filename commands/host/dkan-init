@@ -58,5 +58,4 @@ ddev composer install
 cat .ddev/misc/settings.dkan-snippet.php.txt >> docroot/sites/default/settings.php
 cp .ddev/misc/settings.dkan.php docroot/sites/default/settings.dkan.php
 
-ddev dkan-site-install
 echo "Site build complete. Type 'ddev launch' to visit the site."
