@@ -13,6 +13,7 @@ setup() {
   cd "${TESTDIR}"
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
+  ddev restart
 }
 
 teardown() {
@@ -26,7 +27,6 @@ teardown() {
 @test "dkan-init" {
   set -eu -o pipefail
   cd ${TESTDIR}
-  echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
 
   run ddev dkan-init --help
   assert_output --partial "--moduledev"
@@ -36,15 +36,14 @@ teardown() {
 
   run ddev dkan-init
   refute_output --partial "Setting up for local DKAN module development"
-  assert_output --partial "Site build complete. Type 'ddev launch' to visit the site."
+  assert_output --partial "Site codebase initialized."
 }
 
 @test "dkan-init-moduledev" {
   set -eu -o pipefail
   cd ${TESTDIR}
-  echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
 
   run ddev dkan-init --moduledev
   assert_output --partial "Setting up for local DKAN module development"
-  assert_output --partial "Site build complete. Type 'ddev launch' to visit the site."
+  assert_output --partial "Site codebase initialized."
 }

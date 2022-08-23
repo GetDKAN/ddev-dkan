@@ -12,7 +12,7 @@ TODO: Make a release and add the addon tag to our repo so DDev can find it.
 
 ## Start a new DKAN site
 
-First set up for using DKAN:
+First, set up your DKAN site:
 
     # Make a directory for your project.
     mkdir my-project && cd my_project
@@ -24,6 +24,8 @@ First set up for using DKAN:
     ddev restart
     # Initialize the site.
     ddev dkan-init
+    # Install Drupal.
+    ddev dkan-site-install
 
 Now we have a useful DKAN-based Drupal site, so let's take a look, and use the
 standard tools to log in:
@@ -31,6 +33,12 @@ standard tools to log in:
     ddev launch
     ddev drush status-report
     ddev drush uli
+
+If you are doing development work on the DKAN module itself, you can substitute
+the `ddev dkan-init --moduledev` command for `ddev dkan-init`.
+
+This will clone the dkan project into its own directory and tell Composer to
+use that repo as the getdkan/dkan package.
 
 ### TODO
 
