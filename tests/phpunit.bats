@@ -12,17 +12,13 @@ setup() {
   ddev delete -Oy ${PROJNAME} || true
   cd "${TESTDIR}"
   ddev config --project-name=${PROJNAME}
-  echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get ${DIR}
   ddev restart
 
-  # TODO: Replace this with actual dkan-* commands.
-  ddev composer create getdkan/recommended-project:@dev --no-interaction -y
+  ddev dkan-init
   # TODO: Change this after https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
   ddev composer require drupal/pathauto:^1.10
-
-  ddev drush si -y
-  ddev drush pm-enable dkan -y
+  ddev dkan-site-install
 }
 
 teardown() {

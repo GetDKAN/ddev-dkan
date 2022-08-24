@@ -34,7 +34,7 @@ done
 
 # If we didn't get an argument, use the default.
 if [ -z $TU_PATH ] ; then
-  TU_PATH="testUsers.json"
+  TU_PATH=".ddev/misc/testUsers.json"
 fi
 
 if [ ! -f $TU_PATH ] ; then
@@ -48,12 +48,12 @@ else
   echo "Adding users from $TU_PATH"
 fi
 
-# yq/jq magical incantations.
-readarray -t TU_TEST_USERS < <(yq -c '.[]' $TU_PATH)
+# jq magical incantations.
+readarray -t TU_TEST_USERS < <(jq -c '.[]' $TU_PATH)
 for TU_TEST_USER in "${TU_TEST_USERS[@]}"; do
-  name=$(yq -r '.name' <<<"$TU_TEST_USER")
-  mail=$(yq -r '.mail' <<<"$TU_TEST_USER")
-  role=$(yq -r '.role' <<<"$TU_TEST_USER")
+  name=$(jq -r '.name' <<<"$TU_TEST_USER")
+  mail=$(jq -r '.mail' <<<"$TU_TEST_USER")
+  role=$(jq -r '.role' <<<"$TU_TEST_USER")
   if [ $TU_REMOVE = true ]; then
     drush user:cancel --delete-content $name -y
   else

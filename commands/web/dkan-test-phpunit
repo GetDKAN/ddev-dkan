@@ -25,8 +25,6 @@ composer require --dev phpspec/prophecy-phpunit:^2
 echo "Starting PHPUnit test run."
 DDEV_PATH="$PWD"
 cd $TEST_PATH || exit 1
-# TODO: We're replacing a lot of the env vars in dkan's phpunit.xml here. Figure out which is canonical.
-# TODO: Can we replace db creds with env vars from ddev?
 DRUPAL_ROOT="/var/www/html/docroot" \
   SIMPLETEST_BASE_URL=$DDEV_PRIMARY_URL \
   SIMPLETEST_DB="mysql://db:db@$DDEV_PROJECT-db:3306/db" \
