@@ -58,4 +58,10 @@ ddev composer install
 cat .ddev/misc/settings.dkan-snippet.php.txt >> docroot/sites/default/settings.php
 cp .ddev/misc/settings.dkan.php docroot/sites/default/settings.dkan.php
 
+# TODO: Should this be in recommended-project as scaffold?
+#       or... in dkan module itself?
+mkdir -p docroot/sites/default/files/uploaded_resources
+chmod -R 777 docroot/sites/default/files
+chmod u+w docroot/sites/default
+
 echo "Site codebase initialized."
