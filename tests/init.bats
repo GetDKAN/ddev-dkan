@@ -30,6 +30,7 @@ teardown() {
 
   run ddev dkan-init --help
   assert_output --partial "--moduledev"
+  assert_output --partial "--force"
 
   run ddev dkan-site-install --help
   assert_output --partial "ddev dkan-site-install [flags]"
@@ -46,4 +47,28 @@ teardown() {
   run ddev dkan-init --moduledev
   assert_output --partial "Setting up for local DKAN module development"
   assert_output --partial "Site codebase initialized."
+}
+
+@test "dkan-init protects existing work" {
+  set -eu -o pipefail
+  cd ${TESTDIR}
+
+  touch composer.json
+
+  run ddev dkan-init
+  assert_output --partial "Assuming there is work in this directory you want to preserve."
+  assert_failure
+
+  rm composer.json
+  mkdir -p docroot/core
+
+  run ddev dkan-init
+  assert_output --partial "Assuming there is work in this directory you want to preserve."
+  assert_failure
+
+  rm -rf docroot/core
+  mkdir dkan
+
+  assert_output --partial "Assuming there is work in this directory you want to preserve."
+  assert_failure
 }

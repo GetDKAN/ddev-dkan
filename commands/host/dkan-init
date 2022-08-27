@@ -3,22 +3,24 @@
 
 ## Description: Build the Drupal codebase for a DKAN site.
 ## Usage: dkan-init
-## Flags: [{"Name":"moduledev", "Usage":"Set up the file system for DKAN module development."}]
+## Flags: [{"Name":"moduledev", "Usage":"Set up the file system for DKAN module development."},{"Name":"force", "Usage":"Force init even if there are files present which could be deleted."}]
 
 # User instructions:
 # ddev config --project-name=foo (or --auto)
 # ddev get getdkan/dkan-ddev-addon
+# ddev restart
 # ddev dkan-init
 # ddev launch
+
+set -euo pipefail
+set -x
 
 export DKAN_REPO=https://github.com/GetDKAN/dkan.git
 export DKAN_REPO_BRANCH=2.x
 
-echo " ** Checking for commands..."
-command -v git
-
 # Glean flag arguments.
 INIT_MODULEDEV=false
+INIT_FORCE=false
 while :; do
   case ${1:-} in
   --moduledev)
@@ -26,10 +28,13 @@ while :; do
     echo "*"
     echo "* Setting up for local DKAN module development"
     echo "*"
-    shift
+    ;;
+  --force)
+    INIT_FORCE=true
+    echo "forced"
     ;;
   --) # End of all options.
-    shift
+    echo "end"
     break
     ;;
   -?*)
@@ -41,7 +46,32 @@ while :; do
   shift
 done
 
-ddev composer create getdkan/recommended-project:@dev -y --no-install
+# TODO: Determine if there's anything in the directory that we shouldn't remove.
+# - look for composer.json
+# - look for dkan/.
+# - If docroot/ exists, it shouldn't contain core/.
+
+if [ $INIT_FORCE = false ]; then
+  if [ -f composer.json ]; then
+    echo "Found composer.json. Assuming there is work in this directory you want to preserve. Aborting."
+    exit 1
+  fi
+  if [ -d docroot/core ]; then
+    echo "Found docroot/core. Assuming there is work in this directory you want to preserve. Aborting."
+    exit 1
+  fi
+  if [ -d dkan ]; then
+    echo "Found dkan. Assuming there is work in this directory you want to preserve. Aborting."
+    exit 1
+  fi
+fi
+
+if [ $INIT_MODULEDEV = true ]; then
+  echo " ** Checking for commands..."
+  command -v git
+fi
+
+ddev composer create getdkan/recommended-project:@dev --no-install -y
 
 if [ $INIT_MODULEDEV = true ]; then
   git clone -b $DKAN_REPO_BRANCH $DKAN_REPO $DDEV_APPROOT/dkan
