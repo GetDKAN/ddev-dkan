@@ -12,10 +12,13 @@ setup() {
   ddev delete -Oy ${PROJNAME} || true
   cd "${TESTDIR}"
   ddev config --project-name=${PROJNAME}
-  echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-
   ddev get ${DIR}
+  ddev restart
+
   ddev dkan-init
+  # TODO: Change this after https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
+  ddev composer require drupal/pathauto:^1.10
+  ddev dkan-site-install
 }
 
 teardown() {
@@ -34,4 +37,5 @@ teardown() {
   # PHP code here.
   run ddev dkan-test-phpunit --group this-group-should-not-exist
   assert_output --partial 'Starting PHPUnit test run'
+  assert_output --partial 'No tests executed!'
 }

@@ -64,6 +64,7 @@ project_files:
   - misc/settings.dkan.php
   - misc/settings.dkan-snippet.php.txt
   - web-build/Dockerfile
+  - misc/testUsers.json
 
 # List of files and directories that are copied into the global .ddev directory
 # DDEV environment variables can be interpolated into these filenames
