@@ -4,11 +4,8 @@
 ## Description: Build and run a demo site for DKAN.
 ## Usage: dkan-demo
 
-# User instructions:
-# ddev config --project-name=foo (or --auto)
-# ddev get getdkan/dkan-ddev-addon
-# ddev dkan-demo
-# ddev launch
+# Fail early, fail often.
+set -eu -o pipefail
 
 ddev dkan-init
 

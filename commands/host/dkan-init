@@ -5,11 +5,8 @@
 ## Usage: dkan-init
 ## Flags: [{"Name":"moduledev", "Usage":"Set up the file system for DKAN module development."}]
 
-# User instructions:
-# ddev config --project-name=foo (or --auto)
-# ddev get getdkan/dkan-ddev-addon
-# ddev dkan-init
-# ddev launch
+# Fail early, fail often.
+set -eu -o pipefail
 
 export DKAN_REPO=https://github.com/GetDKAN/dkan.git
 export DKAN_REPO_BRANCH=2.x

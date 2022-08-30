@@ -6,6 +6,9 @@
 
 # TODO: Add CI mode.
 
+# Fail early, fail often.
+set -eu -o pipefail
+
 PROJECT_DIR=$PWD
 FRONTEND_DIR=docroot/frontend
 

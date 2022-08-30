@@ -3,8 +3,18 @@
 
 ## Description: Add the frontend for DKAN.
 ## Usage: dkan-frontend-install
+## Flags: [{"Name":"force", "Usage":"Force installation over an existing one."}]
+
+# User instructions:
+# ddev dkan-init
+# ddev dkan-site-install
+# ddev dkan-frontend-install
+# ddev dkan-frontend-build
 
 # TODO: Make a CI flag.
+
+# Fail early, fail often.
+set -eu -o pipefail
 
 FRONTEND_TMP='src/tmp'
 FRONTEND_DIR='src/frontend'
@@ -16,15 +26,32 @@ FRONTEND_VCS_URL='https://github.com/GetDKAN/data-catalog-app/'
 FRONTEND_VCS_REF='no-node-sass'
 FRONTEND_THEME='dkan_js_frontend_bartik'
 
-if [[ -L $FRONTEND_DOCROOT_DIR ]]; then
-  echo "ERROR: Symlink $FRONTEND_DOCROOT_DIR already exists."
-  exit 1
-fi
+# Glean flag arguments.
+INSTALL_FORCE=false
+while :; do
+  case ${1:-} in
+  --force)
+    INSTALL_FORCE=true
+    echo "Force install."
+    ;;
+  --) # End of all options.
+    break
+    ;;
+  -?*)
+    printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+    ;;
+  *) # Default case: No more options, so break out of the loop.
+    break ;;
+  esac
+  shift
+done
 
-#if [ -d $FRONTEND_DIR ]; then
-# echo "ERROR: Frontend $FRONTEND_DIR already exists."
-#exit 1
-#fi
+if [ $INSTALL_FORCE = false ]; then
+  if [[ -d $FRONTEND_DOCROOT_DIR ]]; then
+    echo "ERROR: $FRONTEND_DOCROOT_DIR already exists. Use --force to replace it."
+    exit 1
+  fi
+fi
 
 # Glean frontend spec from dkan module.
 DKAN_MODULE_PATH=$(composer show --format=json getdkan/dkan | jq -r '.path')
@@ -50,11 +77,18 @@ echo " ** Gathering frontend application: $FRONTEND_VCS_REF from $FRONTEND_VCS_U
 mkdir -p $FRONTEND_TMP
 wget -O $FRONTEND_TMP/data-catalog-app-$FRONTEND_VCS_REF.zip "$FRONTEND_VCS_URL"archive/$FRONTEND_VCS_REF.zip
 unzip $FRONTEND_TMP/data-catalog-app-$FRONTEND_VCS_REF.zip -d docroot/
-mv docroot/data-catalog-app-$FRONTEND_VCS_REF "$FRONTEND_DOCROOT_DIR"
 
-#ln -s $PWD/$FRONTEND_DIR $FRONTEND_DOCROOT_DIR
+if [ $INSTALL_FORCE = true ]; then
+  echo " * "
+  echo " * Forcing installation of frontend app over existing one."
+  echo " * "
+  rm -rf "$FRONTEND_DOCROOT_DIR"
+fi
+mv docroot/data-catalog-app-$FRONTEND_VCS_REF "$FRONTEND_DOCROOT_DIR"
 
 cd $FRONTEND_DOCROOT_DIR || exit
 # Don't fill the screen with warnings, only errors.
 # TODO: Make sure we don't miss important warnings.
 npm --loglevel=error install
+
+echo " * Frontend install complete."

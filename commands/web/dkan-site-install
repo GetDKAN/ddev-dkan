@@ -4,6 +4,9 @@
 ## Description: Perform site install, including DKAN details.
 ## Usage: dkan-site-install
 
+# Fail early, fail often.
+set -eu -o pipefail
+
 drush site:install standard --site-name="DKAN" -y
 drush pm-enable dkan config_update_ui -y
 drush config-set system.performance css.preprocess 0 -y

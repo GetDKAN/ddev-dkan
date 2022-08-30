@@ -7,7 +7,12 @@ This front end can be managed using the following tools:
     ddev dkan-frontend-install
     ddev dkan-frontend-build
 
-and for testing...
+Note that in order to install the frontend, you must have previously run:
+
+    ddev dkan-init
+    ddev dkan-site-install
+
+When it comes time for testing:
 
     ddev dkan-frontend-test
 

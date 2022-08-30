@@ -16,6 +16,7 @@ setup() {
   ddev get ${DIR}
   ddev restart
   ddev dkan-init
+  ddev dkan-site-install
 }
 
 teardown() {
@@ -30,9 +31,17 @@ teardown() {
   set -eu -o pipefail
 
   run ddev dkan-frontend-install
-  assert_output --partial 'Gathering frontend application'
+  refute_output --partial "Forcing installation of frontend app over existing one."
+  assert_output --partial 'Gathering frontend application:'
+  assert_output --partial "Frontend install complete."
 
-  ddev dkan-frontend-build
+  run ddev dkan-frontend-install --force
+  assert_output --partial "Forcing installation of frontend app over existing one."
+  assert_output --partial 'Gathering frontend application:'
+  assert_output --partial "Frontend install complete."
+
+  run ddev dkan-frontend-build
+  assert_output --partial "Frontend build complete."
 
   # run the tests, but ignore the pass/fail. We only care if they ran.
   run ddev dkan-frontend-test
