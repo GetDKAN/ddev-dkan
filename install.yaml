@@ -55,10 +55,8 @@ project_files:
   - commands/host/dkan-init
   - commands/web/dkan-frontend-build
   - commands/web/dkan-frontend-install
-  - commands/web/dkan-site-install
-  - commands/web/dkan-frontend-build
-  - commands/web/dkan-frontend-install
   - commands/web/dkan-frontend-test
+  - commands/web/dkan-site-install
   - commands/web/dkan-test-phpunit
   - commands/web/dkan-test-users
   - misc/settings.dkan.php
