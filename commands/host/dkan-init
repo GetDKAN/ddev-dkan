@@ -23,10 +23,8 @@ while :; do
     echo "*"
     echo "* Setting up for local DKAN module development"
     echo "*"
-    shift
     ;;
   --) # End of all options.
-    shift
     break
     ;;
   -?*)
