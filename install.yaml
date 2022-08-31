@@ -52,10 +52,10 @@ pre_install_actions:
 project_files:
   - config.dkan.yaml
   - commands/host/dkan-demo
+  - commands/host/dkan-frontend-test-cypress
   - commands/host/dkan-init
   - commands/web/dkan-frontend-build
   - commands/web/dkan-frontend-install
-  - commands/web/dkan-frontend-test
   - commands/web/dkan-site-install
   - commands/web/dkan-test-phpunit
   - commands/web/dkan-test-users
