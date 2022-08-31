@@ -13,7 +13,6 @@
 # ddev launch
 
 set -euo pipefail
-set -x
 
 export DKAN_REPO=https://github.com/GetDKAN/dkan.git
 export DKAN_REPO_BRANCH=2.x
@@ -34,7 +33,6 @@ while :; do
     echo "forced"
     ;;
   --) # End of all options.
-    echo "end"
     break
     ;;
   -?*)
@@ -46,7 +44,7 @@ while :; do
   shift
 done
 
-# TODO: Determine if there's anything in the directory that we shouldn't remove.
+# Determine if there's anything in the directory that we shouldn't remove.
 # - look for composer.json
 # - look for dkan/.
 # - If docroot/ exists, it shouldn't contain core/.
