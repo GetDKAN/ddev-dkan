@@ -54,6 +54,21 @@ end up answering 'yes' to a number of questions like this:
     Do you trust "drupal/core-composer-scaffold" to execute code and wish to enable it now?
     (writes "allow-plugins" to composer.json) [y,n,d,?]
 
+### More `.gitignore`
+
+Now that we've installed Drupal core, we'll see that it has provided us with a handy file called `docroot/example.gitignore`.
+
+We can rename this file to be `.gitignore` and it will hide files from Git, such as configuration and public file
+directories.
+
+We also want to read that file, so we can fully understand what it does, and modify it for our project-related needs.
+
+    mv docroot/example.gitignore docroot/.gitignore
+    # Read and modify docroot/.gitignore as needed...
+
+Alternately, we could move all the rules from `example.gitignore` to our root-level `.gitignore`. Whether to do this
+is an exercise left to the leader of your project.
+
 ### Manage the modules
 
 The repo likely contains a `src/` directory, and within that `src/modules`. This is where the custom modules for your
@@ -80,7 +95,7 @@ And we also want to not put our contrib themes in the codebase, so we'll modify 
     mv src/themes docroot/themes/custom
     echo "docroot/themes/contrib" >> .gitignore
 
-### More .gitignore
+### Even More `.gitignore`
 
 By now, our `.gitignore` should look something like this:
 
