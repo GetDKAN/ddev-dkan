@@ -5,13 +5,6 @@
 ## Usage: dkan-init
 ## Flags: [{"Name":"moduledev", "Usage":"Set up the file system for DKAN module development."},{"Name":"force", "Usage":"Force init even if there are files present which could be deleted."}]
 
-# User instructions:
-# ddev config --project-name=foo (or --auto)
-# ddev get getdkan/dkan-ddev-addon
-# ddev restart
-# ddev dkan-init
-# ddev launch
-
 set -euo pipefail
 
 export DKAN_REPO=https://github.com/GetDKAN/dkan.git
