@@ -5,20 +5,18 @@
 ## Usage: dkan-module-test-cypress <arguments>
 
 # This command assumes you have cypress installed globally:
-#   npm install -g cypress
+# (As of this writing, DKAN module needs Cypress 8.7.)
+#   npm install -g cypress@8.7
 #   npx cypress verify
 #   npx cypress info
-#
-# As of this writing, DKAN module needs Cypress 7.
-#   npm install -g cypress@7
 
 # TODO: Add dkan-module-test-cypress-ci for CI use.
 
 # Fail early, fail often.
-set -eu -o pipefail
+set -u -o pipefail
 
 export DKAN_MODULE_PATH=docroot/modules/contrib/dkan
-export DKAN_MODULE_CYPRESS_VERSION=7
+export DKAN_MODULE_CYPRESS_VERSION=8.7
 
 echo "Starting DKAN module Cypress tests."
 
@@ -36,6 +34,7 @@ fi
 ddev dkan-test-users
 
 echo "Starting Cypress tests for $DDEV_PRIMARY_URL in $DKAN_MODULE_PATH"
+npx cypress@"$DKAN_MODULE_CYPRESS_VERSION" info
 CYPRESS_baseUrl="$DDEV_PRIMARY_URL" npx cypress@"$DKAN_MODULE_CYPRESS_VERSION" run "$@"
 DKAN_MODULE_RESULT=$?
 
