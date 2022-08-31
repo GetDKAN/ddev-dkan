@@ -14,14 +14,11 @@ setup() {
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
   ddev restart
-  # This section is copied from dkan-demo.
+
   ddev dkan-init
   ddev dkan-site-install
 
   ddev drush pm-enable dkan dkan_js_frontend config_update_ui -y
-
-  mkdir -p sites/default/files/uploaded_resources
-  mkdir -p sites/default/files/resources
 }
 
 teardown() {
