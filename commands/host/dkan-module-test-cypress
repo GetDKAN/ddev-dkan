@@ -6,7 +6,7 @@
 
 # This command assumes you have cypress installed globally:
 # (As of this writing, DKAN module needs Cypress 8.7.)
-#   npm install -g cypress@8.7
+#   npm install --location=global cypress@8.7
 #   npx cypress verify
 #   npx cypress info
 
