@@ -26,8 +26,11 @@ teardown() {
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
-@test "run dkan module cypress tests locally" {
+@test "Run DKAN module Cypress tests locally" {
   set -eu -o pipefail
+
+  skip "This test requires Cypress on the local host. Run it manually."
+
   cd ${TESTDIR}
 
   # Now that we have a whole site, let's remove the cypress tests from it.
