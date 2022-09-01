@@ -90,6 +90,8 @@ But we still want to add some more to it.
     echo "docroot/core" >> .gitignore
     echo "docroot/libraries" >> .gitignore
 
+TODO: Should we check in the frontend app?
+
 ### Settings..? Settings.
 
 Let's state up-front that it's complicated here.
@@ -122,4 +124,4 @@ OK, *now* we can install a site.
 
     ddev drush site-install -y
 
-This gives us a 
+This gives us a
