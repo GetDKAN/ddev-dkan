@@ -48,14 +48,34 @@ Now let's use DDEV to run `composer install`, so it can build out some directori
 
     ddev composer install
 
-During this process, Composer might ask you if it's OK for plugins to run, and it's probably OK to answer yes.
+During this process, Composer might ask you if it's OK for plugins to run, and it's probably OK to answer yes. You might
+end up answering 'yes' to a number of questions like this:
+
+    Do you trust "drupal/core-composer-scaffold" to execute code and wish to enable it now?
+    (writes "allow-plugins" to composer.json) [y,n,d,?]
+
+### More `.gitignore`
+
+Now that we've installed Drupal core, we'll see that it has provided us with a handy file called `docroot/example.gitignore`.
+
+We can rename this file to be `.gitignore` and it will hide files from Git, such as configuration and public file
+directories.
+
+We also want to read that file, so we can fully understand what it does, and modify it for our project-related needs.
+
+    mv docroot/example.gitignore docroot/.gitignore
+    # Read and modify docroot/.gitignore as needed...
+
+Alternately, we could move all the rules from `example.gitignore` to our root-level `.gitignore`. Whether to do this
+is an exercise left to the leader of your project.
 
 ### Manage the modules
 
 The repo likely contains a `src/` directory, and within that `src/modules`. This is where the custom modules for your
 site live.
 
-We'll move those to `docroot/modules/custom`. When we're done, the contents of `src/modules` should be inside
+Assuming the site has `docroot/` directory, we'll move those to `docroot/modules/custom`. (If your site has a different
+web root directory, use that instead.) When we're done, the contents of `src/modules` should be inside
 `docroot/modules/custom`.
 
 We'll also add the contrib modules to `.gitignore` so that we don't check them into the repository.
@@ -75,7 +95,7 @@ And we also want to not put our contrib themes in the codebase, so we'll modify 
     mv src/themes docroot/themes/custom
     echo "docroot/themes/contrib" >> .gitignore
 
-### More .gitignore
+### Even More `.gitignore`
 
 By now, our `.gitignore` should look something like this:
 
@@ -124,4 +144,69 @@ OK, *now* we can install a site.
 
     ddev drush site-install -y
 
-This gives us a
+This gives us a plain-vanilla Drupal installation. Launch it and behold its beauty:
+
+    ddev launch
+
+Log in if you'd like:
+
+    ddev drush uli
+
+### Import our config
+
+This is really two steps.
+
+#### Replicate DKAN-Tools Install Process
+
+Your DKAN-Tools site might have some installation steps in its commands. So look at `src/command`, and look for
+a command method such as `YoursiteInstall()`. This probably has some Drush commands which you should emulate.
+
+For instance, here's a custom DKAN-Tools command from a project (project name removed):
+
+    class MyprojectCommands extends Tasks
+    {
+      public function MyprojectInstall() {
+        `dktl install`;
+        `dktl drush entity:delete shortcut_set`;
+        `dktl drush pmu shortcut`;
+        `dktl drush config:set system.site uuid BD06D265-A9F0-4AAC-9038-075264398D46 -y`;
+        `dktl drush ci -y`;
+        `chmod u+w docroot/sites/default`;
+        `dktl drush cr`;
+        return $this->taskExec('dktl drush cc drush')
+          ->dir(Util::getProjectDocroot())
+          ->run();
+      }
+    }
+
+From this we can remove the `dktl install` command, and then extract the rest and replace `dktl` with `ddev` to run Drush.
+This give us a list like this:
+
+    ddev drush entity:delete shortcut_set
+    ddev drush pmu shortcut
+    ddev drush config:set system.site uuid BD06D265-A9F0-4AAC-9038-075264398D46 -y
+    ddev drush ci -y
+    chmod u+w docroot/sites/default
+    ddev drush cr
+    ddev drush cc drush
+
+It might be that we don't need all of these, such as the `chmod`, or two different cache clear commands. I'm about
+to tell you to do `drush ci` so it might also be unneeded at this point.
+
+So now you should perform these commands against the installed site in order to prepare it to import the site
+configuration.
+
+For bonus points, you can [convert this command to a DDEV command](https://ddev.readthedocs.io/en/latest/users/extend/custom-commands/)
+which users can then use from then on whenever you install Drupal.
+
+#### Import Site Configuration
+
+Now that you've replicated your site's DKAN-Tools install command, you can import the site config.
+
+    ddev drush cim
+
+### Did it work?
+
+Let's find out:
+
+    ddev launch
