@@ -130,6 +130,8 @@ Now is the time when you have to reconcile your project's settings files against
 Examine `src/site/settings.php` and determine what is needed to be moved over to `docroot/sites/default/settings.php`,
 or what could be another external file which is loaded by `settings.php`.
 
+Candidates for things which are important might include config sync location, and the site HASH value.
+
 ### A complete codebase? Let's try and install...
 
 Well, maybe our codebase isn't complete. Did you already have Drush? Let's ask Composer.
@@ -148,6 +150,13 @@ This gives us a plain-vanilla Drupal installation. Launch it and behold its beau
 
     ddev launch
 
+Note that we're seeing aggregated CSS and JS being sent with a MIME type of text/hml,
+which modern browsers refuse to show. If your site looks like it doesn't have CSS,
+you can use Drush to turn off aggregation, for now:
+
+    ddev drush -y config-set system.performance css.preprocess 0
+    ddev drush -y config-set system.performance js.preprocess 0
+
 Log in if you'd like:
 
     ddev drush uli
@@ -161,7 +170,7 @@ This is really two steps.
 Your DKAN-Tools site might have some installation steps in its commands. So look at `src/command`, and look for
 a command method such as `YoursiteInstall()`. This probably has some Drush commands which you should emulate.
 
-For instance, here's a custom DKAN-Tools command from a project (project name removed):
+For instance, here's a custom DKAN-Tools command from a project:
 
     class MyprojectCommands extends Tasks
     {
@@ -179,12 +188,12 @@ For instance, here's a custom DKAN-Tools command from a project (project name re
       }
     }
 
-From this we can remove the `dktl install` command, and then extract the rest and replace `dktl` with `ddev` to run Drush.
-This give us a list like this:
+From this we can remove the `dktl install` command (since that's the same as `ddev dkan-site-install`), and then
+extract the rest and replace `dktl` with `ddev` to run Drush. This give us a list like this:
 
     ddev drush entity:delete shortcut_set
     ddev drush pmu shortcut
-    ddev drush config:set system.site uuid BD06D265-A9F0-4AAC-9038-075264398D46 -y
+    ddev drush config:set system.site uuid [YOUR UUID HERE] -y
     ddev drush ci -y
     chmod u+w docroot/sites/default
     ddev drush cr
@@ -193,7 +202,7 @@ This give us a list like this:
 It might be that we don't need all of these, such as the `chmod`, or two different cache clear commands. I'm about
 to tell you to do `drush ci` so it might also be unneeded at this point.
 
-So now you should perform these commands against the installed site in order to prepare it to import the site
+Now you should perform these commands against the installed site in order to prepare it to import the site
 configuration.
 
 For bonus points, you can [convert this command to a DDEV command](https://ddev.readthedocs.io/en/latest/users/extend/custom-commands/)
@@ -209,4 +218,9 @@ Now that you've replicated your site's DKAN-Tools install command, you can impor
 
 Let's find out:
 
+    ddev drush cr
     ddev launch
+
+Handy commands for finding out what went wrong include:
+
+    ddev logs
