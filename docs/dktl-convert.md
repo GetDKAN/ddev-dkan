@@ -4,6 +4,11 @@ Note: This documentation is incomplete.
 
 ## Codebase:
 
+### Prepare the site for conversion
+
+The main steps here would be to ensure a fresh config export and add it to your repo. This might or might not be
+necessary, but is probably a best practice anyway.
+
 ### Get the web root from composer.json.
 
 Look at the project composer.json file. It will likely have an `extra.drupal-scaffold.locations.web-root` configuration.
@@ -38,6 +43,8 @@ if you don't want to lose the contents of `.gitignore` you could rename it.
 
 This will cause the Drupal Composer Scaffold plugin to add scaffolded files to the `.gitignore` file, which we want.
 
+We'll fill out the rest of the `.gitignore` file at the end.
+
 ### Update Scaffold plugin and initial Composer install.
 
 Let's make sure we're not limiting ourselves to an old version of Drupal Composer Scaffold plugin.
@@ -54,22 +61,7 @@ end up answering 'yes' to a number of questions like this:
     Do you trust "drupal/core-composer-scaffold" to execute code and wish to enable it now?
     (writes "allow-plugins" to composer.json) [y,n,d,?]
 
-### More `.gitignore`
-
-Now that we've installed Drupal core, we'll see that it has provided us with a handy file called `docroot/example.gitignore`.
-
-We can rename this file to be `.gitignore` and it will hide files from Git, such as configuration and public file
-directories.
-
-We also want to read that file, so we can fully understand what it does, and modify it for our project-related needs.
-
-    mv docroot/example.gitignore docroot/.gitignore
-    # Read and modify docroot/.gitignore as needed...
-
-Alternately, we could move all the rules from `example.gitignore` to our root-level `.gitignore`. Whether to do this
-is an exercise left to the leader of your project.
-
-### Manage the modules
+### Manage the modules and themes.
 
 The repo likely contains a `src/` directory, and within that `src/modules`. This is where the custom modules for your
 site live.
@@ -78,39 +70,10 @@ Assuming the site has `docroot/` directory, we'll move those to `docroot/modules
 web root directory, use that instead.) When we're done, the contents of `src/modules` should be inside
 `docroot/modules/custom`.
 
-We'll also add the contrib modules to `.gitignore` so that we don't check them into the repository.
+We'll do the same thing for themes, as well.
 
     mv src/modules docroot/modules/custom
-    echo "docroot/modules/contrib" >> .gitignore
-
-### Manage the themes
-
-Same thing with the themes as the modules.
-
-Our Composer Installers configuration probably is set to load contrib themes into `docroot/themes/contrib`, and we want
-our custom themes to go into `docroot/themes/custom`.
-
-And we also want to not put our contrib themes in the codebase, so we'll modify `.gitignore`.
-
     mv src/themes docroot/themes/custom
-    echo "docroot/themes/contrib" >> .gitignore
-
-### Even More `.gitignore`
-
-By now, our `.gitignore` should look something like this:
-
-    vendor/
-    /.editorconfig
-    /.gitattributes
-    docroot/modules/contrib
-    docroot/themes/contrib
-
-But we still want to add some more to it.
-
-    echo "docroot/core" >> .gitignore
-    echo "docroot/libraries" >> .gitignore
-
-TODO: Should we check in the frontend app?
 
 ### Settings..? Settings.
 
@@ -130,7 +93,7 @@ Now is the time when you have to reconcile your project's settings files against
 Examine `src/site/settings.php` and determine what is needed to be moved over to `docroot/sites/default/settings.php`,
 or what could be another external file which is loaded by `settings.php`.
 
-Candidates for things which are important might include config sync location, and the site HASH value.
+Candidates for things which are important might include config sync location, and the site hash value.
 
 ### A complete codebase? Let's try and install...
 
@@ -142,8 +105,10 @@ If you don't see a version number, add Drush:
 
     ddev composer require drush/drush
 
-OK, *now* we can install a site.
+OK, *now* we can install a site. If your site uses the DKAN module, use `ddev dkan-site-install`. Otherwise just use Drush.
 
+    ddev dkan-site-install
+    # or...
     ddev drush site-install -y
 
 This gives us a plain-vanilla Drupal installation. Launch it and behold its beauty:
@@ -163,7 +128,8 @@ Log in if you'd like:
 
 ### Import our config
 
-This is really two steps.
+This is really two steps. The site we're converting probably has some special commands required to get it into a
+state for importing the configuration, so we'll explore that first.
 
 #### Replicate DKAN-Tools Install Process
 
@@ -178,7 +144,7 @@ For instance, here's a custom DKAN-Tools command from a project:
         `dktl install`;
         `dktl drush entity:delete shortcut_set`;
         `dktl drush pmu shortcut`;
-        `dktl drush config:set system.site uuid BD06D265-A9F0-4AAC-9038-075264398D46 -y`;
+        `dktl drush config:set system.site uuid [YOUR UUID HERE] -y`;
         `dktl drush ci -y`;
         `chmod u+w docroot/sites/default`;
         `dktl drush cr`;
@@ -224,3 +190,35 @@ Let's find out:
 Handy commands for finding out what went wrong include:
 
     ddev logs
+
+### Finalize `.gitignore` for the repo
+
+We can see that Drupal core has provided us with a handy file called `docroot/example.gitignore`.
+
+We can copy this file to be `docroot/.gitignore` and it will hide files from Git, such as configuration and public file
+directories.
+
+We also want to read that file, so we can fully understand what it does, and modify it for our project-related needs.
+
+    mv docroot/example.gitignore docroot/.gitignore
+    # Read and modify docroot/.gitignore as needed...
+
+Alternately, we could move all the rules from `example.gitignore` to our root-level `.gitignore`. Whether to do this
+is an exercise left to the leader of your project.
+
+Also we should visit our top-level `.gitignore` file so we can be sure we don't exclude or include the wrong files.
+
+Here's a `.gitignore` file which leaves out all the things you can rebuild with Composer.
+
+    vendor/
+    /.editorconfig
+    /.gitattributes
+    docroot/core
+    docroot/libraries
+    docroot/modules/contrib
+    docroot/themes/contrib
+
+You probably want to exclude IDE settings:
+
+    .idea/
+
