@@ -1,6 +1,7 @@
 # DKAN DDev Addon
 
-The DKAN DDEv Addon is really neeto.
+The DKAN DDEv Addon provides configuration and specialized commands for dealing
+with a DKAN Drupal project in the DDEv environment.
 
 Note that all the DKAN commands which come with this addon have documentation built-in. At the command line, you can
 ask for help with any one of them with `ddev [command] --help` like this:
@@ -22,4 +23,5 @@ ask for help with any one of them with `ddev [command] --help` like this:
 
 - [Getting started](getting-started.md)
 - [Create a demo DKAN site](demo.md)
+- [Convert a DKAN-Tools project to DDEV](dktl-convert.md)
 - [Testing the DKAN module](testing-dkan.md)
