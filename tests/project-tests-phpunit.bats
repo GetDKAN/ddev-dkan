@@ -24,7 +24,7 @@ teardown() {
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
-@test "run phpunit tests" {
+@test "run project-level phpunit tests" {
   set -eu -o pipefail
   cd ${TESTDIR}
 
@@ -33,7 +33,7 @@ teardown() {
   assert_output --partial "PHPUnit config not found"
   assert_failure
 
-  # No executable.
+  # Add config, but no executable.
   mkdir -p docroot/modules/custom
   cp .ddev/misc/phpunit.xml docroot/modules/custom
   run ddev project-test-phpunit
