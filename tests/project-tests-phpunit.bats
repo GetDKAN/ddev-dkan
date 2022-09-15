@@ -4,6 +4,7 @@ setup() {
   load 'test_helper/bats-support/load'
   load 'test_helper/bats-assert/load'
 
+  export SUT_DIR=$(pwd)
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
   export PROJNAME=test-dkan-ddev-addon
   export TESTDIR=~/tmp/$PROJNAME
@@ -47,5 +48,12 @@ teardown() {
   run ddev project-test-phpunit --group this-group-should-not-exist
   assert_output --partial 'Starting PHPUnit test run'
   assert_output --partial 'No tests executed!'
+  assert_success
+
+  # Can perform test run, for a group that does exist.
+  cp -R $SUT_DIR/tests/phpunit_tests docroot/modules/custom
+  run ddev project-test-phpunit --group dkan-ddev-addon-test
+  assert_output --partial 'Starting PHPUnit test run'
+  assert_output --partial 'OK (1 test, 1 assertion)'
   assert_success
 }
