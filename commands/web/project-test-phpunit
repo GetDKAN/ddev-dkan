@@ -24,7 +24,7 @@ fi
 
 # Ensure prophecy.
 # TODO: Remove this when Drupal core no longer requires it.
-composer require --dev phpspec/prophecy-phpunit:^2
+composer require --dev phpspec/prophecy-phpunit:^2 --no-progress --no-suggest --no-audit --no-interaction
 
 echo "Starting PHPUnit test run."
 DDEV_PATH="$PWD"

@@ -13,10 +13,15 @@
 # Fail early, fail often.
 set -u -o pipefail
 
-export CYPRESS_TEST_PATH=src/tests
+export CYPRESS_TEST_PATH=tests
 export CYPRESS_VERSION=8.7
 
 echo "Starting project Cypress tests."
+
+if [[ ! -d $CYPRESS_TEST_PATH ]]; then
+  echo "Unable to find Cypress tests in: $CYPRESS_TEST_PATH"
+  exit 1
+fi
 
 cd $CYPRESS_TEST_PATH || exit 1
 

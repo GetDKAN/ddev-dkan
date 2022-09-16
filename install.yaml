@@ -54,6 +54,7 @@ project_files:
   - commands/host/dkan-demo
   - commands/host/dkan-init
   - commands/host/dkan-module-test-cypress
+  - commands/host/project-test-cypress
   - commands/web/dkan-frontend-build
   - commands/web/dkan-frontend-install
   - commands/web/dkan-site-install
