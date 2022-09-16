@@ -37,3 +37,7 @@ DRUPAL_ROOT="/var/www/html/docroot" \
   --bootstrap /var/www/html/vendor/weitzman/drupal-test-traits/src/bootstrap.php \
   --fail-on-risky \
   "$@"
+PROJECT_TEST_RESULT=$?
+
+echo "Project PHPUnit tests complete."
+exit $PROJECT_TEST_RESULT

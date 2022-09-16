@@ -32,7 +32,7 @@ fi
 echo "Starting Cypress tests for $DDEV_PRIMARY_URL in $CYPRESS_TEST_PATH"
 npx cypress@"$CYPRESS_VERSION" info
 CYPRESS_baseUrl="$DDEV_PRIMARY_URL" npx cypress@"$CYPRESS_VERSION" run "$@"
-DKAN_MODULE_RESULT=$?
+CYPRESS_TEST_RESULT=$?
 
 echo "Project Cypress tests complete."
-exit $DKAN_MODULE_RESULT
+exit $CYPRESS_TEST_RESULT
