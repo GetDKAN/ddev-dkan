@@ -25,10 +25,9 @@ fi
 
 cd $CYPRESS_TEST_PATH || exit 1
 
-npm cache verify
-
-# If there's no package.json, don't try to install.
+# If there's no package.json, don't verify or try to install.
 if [ -f package.json ]; then
+  npm cache verify
   npm install
 else
   echo "No package.json present, not trying to install."
