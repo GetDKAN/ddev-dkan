@@ -11,7 +11,7 @@ PHPUNIT_BINARY=vendor/bin/phpunit
 
 if [[ ! -f $PROJECT_TEST_CONFIG ]]; then
   echo "* PHPUnit config not found: $PROJECT_TEST_CONFIG"
-  echo "* Find a template config at .ddev/misc/phpunit.xml"
+  echo "* A template config can be found at .ddev/misc/phpunit.xml"
   exit 1
 fi
 
