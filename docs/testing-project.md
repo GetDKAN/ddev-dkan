@@ -38,7 +38,7 @@ You can add arguments as if you were running the PHPUnit executable:
     ddev project-test-phpunit --filter SpecialTest::testSpecialMethod
 
 If you find that your project needs more specialized setup than this
-for testing, you can make your own PHPUNit testing command. You can
+for testing, you can make your own PHPUnit testing command. You can
 use `.ddev/commands/web/project-test-phpunit` as a starting point by
 copying it, changing the name, and changing the Description and Usage
 fields at the top.
