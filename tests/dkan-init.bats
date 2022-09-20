@@ -30,11 +30,12 @@ teardown() {
 
   run ddev dkan-init --help
   assert_output --partial "--moduledev"
+  assert_output --partial "--force"
 
   run ddev dkan-site-install --help
   assert_output --partial "ddev dkan-site-install [flags]"
 
-  run ddev dkan-init
+  run ddev dkan-init --force
   refute_output --partial "Setting up for local DKAN module development"
   assert_output --partial "Site codebase initialized."
 
@@ -47,7 +48,32 @@ teardown() {
   set -eu -o pipefail
   cd ${TESTDIR}
 
-  run ddev dkan-init --moduledev
+  run ddev dkan-init --force --moduledev
   assert_output --partial "Setting up for local DKAN module development"
   assert_output --partial "Site codebase initialized."
+}
+
+@test "dkan-init protects existing work" {
+  set -eu -o pipefail
+  cd ${TESTDIR}
+
+  touch composer.json
+
+  run ddev dkan-init
+  assert_output --partial "Found composer.json"
+  assert_failure
+
+  rm composer.json
+  mkdir -p docroot/core
+
+  run ddev dkan-init
+  assert_output --partial "Found docroot/core"
+  assert_failure
+
+  rm -rf docroot/core
+  mkdir dkan
+
+  run ddev dkan-init
+  assert_output --partial "Found dkan"
+  assert_failure
 }

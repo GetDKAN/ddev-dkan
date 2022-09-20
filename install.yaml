@@ -55,11 +55,14 @@ project_files:
   - commands/host/dkan-init
   - commands/host/dkan-module-test-cypress
   - commands/host/dkan-sample-content
+  - commands/host/project-test-cypress
   - commands/web/dkan-frontend-build
   - commands/web/dkan-frontend-install
   - commands/web/dkan-site-install
   - commands/web/dkan-test-phpunit
   - commands/web/dkan-test-users
+  - commands/web/project-test-phpunit
+  - misc/phpunit.xml
   - misc/settings.dkan.php
   - misc/settings.dkan-snippet.php.txt
   - misc/testUsers.json
