@@ -5,10 +5,12 @@
 ## Usage: dkan-init
 ## Flags: [{"Name":"moduledev", "Usage":"Set up the file system for DKAN module development."},{"Name":"force", "Usage":"Force init even if there are files present which could be deleted."}]
 
+# Fail early, fail often.
 set -euo pipefail
 
 export DKAN_REPO=https://github.com/GetDKAN/dkan.git
 export DKAN_REPO_BRANCH=2.x
+export DKAN_DIRECTORY=dkan
 
 # Glean flag arguments.
 INIT_MODULEDEV=false
@@ -51,7 +53,7 @@ if [ $INIT_FORCE = false ]; then
     echo "Found docroot/core. Assuming there is work in this directory you want to preserve. Aborting."
     exit 1
   fi
-  if [ -d dkan ]; then
+  if [ -d $DKAN_DIRECTORY ]; then
     echo "Found dkan. Assuming there is work in this directory you want to preserve. Aborting."
     exit 1
   fi
@@ -62,7 +64,11 @@ if [ $INIT_MODULEDEV = true ]; then
   command -v git
 fi
 
-ddev composer create getdkan/recommended-project:@dev --no-install -y
+if [ $INIT_FORCE = true ]; then
+  ddev composer create getdkan/recommended-project:@dev --no-install -y
+else
+  ddev composer create getdkan/recommended-project:@dev --no-install
+fi
 
 if [ $INIT_MODULEDEV = true ]; then
   git clone -b $DKAN_REPO_BRANCH $DKAN_REPO $DDEV_APPROOT/dkan

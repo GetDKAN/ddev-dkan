@@ -26,6 +26,23 @@ standard tools to log in:
     ddev drush status-report
     ddev drush uli
 
+Note that if you need help with any of the DDev commands, you can add `--help`
+on the command line and get help:
+
+    % ddev dkan-init --help
+    Build the Drupal codebase for a DKAN site. (shell host container command)
+
+    Usage:
+    ddev dkan-init [flags]
+
+    Flags:
+    --force        Force init even if there are files present which could be deleted.
+    -h, --help     help for dkan-init
+    --moduledev    Set up the file system for DKAN module development.
+
+    Global Flags:
+    -j, --json-output   If true, user-oriented output will be in JSON format.
+
 ## Dev work on the DKAN module
 
 If you are doing development work on the DKAN module itself, you can substitute

@@ -15,7 +15,7 @@ setup() {
   ddev get ${DIR}
   ddev restart
 
-  ddev dkan-init
+  ddev dkan-init --force
   # TODO: Change this after https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
   ddev composer require drupal/pathauto:^1.10
   ddev dkan-site-install
