@@ -61,7 +61,7 @@ end up answering 'yes' to a number of questions like this:
     Do you trust "drupal/core-composer-scaffold" to execute code and wish to enable it now?
     (writes "allow-plugins" to composer.json) [y,n,d,?]
 
-### Manage the modules and themes.
+### Manage the tests, modules, and themes.
 
 The repo likely contains a `src/` directory, and within that `src/modules`. This is where the custom modules for your
 site live.
@@ -74,6 +74,11 @@ We'll do the same thing for themes, as well.
 
     mv src/modules docroot/modules/custom
     mv src/themes docroot/themes/custom
+
+Your site might also have tests under `src/tests`. You should move these tests
+to `tests/`, so that the project-level test runner can find them.
+
+    mv src/tests tests/
 
 ### Settings..? Settings.
 
@@ -221,4 +226,3 @@ Here's a `.gitignore` file which leaves out all the things you can rebuild with 
 You probably want to exclude IDE settings:
 
     .idea/
-

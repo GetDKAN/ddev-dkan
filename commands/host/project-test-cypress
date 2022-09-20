@@ -1,0 +1,42 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Run the Cypress tests for the DKAN contrib module.
+## Usage: project-test-cypress <arguments>
+
+# This command assumes you have cypress installed globally.
+# (As of this writing, DKAN needs Cypress 8.7, but your project may differ.)
+#   npm install --location=global cypress@8.7
+#   npx cypress verify
+#   npx cypress info
+
+# Fail early, fail often.
+set -u -o pipefail
+
+export CYPRESS_TEST_PATH=tests
+export CYPRESS_VERSION=8.7
+
+echo "Starting project Cypress tests."
+
+if [[ ! -d $CYPRESS_TEST_PATH ]]; then
+  echo "Unable to find Cypress tests in: $CYPRESS_TEST_PATH"
+  exit 1
+fi
+
+cd $CYPRESS_TEST_PATH || exit 1
+
+# If there's no package.json, don't verify or try to install.
+if [ -f package.json ]; then
+  npm cache verify
+  npm install
+else
+  echo "No package.json present, not trying to install."
+fi
+
+echo "Starting Cypress tests for $DDEV_PRIMARY_URL in $CYPRESS_TEST_PATH"
+npx cypress@"$CYPRESS_VERSION" info
+CYPRESS_baseUrl="$DDEV_PRIMARY_URL" npx cypress@"$CYPRESS_VERSION" run "$@"
+CYPRESS_TEST_RESULT=$?
+
+echo "Project Cypress tests complete."
+exit $CYPRESS_TEST_RESULT
