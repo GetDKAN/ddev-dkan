@@ -42,7 +42,7 @@ teardown() {
   assert_failure
 
   # Can perform test run, for a group that doesn't exist.
-  ddev dkan-init
+  ddev dkan-init --force
   mkdir -p docroot/modules/custom
   cp .ddev/misc/phpunit.xml docroot/modules/custom
   run ddev project-test-phpunit --group this-group-should-not-exist
