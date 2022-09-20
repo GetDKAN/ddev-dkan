@@ -4,6 +4,7 @@ setup() {
   load 'test_helper/bats-support/load'
   load 'test_helper/bats-assert/load'
 
+  export SUT_DIR=$(pwd)
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
   export PROJNAME=test-dkan-ddev-addon
   export TESTDIR=~/tmp/$PROJNAME
@@ -14,11 +15,6 @@ setup() {
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
   ddev restart
-
-  ddev dkan-init --force
-  # TODO: Change this after https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
-  ddev composer require drupal/pathauto:^1.10
-  ddev dkan-site-install
 }
 
 teardown() {
@@ -29,13 +25,16 @@ teardown() {
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
-@test "run phpunit tests" {
+@test "run project-level cypress tests" {
   set -eu -o pipefail
   cd ${TESTDIR}
 
-  # Run a test group that does not exist, since we're not actually testing
-  # PHP code here.
-  run ddev dkan-test-phpunit --group this-group-should-not-exist
-  assert_output --partial 'Starting PHPUnit test run'
-  assert_output --partial 'No tests executed!'
+  # We don't have any Cypress tests around, and we don't want to
+  # manage installing cypress on the github test runner, so
+  # we're only going to test that the command runs and outputs
+  # the proper error messages.
+  run ddev project-test-cypress
+  assert_output --partial "Starting project Cypress tests"
+  assert_output --partial "Unable to find Cypress tests in"
+  assert_failure
 }
