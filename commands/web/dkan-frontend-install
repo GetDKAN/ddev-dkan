@@ -3,11 +3,32 @@
 
 ## Description: Add the frontend for DKAN.
 ## Usage: dkan-frontend-install
+## Flags: [{"Name":"theme", "Usage":"Whether or not to install default front-end Drupal theme. 0 or 1.", "DefValue": "1"}]
+## Example: "ddev dkan-frontend-install" (will install default frontend theme by default), "ddev dkan-frontend-install --theme 0"
 
 # TODO: Make a CI flag.
 
+# Glean flag arguments.
+FRONTEND_THEME_INSTALL=1
+while :; do
+  case ${1:-} in
+  --theme)
+    shift
+    FRONTEND_THEME_INSTALL=${1:-}
+    ;;
+  --) # End of all options.
+    break
+    ;;
+  -?*)
+    printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+    ;;
+  *) # Default case: No more options, so break out of the loop.
+    break ;;
+  esac
+  shift
+done
+
 FRONTEND_TMP='src/tmp'
-FRONTEND_DIR='src/frontend'
 FRONTEND_DOCROOT_DIR='docroot/frontend'
 FRONTEND_VCS_URL='https://github.com/GetDKAN/data-catalog-app/'
 # TODO: no-node-sass is the known-good branch, so we should move that forward to be a release.
@@ -21,17 +42,12 @@ if [[ -L $FRONTEND_DOCROOT_DIR ]]; then
   exit 1
 fi
 
-#if [ -d $FRONTEND_DIR ]; then
-# echo "ERROR: Frontend $FRONTEND_DIR already exists."
-#exit 1
-#fi
-
 # Glean frontend spec from dkan module.
 DKAN_MODULE_PATH=$(composer show --format=json getdkan/dkan | jq -r '.path')
 if [ ! -z "$DKAN_MODULE_PATH" ]; then
   DKAN_MODULE_EXTRA=$(composer config extra -d $DKAN_MODULE_PATH)
   if [ ! -z "$DKAN_MODULE_EXTRA" ]; then
-    DKAN_FRONTEND_CONFIG=$(jq '."dkan-fronten"' <<<$DKAN_MODULE_EXTRA)
+    DKAN_FRONTEND_CONFIG=$(jq '."dkan-frontend"' <<<$DKAN_MODULE_EXTRA)
     if [ ! -z "$DKAN_FRONTEND_CONFIG" ]; then
       FRONTEND_VCS_REF=$(jq -r --arg DEFAULT "$FRONTEND_VCS_REF" '."ref" // $DEFAULT' <<< $DKAN_FRONTEND_CONFIG)
       FRONTEND_VCS_URL=$(jq -r --arg DEFAULT "$FRONTEND_VCS_URL" '."url" // $DEFAULT' <<< $DKAN_FRONTEND_CONFIG)
@@ -39,20 +55,26 @@ if [ ! -z "$DKAN_MODULE_PATH" ]; then
   fi
 fi
 
-composer require getdkan/$FRONTEND_THEME
-drush theme:enable $FRONTEND_THEME
-drush config-set system.theme default $FRONTEND_THEME -y
+# TODO: We're hardcoding this VCS ref because dkan module's configured one breaks the build.
+FRONTEND_VCS_URL='https://github.com/GetDKAN/data-catalog-app/'
+FRONTEND_VCS_REF='no-node-sass'
 
-drush pm-enable dkan_js_frontend -y
+if [ $FRONTEND_THEME_INSTALL = 1 ]; then
+  echo " * Installing default frontend theme."
+  composer require getdkan/$FRONTEND_THEME
+  drush theme:enable $FRONTEND_THEME
+  drush config-set system.theme default $FRONTEND_THEME -y
+  drush pm-enable dkan_js_frontend -y
+else
+  echo " * Not installing default frontend theme."
+fi
 
 echo " ** Gathering frontend application: $FRONTEND_VCS_REF from $FRONTEND_VCS_URL"
 
 mkdir -p $FRONTEND_TMP
-wget -O $FRONTEND_TMP/data-catalog-app-$FRONTEND_VCS_REF.zip "$FRONTEND_VCS_URL"archive/$FRONTEND_VCS_REF.zip
+wget -O $FRONTEND_TMP/data-catalog-app-$FRONTEND_VCS_REF.zip "$FRONTEND_VCS_URL"/archive/"$FRONTEND_VCS_REF".zip
 unzip $FRONTEND_TMP/data-catalog-app-$FRONTEND_VCS_REF.zip -d docroot/
 mv docroot/data-catalog-app-$FRONTEND_VCS_REF "$FRONTEND_DOCROOT_DIR"
-
-#ln -s $PWD/$FRONTEND_DIR $FRONTEND_DOCROOT_DIR
 
 cd $FRONTEND_DOCROOT_DIR || exit
 # Don't fill the screen with warnings, only errors.
