@@ -1,0 +1,8 @@
+#!/bin/bash
+#ddev-generated
+## Description: Execute a Cypress command in the cypress container.
+##
+## Usage: cypress [arguments]
+## Example: "ddev cypress run --browser chrome"
+
+npx cypress "$@"
