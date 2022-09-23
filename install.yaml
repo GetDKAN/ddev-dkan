@@ -61,6 +61,7 @@ project_files:
   - commands/web/dkan-test-phpunit
   - commands/web/dkan-test-users
   - commands/web/project-test-phpunit
+  - misc/docker-compose.cypress.yaml
   - misc/phpunit.xml
   - misc/settings.dkan.php
   - misc/settings.dkan-snippet.php.txt
