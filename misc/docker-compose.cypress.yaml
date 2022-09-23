@@ -1,4 +1,4 @@
-# This Docker compose file is specific to running the DKAN module's Cypress tests.
+# This Docker compose file is specific to running the DKAN module's Cypress tests in the CI.
 #ddev-generated
 version: '3.6'
 services:
