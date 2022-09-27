@@ -51,10 +51,12 @@ pre_install_actions:
 # DDEV environment variables can be interpolated into these filenames
 project_files:
   - config.dkan.yaml
+  - commands/cypress/cypress
   - commands/host/dkan-demo
   - commands/host/dkan-frontend-test-cypress
   - commands/host/dkan-init
   - commands/host/dkan-module-test-cypress
+  - commands/host/dkan-module-test-cypress-ci
   - commands/host/project-test-cypress
   - commands/web/dkan-frontend-build
   - commands/web/dkan-frontend-install
@@ -62,6 +64,7 @@ project_files:
   - commands/web/dkan-test-phpunit
   - commands/web/dkan-test-users
   - commands/web/project-test-phpunit
+  - misc/docker-compose.cypress.yaml
   - misc/phpunit.xml
   - misc/settings.dkan.php
   - misc/settings.dkan-snippet.php.txt

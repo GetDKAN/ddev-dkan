@@ -51,6 +51,27 @@ the `ddev dkan-init --moduledev` command for `ddev dkan-init`.
 This will clone the dkan project into its own directory and tell Composer to
 use that repo as the getdkan/dkan package.
 
-### TODO
+## Frontend app installation and build
 
-Coming soon: Frontend app installation and build.
+DKAN can integrate with a JS/headless app. The DKAN DDev addon has special
+commands for dealing with this.
+
+### Install
+
+First we gather all the dependencies and files necessary for the frontend:
+
+    ddev dkan-frontend-install
+
+Note that this command installs the default frontend Drupal theme into the Drupal
+site. If have your own and would rather not add the default one, you can use
+
+    ddev dkan-frontend-install --theme 0
+
+### Build
+
+Now that you have all the dependencies, you can build the frontend:
+
+    ddev dkan-frontend-build
+
+Currently this command essentially calls `npm install` within the web container
+of DDev.
