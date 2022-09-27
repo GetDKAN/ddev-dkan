@@ -80,3 +80,5 @@ cd $FRONTEND_DOCROOT_DIR || exit
 # Don't fill the screen with warnings, only errors.
 # TODO: Make sure we don't miss important warnings.
 npm --loglevel=error install
+
+echo " ** Frontend install complete."
