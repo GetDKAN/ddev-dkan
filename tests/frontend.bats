@@ -15,7 +15,7 @@ setup() {
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
   ddev restart
-  ddev dkan-init
+  ddev dkan-init --force
   ddev dkan-site-install
 }
 
