@@ -34,11 +34,10 @@ fi
 ddev dkan-test-users
 
 echo "Starting Cypress tests for $DDEV_PRIMARY_URL in $DKAN_FRONTEND_PATH"
-ddev cypress info
-CYPRESS_baseUrl="$DDEV_PRIMARY_URL" ddev cypress run "$@"
+npx cypress@$DKAN_FRONTEND_CYPRESS_VERSION info
+CYPRESS_baseUrl="$DDEV_PRIMARY_URL" npx cypress@$DKAN_FRONTEND_CYPRESS_VERSION run "$@"
 DKAN_CYPRESS_RESULT=$?
 
 ddev dkan-test-users --remove
-
 echo "DKAN module Cypress tests complete."
 exit $DKAN_CYPRESS_RESULT

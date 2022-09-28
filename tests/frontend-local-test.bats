@@ -18,6 +18,8 @@ setup() {
   ddev restart
   ddev dkan-init --force
   ddev dkan-site-install
+  ddev dkan-frontend-install
+  ddev dkan-frontend-build
 }
 
 teardown() {
@@ -31,13 +33,9 @@ teardown() {
 @test "install and build the frontend app" {
   set -eu -o pipefail
 
-  run ddev dkan-frontend-install
-  refute_output --partial "Not installing default frontend theme"
-  assert_output --partial 'Gathering frontend application:'
-  assert_output --partial "Frontend install complete."
-  assert_success
+  skip "This test requires Cypress in the host. Run it manually."
 
-  run ddev dkan-frontend-build
-  assert_output --partial "Frontend build complete."
-  assert_success
+  # run the tests, but ignore the pass/fail. We only care if they ran.
+  run ddev dkan-frontend-test-cypress
+  assert_output --partial '(Run Finished)'
 }
