@@ -14,6 +14,7 @@ setup() {
 
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
+  mv .ddev/misc/docker-compose.cypress.yaml .ddev/docker-compose.cypress.yml
   ddev restart
   ddev dkan-init --force
   ddev dkan-site-install
