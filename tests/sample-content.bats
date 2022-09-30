@@ -14,6 +14,11 @@ setup() {
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
   ddev restart
+
+  ddev dkan-init
+  ddev dkan-site-install
+
+  ddev drush pm-enable dkan dkan_js_frontend config_update_ui -y
 }
 
 teardown() {
@@ -24,13 +29,9 @@ teardown() {
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
-@test "install a demo site" {
+@test "add sample content" {
   set -eu -o pipefail
 
-  run ddev dkan-demo
-  assert_output --partial "Site codebase initialized."
-  assert_output --partial "Site install complete."
+  run ddev dkan-sample-content
   assert_output --partial "Sample content added."
-  assert_output --partial "Demo site build complete."
-  wget https://${PROJNAME}.ddev.site/search
 }
