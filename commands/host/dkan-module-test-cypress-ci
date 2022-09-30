@@ -1,0 +1,21 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Run the Cypress tests for the DKAN contrib module.
+## Usage: dkan-module-test-cypress-ci <arguments>
+
+# Fail early, fail often.
+set -u -o pipefail
+
+echo "Starting DKAN module Cypress tests in the container."
+
+ddev dkan-test-users
+
+ddev cypress info
+ddev cypress run "$@"
+DKAN_MODULE_RESULT=$?
+
+ddev dkan-test-users --remove
+
+echo "DKAN module CI Cypress tests complete."
+exit $DKAN_MODULE_RESULT

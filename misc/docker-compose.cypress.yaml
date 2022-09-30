@@ -1,0 +1,26 @@
+# This Docker compose file is specific to running the DKAN module's Cypress tests in the CI.
+#ddev-generated
+version: '3.6'
+services:
+  cypress:
+    container_name: ddev-${DDEV_SITENAME}-cypress
+    image: cypress/included:8.7.0
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.platform: ddev
+      com.ddev.app-type: php
+      com.ddev.approot: $DDEV_APPROOT
+    volumes:
+      - "../:/var/www/html:cached"
+      - ".:/mnt/ddev_config"
+
+    external_links:
+      # Resolve links via DDEV router
+      - "ddev-router:${DDEV_HOSTNAME}"
+
+    working_dir: /var/www/html/dkan
+    entrypoint: "/bin/bash"
+    tty: true
+    environment:
+      - CYPRESS_baseUrl=${DDEV_PRIMARY_URL}
+    networks: ["default","ddev_default"]
