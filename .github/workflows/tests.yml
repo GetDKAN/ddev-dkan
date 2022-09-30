@@ -4,9 +4,6 @@ on:
   push:
     branches: [ main ]
 
-  schedule:
-    - cron: '01 07 * * *'
-
   workflow_dispatch:
     inputs:
       debug_enabled:
