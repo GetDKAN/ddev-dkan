@@ -72,7 +72,7 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
 
       - name: tests
-        run: ./tests/bats/bin/bats tests
+        run: ./tests/bats/bin/bats ./tests/
 
       # keepalive-workflow adds a dummy commit if there's no other action here, keeps
       # GitHub from turning off tests after 60 days

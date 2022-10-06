@@ -7,5 +7,6 @@
  */
 
 if ($primary_url = getenv('DDEV_PRIMARY_URL')) {
-  $settings['file_public_base_url'] = $primary_url;
+  $file_public_path = $settings['file_public_path'] ?? 'sites/default/files';
+  $settings['file_public_base_url'] = $primary_url . '/' . $file_public_path;
 }

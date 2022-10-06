@@ -1,0 +1,43 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Run the Cypress tests for the DKAN frontend app.
+## Usage: dkan-frontend-test-cypress <arguments>
+
+# This command assumes you have cypress installed globally:
+# (As of this writing, DKAN frontend needs Cypress 8.7.)
+#   npm install -g cypress@8.7
+#   npx cypress verify
+#   npx cypress info
+
+# TODO: Add dkan-frontend-test-cypress-ci for CI use.
+
+# Fail early, fail often.
+set -u -o pipefail
+
+export DKAN_FRONTEND_PATH=docroot/frontend
+export DKAN_FRONTEND_CYPRESS_VERSION=8.7
+
+echo "Starting DKAN frontend Cypress tests."
+
+cd $DKAN_FRONTEND_PATH
+
+npm cache verify
+
+# If there's no package.json, don't try to install.
+if [ -f package.json ]; then
+  npm install
+else
+  echo "No package.json present, not trying to install."
+fi
+
+ddev dkan-test-users
+
+echo "Starting Cypress tests for $DDEV_PRIMARY_URL in $DKAN_FRONTEND_PATH"
+npx cypress@$DKAN_FRONTEND_CYPRESS_VERSION info
+CYPRESS_baseUrl="$DDEV_PRIMARY_URL" npx cypress@$DKAN_FRONTEND_CYPRESS_VERSION run "$@"
+DKAN_CYPRESS_RESULT=$?
+
+ddev dkan-test-users --remove
+echo "DKAN module Cypress tests complete."
+exit $DKAN_CYPRESS_RESULT

@@ -53,6 +53,7 @@ project_files:
   - config.dkan.yaml
   - commands/cypress/cypress
   - commands/host/dkan-demo
+  - commands/host/dkan-frontend-test-cypress
   - commands/host/dkan-init
   - commands/host/dkan-module-test-cypress
   - commands/host/dkan-module-test-cypress-ci
@@ -68,6 +69,7 @@ project_files:
   - misc/phpunit.xml
   - misc/settings.dkan.php
   - misc/settings.dkan-snippet.php.txt
+  - web-build/Dockerfile
   - misc/testUsers.json
 
 # List of files and directories that are copied into the global .ddev directory
