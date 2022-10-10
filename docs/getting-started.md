@@ -16,7 +16,9 @@ First, set up your DKAN site:
     ddev restart
     # Initialize the site.
     ddev dkan-init
-    # Install Drupal.
+    # This will ask you if it's OK to remove most of the files in your project.
+    # You can answer yes since there's nothing there right now anyway.
+    # Now install Drupal.
     ddev dkan-site-install
 
 Now we have a useful DKAN-based Drupal site, so let's take a look, and use the
@@ -73,5 +75,5 @@ Now that you have all the dependencies, you can build the frontend:
 
     ddev dkan-frontend-build
 
-Currently this command essentially calls `npm install` within the web container
+Currently this command essentially calls `npm run build` within the web container
 of DDev.
