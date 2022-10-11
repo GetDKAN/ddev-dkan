@@ -1,0 +1,10 @@
+#!/bin/bash
+#ddev-generated
+## Description: Generate documentation for the DKAN module.
+##
+## Usage: dkan-docs [arguments]
+## Example: "ddev dkan-docs"
+
+doxygen "$@"
+
+echo " * Documentation is now available at: $DDEV_PRIMARY_URL/modules/contrib/dkan/docs"
