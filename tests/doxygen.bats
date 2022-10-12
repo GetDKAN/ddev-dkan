@@ -11,6 +11,7 @@ setup() {
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
   cd "${TESTDIR}"
+  chmod -R 777 .
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
   ddev restart
