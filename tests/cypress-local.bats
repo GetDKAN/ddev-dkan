@@ -11,17 +11,17 @@ setup() {
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} || true
   cd "${TESTDIR}"
-  chmod -R 777 .
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
   ddev restart
+  ddev dkan-init --force
+  ddev dkan-site-install
 }
 
 teardown() {
   set -eu -o pipefail
   echo "teardown..."
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
-  chmod -R 777 .
   ddev delete -Oy ${PROJNAME}
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
@@ -32,8 +32,6 @@ teardown() {
   skip "This test requires Cypress on the local host. Run it manually."
 
   cd ${TESTDIR}
-  ddev dkan-init --force
-  ddev dkan-site-install
 
   # Now that we have a whole site, let's remove the cypress tests from it.
   # This allows the fixture users to be added, but does not consume time
