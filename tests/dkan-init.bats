@@ -21,6 +21,7 @@ teardown() {
   set -eu -o pipefail
   echo "teardown..."
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
+  chmod -R 777 .
   ddev delete -Oy ${PROJNAME} >/dev/null
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
