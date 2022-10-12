@@ -5,6 +5,9 @@
 ## Usage: dkan-docs [arguments]
 ## Example: "ddev dkan-docs"
 
+$DOCS_PATH=docroot/modules/contrib/dkan
+
+cd $DOCS_PATH
 doxygen "$@"
 
-echo " * Documentation is now available at: $DDEV_PRIMARY_URL/modules/contrib/dkan/docs"
+echo " * Documentation is now available at: $DDEV_PRIMARY_URL/$DOCS_PATH"

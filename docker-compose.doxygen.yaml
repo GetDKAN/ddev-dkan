@@ -26,7 +26,7 @@ services:
       # Resolve links via DDEV router
       - "ddev-router:${DDEV_HOSTNAME}"
 
-    working_dir: /var/www/html/docroot/modules/contrib/dkan
+    working_dir: /var/www/html
     entrypoint: "/bin/bash"
     tty: true
     networks: ["default","ddev_default"]
