@@ -5,7 +5,7 @@
 ## Usage: dkan-docs [arguments]
 ## Example: "ddev dkan-docs"
 
-$DOCS_PATH=docroot/modules/contrib/dkan
+DOCS_PATH="docroot/modules/contrib/dkan"
 
 cd $DOCS_PATH
 doxygen "$@"

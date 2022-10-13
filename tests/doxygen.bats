@@ -34,4 +34,8 @@ teardown() {
   run ddev dkan-docs --help
   assert_output --partial "Generate documentation for the DKAN module"
   assert_success
+
+  run ddev dkan-docs
+  assert_output --partial "Documentation is now available at"
+  assert_success
 }
