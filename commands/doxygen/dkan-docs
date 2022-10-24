@@ -10,4 +10,4 @@ DOCS_PATH="docroot/modules/contrib/dkan"
 cd $DOCS_PATH
 doxygen "$@"
 
-echo " * Documentation is now available at: $DDEV_PRIMARY_URL/$DOCS_PATH"
+echo " * Documentation is now available at: $DOCS_PATH/docs/index.html"
