@@ -27,6 +27,11 @@ echo "Starting PHPUnit test run."
 DDEV_PATH="$PWD"
 cd $TEST_PATH || exit 1
 
+# This command performs the actual test run.
+# The test run must include the following environmental variables:
+# - DRUPAL_ROOT
+# - SIMPLETEST_BASE_URL
+# - SIMPLETEST_DB
 DRUPAL_ROOT="/var/www/html/docroot" \
   SIMPLETEST_BASE_URL=$DDEV_PRIMARY_URL \
   SIMPLETEST_DB="mysql://db:db@$DDEV_PROJECT-db:3306/db" \
