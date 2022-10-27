@@ -6,7 +6,7 @@ generalized for many other use-cases.
 Currently, we're only going to talk about using PHPStorm. Do you have
 instructions for another IDE? Make a pull request. :-)
 
-## Hashtag-debugging-goals...
+## Goals
 
 We want to be able to use our DDev environment to do step-debugging for PHPUnit-based tests, using PHPStorm.
 
@@ -20,11 +20,11 @@ There are three main moving parts in this process:
 We *could* spend a lot of time working really hard to set up the remote PHP
 interpreter configuration in PHPStorm to use our DDev environment.
 
-Or, we could install the DDev Integration plugin.
+Or, we could install the [DDev Integration plugin](https://plugins.jetbrains.com/plugin/18813-ddev-integration).
 
 The plugin is the better choice. It will configure a remote interpreter for you,
 and you're done. It also gives you some UI clicky things to start and stop
-DDev environments.
+DDev environments, among other minor luxuries.
 
 ## 2. Configure the PHPUnit framework
 
@@ -48,15 +48,27 @@ test coverage reporting.
 This is the 'script' you want to run the tests. The secret sauce to making this
 easy to set up is that our phpunit.xml file contains as much of the configuration as possible.
 
+The only tricky configuration here is the path to the tests you want to run.
+
+In our case, we want to run all the DKAN module tests. It's possible that when you ran `ddev dkan-init` that the DKAN
+module ended up either at `/dkan`, or at `/docroot/modules/contrib/dkan`, depending on whether you added `--moduledev`
+to the init command. One way to find which you're using is to look in your IDE or file system. Another way is to ask
+Composer: `ddev composer show getdkan/dkan | grep path`.
+
+Now that you know where your DKAN module is located, you can create the Run/Debug configuration set.
+
 - From the menu, select Run -> Edit Configurations...
 - Click +.
 - Select 'PHPUnit' as the basis of our runner.
 - Give it a good name. I decided on 'DDev PHPUnit', because I lack creativity.
 - Under 'Test runner', choose 'Defined in the configuration file'.
-- Check the 'Use alternative configuration file' box, and enter the path to the configuration file. On my Mac, it looks like this: `/Users/[name]/projects/dkan-core/docroot/modules/contrib/dkan/phpunit.xml`. Yours might differ.
+- Check the 'Use alternative configuration file' box, and enter the path to the configuration file. This is the
+  PHPUnit configuration file in the DKAN module. As mentioned above, it could be in a few different places. On my Mac,
+  it looks like this: `/Users/[name]/projects/dkan-core/docroot/modules/contrib/dkan/phpunit.xml`. Yours might differ.
 - For the preferred coverage engine, choose XDebug. Who knows, you might even generate a coverage report someday.
 - 'Interpreter' should be DDEV.
-- 'Custom working directory' should be the location of your DKAN module. Similar to the configuration file above: `/Users/[name]/projects/dkan-core/docroot/modules/contrib/dkan`.
+- 'Custom working directory' should be the location of your DKAN module. Similar to the configuration file above:
+  `/Users/[name]/projects/dkan-core/docroot/modules/contrib/dkan`.
 
 This is the end of the easy part. Now comes the two complicated things:
 
