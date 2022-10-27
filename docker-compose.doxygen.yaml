@@ -1,0 +1,32 @@
+# Run Doxygen.
+#ddev-generated
+version: '3.6'
+services:
+  doxygen:
+    container_name: ddev-${DDEV_SITENAME}-doxygen
+
+    build:
+      context: './doxygen-build'
+      args:
+        BASE_IMAGE: debian:bullseye-slim
+
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.platform: ddev
+      com.ddev.app-type: php
+      com.ddev.approot: $DDEV_APPROOT
+    volumes:
+      - "../:/var/www/html:cached"
+      - ".:/mnt/ddev_config"
+
+    environment:
+      - DDEV_PRIMARY_URL=${DDEV_PRIMARY_URL}
+
+    external_links:
+      # Resolve links via DDEV router
+      - "ddev-router:${DDEV_HOSTNAME}"
+
+    working_dir: /var/www/html
+    entrypoint: "/bin/bash"
+    tty: true
+    networks: ["default","ddev_default"]
