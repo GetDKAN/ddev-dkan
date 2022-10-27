@@ -26,3 +26,4 @@ ask for help with any one of them with `ddev [command] --help` like this:
 - [Convert a DKAN-Tools project to DDEV](dktl-convert.md)
 - [Testing the DKAN module](testing-dkan.md)
 - [Testing your local development project](testing-project.md)
+- [Generate DKAN Documentation](docs.md)
