@@ -1,0 +1,7 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Get environmental variables so your IDE can run PHPUnit.
+## Usage: dkan-get-env-for-phpunit
+
+echo "DRUPAL_ROOT="/var/www/html/docroot",SIMPLETEST_BASE_URL=$DDEV_PRIMARY_URL,SIMPLETEST_DB="mysql://db:db@$DDEV_PROJECT-db:3306/db""
