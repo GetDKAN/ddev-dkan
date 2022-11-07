@@ -4,6 +4,9 @@ on:
   push:
     branches: [ main ]
 
+  schedule:
+    - cron: '01 07 * * *'
+
   workflow_dispatch:
     inputs:
       debug_enabled:
@@ -26,14 +29,14 @@ jobs:
 
     strategy:
       matrix:
-        ddev_version: [stable]
+        ddev_version: [stable, HEAD]
       #        ddev_version: [stable, edge, HEAD, PR]
       fail-fast: false
 
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: echo "/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin" >> $GITHUB_PATH
       - name: Environment setup
         run: |
