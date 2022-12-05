@@ -14,7 +14,7 @@ setup() {
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
   ddev restart
-  ddev dkan-init -y
+  ddev dkan-init --force
 }
 
 teardown() {
