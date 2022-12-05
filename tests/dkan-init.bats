@@ -14,6 +14,7 @@ setup() {
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
   ddev restart
+  ddev dkan-init --force
 }
 
 teardown() {
@@ -28,13 +29,12 @@ teardown() {
   set -eu -o pipefail
   cd ${TESTDIR}
 
-  # TODO: HEAD tests fail for --help
-  # run ddev dkan-init --help
-  # assert_output --partial "--moduledev"
-  # assert_output --partial "--force"
+  run ddev dkan-init --help
+  assert_output --partial "--moduledev"
+  assert_output --partial "--force"
 
-  # run ddev dkan-site-install --help
-  # assert_output --partial "ddev dkan-site-install [flags]"
+  run ddev dkan-site-install --help
+  assert_output --partial "ddev dkan-site-install [flags]"
 
   run ddev dkan-init --force
   refute_output --partial "Setting up for local DKAN module development"
