@@ -129,6 +129,32 @@ Congratulations, you have configured the IDE to run the tests.
 ## 5. Let's debug the tests
 
 - Tell DDev to use XDebug: `ddev xdebug on`.
+- Confirm the port xdebug is listening to `/admin/reports/status/php`, look for xdebug_client_port
+
+### VS Code
+- Install the [PHP Debug extension](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug)
+- Initialize the project for PHP Debugging by selecting “create a launch.json file” and then “PHP” from the Select Debugger options. This action will create the .vscode/launch.json file.
+- Open the launch.json and set the port and the pathMappings as follows:
+
+```
+"configurations": [
+    {
+      "name": "Listen for Xdebug",
+      "type": "php",
+      "request": "launch",
+      "port": 9003,
+      "pathMappings": {
+        "/var/www/html": "${workspaceRoot}",
+      }
+    },
+    ...
+```
+
+- Run `ddev start`
+- Confirm it is working by setting a breakpoint, click the xdebug icon in the left sidebar, click the green arrow to start debugging.
+- Interact with your site and confirm VS Code stops at your breakpoint.
+
+### PHPStorm
 - Tell PHPStorm to listen for XDebug by clicking on the little phone icon.
 - Set a breakpoint in a test.
 - Instead of clicking the green play button, click the green bug button.
