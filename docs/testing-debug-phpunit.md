@@ -126,12 +126,14 @@ Eventually the tests will finish and you'll know if they are passing.
 
 Congratulations, you have configured the IDE to run the tests.
 
-## 5. Let's debug the tests
+## 5. [Step Debugging with Xdebug](https://ddev.readthedocs.io/en/latest/users/debugging-profiling/step-debugging/)
 
 - Tell DDev to use XDebug: `ddev xdebug on`.
-- Tell PHPStorm to listen for XDebug by clicking on the little phone icon.
-- Set a breakpoint in a test.
-- Instead of clicking the green play button, click the green bug button.
+- Xdebug’s default port is 9003.
+- Configure your IDE
+    * [VS Code](https://ddev.readthedocs.io/en/latest/users/debugging-profiling/step-debugging/#visual-studio-code-vs-code-debugging-setup)
+    * [PHPStorm](https://ddev.readthedocs.io/en/latest/users/debugging-profiling/step-debugging/#phpstorm-debugging-setup)
+- Run `ddev start` if you get an error like "Could not connect to debugging client."
 
 The IDE might have stopped at the first line of PHPUnit. You can tell it to run again in the debug pane, but you can
 also turn off this behavior in preferences under PHP -> Debug.
