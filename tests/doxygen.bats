@@ -22,6 +22,8 @@ teardown() {
   echo "teardown..."
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   ddev delete -Oy ${PROJNAME}
+  # chown the test dir to current user.
+  [ "${TESTDIR}" != "" ] && sudo chown -R $USER: ${TESTDIR}
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
