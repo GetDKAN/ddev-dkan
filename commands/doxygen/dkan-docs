@@ -3,6 +3,7 @@
 ## Description: Generate documentation for the DKAN module.
 ##
 ## Usage: dkan-docs [arguments]
+## Flags: []
 ## Example: "ddev dkan-docs"
 
 DOCS_PATH="modules/contrib/dkan"

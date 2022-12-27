@@ -22,6 +22,8 @@ teardown() {
   echo "teardown..."
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   ddev delete -Oy ${PROJNAME}
+  # chown the test dir to current user.
+  [ "${TESTDIR}" != "" ] && sudo chown -R $USER: ${TESTDIR}
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
@@ -32,10 +34,9 @@ teardown() {
   run ddev exec -s doxygen exit 0
   assert_success
 
-  # todo: --help seems to not work any more in ddev HEAD.
-  # run ddev dkan-docs --help
-  # assert_output --partial "Generate documentation for the DKAN module"
-  # assert_success
+  run ddev dkan-docs --help
+  assert_output --partial "Generate documentation for the DKAN module"
+  assert_success
 
   run ddev dkan-docs
   assert_output --partial "Documentation is now available at"

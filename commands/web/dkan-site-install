@@ -3,6 +3,7 @@
 
 ## Description: Perform site install, including DKAN details.
 ## Usage: dkan-site-install
+## Flags: []
 
 # Fail early, fail often.
 set -eu -o pipefail
