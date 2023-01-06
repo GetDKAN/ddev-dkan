@@ -80,6 +80,13 @@ to `tests/`, so that the project-level test runner can find them.
 
     mv src/tests tests/
 
+### Schema
+
+DKAN uses a special directory called `schema/`. This directory is located in `src/schema/` under DKAN-Tools,
+and much like the modules and themes above we should move it.
+
+    mv src/schema docroot/
+
 ### Settings..? Settings.
 
 Let's state up-front that it's complicated here.
