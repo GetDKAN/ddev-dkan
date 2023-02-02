@@ -2,7 +2,7 @@
 
 type: drupal9
 docroot: docroot
-php_version: "7.4"
+php_version: "8.1"
 webserver_type: apache-fpm
 router_http_port: "80"
 router_https_port: "443"
@@ -11,7 +11,7 @@ additional_hostnames: []
 additional_fqdns: []
 database:
   type: "mysql"
-  version: "5.7"
+  version: "5.7.8"
 nfs_mount_enabled: false
 mutagen_enabled: false
 use_dns_when_possible: true
