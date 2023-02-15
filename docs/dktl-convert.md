@@ -45,11 +45,7 @@ This will cause the Drupal Composer Scaffold plugin to add scaffolded files to t
 
 We'll fill out the rest of the `.gitignore` file at the end.
 
-### Update Scaffold plugin and initial Composer install.
-
-Let's make sure we're not limiting ourselves to an old version of Drupal Composer Scaffold plugin.
-
-    ddev composer require drupal/core-composer-scaffold:^9 --no-install
+### Initial Composer install.
 
 Now let's use DDEV to run `composer install`, so it can build out some directories for us, to make subsequent steps easier.
 
