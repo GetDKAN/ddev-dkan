@@ -8,8 +8,11 @@
 # Fail early, fail often.
 set -eu -o pipefail
 
-drush site:install standard --site-name="DKAN" -y
-drush pm-enable dkan config_update_ui admin_toolbar admin_toolbar_tools -y
+drush site:install minimal --site-name="DKAN" -y
+drush pm-enable dkan config json_form_widget datetime field_ui file link menu_ui options path text toolbar -y
+drush role:create "administrator" "administrator" -y
+drush theme:enable claro
+drush config-set system.theme default claro -y
 drush config-set system.performance css.preprocess 0 -y
 drush config-set system.performance js.preprocess 0 -y
 
