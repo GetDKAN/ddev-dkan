@@ -36,9 +36,6 @@ while :; do
   --project-version*)
     shift
     INIT_PROJECT_VERSION=$1
-    echo "*"
-    echo "* Using project version: $INIT_PROJECT_VERSION"
-    echo "*"
     ;;
   --) # End of all options.
     break
@@ -51,6 +48,10 @@ while :; do
   esac
   shift
 done
+
+echo "*"
+echo "* Using project version: $INIT_PROJECT_VERSION"
+echo "*"
 
 # Determine if there's anything in the directory that we shouldn't remove.
 # - look for composer.json
