@@ -4,7 +4,7 @@
 ## Description: Build the Drupal codebase for a DKAN site.
 ## Usage: dkan-init [flags]
 ## Example: dkan-init\ndkan-init --project-version 10.0.x-dev
-## Flags: [{"Name":"moduledev", "Usage":"Set up the file system for DKAN module development."}{"Name":"project-version", "Usage":"Specify a Drupal core version. Default 9.5.x-dev."},{"Name":"force", "Usage":"Force init even if there are files present which could be deleted."}]
+## Flags: [{"Name":"moduledev", "Usage":"Set up the file system for DKAN module development."},{"Name":"project-version", "Usage":"Specify a Drupal core version. Default 9.5.x-dev."},{"Name":"force", "Usage":"Force init even if there are files present which could be deleted."}]
 
 # Fail early, fail often.
 set -euo pipefail
