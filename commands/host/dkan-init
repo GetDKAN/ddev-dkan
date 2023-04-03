@@ -2,8 +2,9 @@
 #ddev-generated
 
 ## Description: Build the Drupal codebase for a DKAN site.
-## Usage: dkan-init
-## Flags: [{"Name":"moduledev", "Usage":"Set up the file system for DKAN module development."},{"Name":"force", "Usage":"Force init even if there are files present which could be deleted."}]
+## Usage: dkan-init [flags]
+## Example: dkan-init\ndkan-init --project-version 10.0.x-dev
+## Flags: [{"Name":"moduledev", "Usage":"Set up the file system for DKAN module development."},{"Name":"project-version", "Usage":"Specify a Drupal core version. Default 9.5.x-dev."},{"Name":"force", "Usage":"Force init even if there are files present which could be deleted."}]
 
 # Fail early, fail often.
 set -euo pipefail
@@ -12,9 +13,12 @@ export DKAN_REPO=https://github.com/GetDKAN/dkan.git
 export DKAN_REPO_BRANCH=2.x
 export DKAN_DIRECTORY=dkan
 
-# Glean flag arguments.
+# Defaults.
 INIT_MODULEDEV=false
 INIT_FORCE=false
+INIT_PROJECT_VERSION="9.5.x-dev"
+
+# Glean flag arguments.
 while :; do
   case ${1:-} in
   --moduledev)
@@ -25,7 +29,13 @@ while :; do
     ;;
   --force)
     INIT_FORCE=true
-    echo "forced"
+    echo "*"
+    echo "* Forcing initialization"
+    echo "*"
+    ;;
+  --project-version*)
+    shift
+    INIT_PROJECT_VERSION=$1
     ;;
   --) # End of all options.
     break
@@ -38,6 +48,10 @@ while :; do
   esac
   shift
 done
+
+echo "*"
+echo "* Using project version: $INIT_PROJECT_VERSION"
+echo "*"
 
 # Determine if there's anything in the directory that we shouldn't remove.
 # - look for composer.json
@@ -65,9 +79,9 @@ if [ $INIT_MODULEDEV = true ]; then
 fi
 
 if [ $INIT_FORCE = true ]; then
-  ddev composer create getdkan/recommended-project:@dev --no-install -y
+  ddev composer create getdkan/recommended-project:$INIT_PROJECT_VERSION@dev --no-install -y
 else
-  ddev composer create getdkan/recommended-project:@dev --no-install
+  ddev composer create getdkan/recommended-project:$INIT_PROJECT_VERSION@dev --no-install
 fi
 
 if [ $INIT_MODULEDEV = true ]; then

@@ -32,13 +32,15 @@ teardown() {
   run ddev dkan-init --help
   assert_output --partial "--moduledev"
   assert_output --partial "--force"
+  assert_output --partial "--project-version"
 
   run ddev dkan-site-install --help
   assert_output --partial "ddev dkan-site-install [flags]"
 
   run ddev dkan-init --force
   refute_output --partial "Setting up for local DKAN module development"
-  assert_output --partial "Site codebase initialized."
+  assert_output --partial "Site codebase initialized"
+  assert_output --partial "Using project version: 9.5.x-dev"
 
   # Make sure we added our directories.
   assert [ -d "docroot/sites/default/files/uploaded_resources" ]
@@ -51,7 +53,7 @@ teardown() {
 
   run ddev dkan-init --force --moduledev
   assert_output --partial "Setting up for local DKAN module development"
-  assert_output --partial "Site codebase initialized."
+  assert_output --partial "Site codebase initialized"
 }
 
 @test "dkan-init protects existing work" {
@@ -60,7 +62,8 @@ teardown() {
 
   touch composer.json
 
-  run ddev dkan-init
+  run ddev dkan-init --project-version 9.4.x-dev
+  assert_output --partial "Using project version: 9.4.x-dev"
   assert_output --partial "Found composer.json"
   assert_failure
 
