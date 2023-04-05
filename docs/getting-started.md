@@ -4,7 +4,7 @@
 
 First, make a directory for your project.
 
-    mkdir my-project && cd my_project
+    mkdir my-project && cd my-project
 
 Give DDev just enough configuration to get started.
 
