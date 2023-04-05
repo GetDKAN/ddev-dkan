@@ -26,18 +26,8 @@ teardown() {
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
-@test "dkan-frontend-install" {
-  run ddev dkan-frontend-install
-  assert_output --partial "Installing default frontend theme"
-  refute_output --partial "Not installing default frontend theme"
-  assert_output --partial "Gathering frontend application"
-  assert_success
-}
-
 @test "dkan-frontend-install no default theme" {
-  run ddev dkan-frontend-install --theme 0
-  refute_output --partial "Installing default frontend theme"
-  assert_output --partial "Not installing default frontend theme"
+  run ddev dkan-frontend-install
   assert_output --partial "Gathering frontend application"
   assert_success
 }

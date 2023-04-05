@@ -32,7 +32,6 @@ teardown() {
   set -eu -o pipefail
 
   run ddev dkan-frontend-install
-  refute_output --partial "Not installing default frontend theme"
   assert_output --partial 'Gathering frontend application:'
   assert_output --partial "Frontend install complete."
   assert_success

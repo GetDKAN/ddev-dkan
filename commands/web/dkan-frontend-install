@@ -59,15 +59,10 @@ fi
 FRONTEND_VCS_URL='https://github.com/GetDKAN/data-catalog-app/'
 FRONTEND_VCS_REF='no-node-sass'
 
-if [ $FRONTEND_THEME_INSTALL = 1 ]; then
-  echo " * Installing default frontend theme."
-  composer require getdkan/$FRONTEND_THEME
-  drush theme:enable $FRONTEND_THEME
-  drush config-set system.theme default $FRONTEND_THEME -y
-  drush pm-enable dkan_js_frontend -y
-else
-  echo " * Not installing default frontend theme."
-fi
+
+drush pm-enable dkan_js_frontend -y
+drush config-set system.site page.front '/home' -y
+drush cr
 
 echo " ** Gathering frontend application: $FRONTEND_VCS_REF from $FRONTEND_VCS_URL"
 
