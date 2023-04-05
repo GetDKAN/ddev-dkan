@@ -1,32 +1,12 @@
 #!/bin/bash
 #ddev-generated
 
-## Description: Add the frontend for DKAN.
+## Description: Add the decoupled frontend for DKAN.
 ## Usage: dkan-frontend-install
 ## Flags: [{"Name":"theme", "Usage":"Whether or not to install default front-end Drupal theme. 0 or 1.", "DefValue": "1"}]
 ## Example: "ddev dkan-frontend-install" (will install default frontend theme by default), "ddev dkan-frontend-install --theme 0"
 
 # TODO: Make a CI flag.
-
-# Glean flag arguments.
-FRONTEND_THEME_INSTALL=1
-while :; do
-  case ${1:-} in
-  --theme)
-    shift
-    FRONTEND_THEME_INSTALL=${1:-}
-    ;;
-  --) # End of all options.
-    break
-    ;;
-  -?*)
-    printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
-    ;;
-  *) # Default case: No more options, so break out of the loop.
-    break ;;
-  esac
-  shift
-done
 
 FRONTEND_TMP='src/tmp'
 FRONTEND_DOCROOT_DIR='docroot/frontend'
@@ -35,7 +15,6 @@ FRONTEND_VCS_URL='https://github.com/GetDKAN/data-catalog-app/'
 #FRONTEND_VCS_REF='cypress-update-8.7.0'
 #FRONTEND_VCS_REF='1.0.4'
 FRONTEND_VCS_REF='no-node-sass'
-FRONTEND_THEME='dkan_js_frontend_bartik'
 
 if [[ -L $FRONTEND_DOCROOT_DIR ]]; then
   echo "ERROR: Symlink $FRONTEND_DOCROOT_DIR already exists."
@@ -55,11 +34,6 @@ if [ ! -z "$DKAN_MODULE_PATH" ]; then
   fi
 fi
 
-# TODO: We're hardcoding this VCS ref because dkan module's configured one breaks the build.
-FRONTEND_VCS_URL='https://github.com/GetDKAN/data-catalog-app/'
-FRONTEND_VCS_REF='no-node-sass'
-
-
 drush pm-enable dkan_js_frontend -y
 drush config-set system.site page.front '/home' -y
 drush cr
@@ -75,5 +49,9 @@ cd $FRONTEND_DOCROOT_DIR || exit
 # Don't fill the screen with warnings, only errors.
 # TODO: Make sure we don't miss important warnings.
 npm --loglevel=error install
+
+drush pm-enable dkan_js_frontend -y
+drush config-set system.site page.front '/home' -y
+drush cr
 
 echo " ** Frontend install complete."

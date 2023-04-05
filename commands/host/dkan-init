@@ -90,8 +90,6 @@ if [ $INIT_MODULEDEV = true ]; then
   ddev composer require getdkan/dkan:@dev --no-install
 fi
 
-# TODO: Change this after https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
-ddev composer require drupal/pathauto:^1.10 --no-install
 ddev composer install
 
 # Adjust settings for our special case.

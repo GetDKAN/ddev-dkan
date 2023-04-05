@@ -2,8 +2,8 @@
 
 ## What is dkan-ddev-addon?
 
-DKAN DDev Addon provides some glue scripts and config for doing local development of
-DKAN itself and also DKAN-related Drupal sites.
+DKAN DDev Add-on provides commands and config for development of
+DKAN itself and DKAN-enabled Drupal sites in a local docker environment.
 
 ## Documentation
 
