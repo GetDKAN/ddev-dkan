@@ -92,7 +92,8 @@ fi
 
 # TODO: Change this after https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
 ddev composer require drupal/pathauto:^1.10 --no-install
-ddev composer install
+# Let subsequent steps perform the install.
+#ddev composer install
 
 # Adjust settings for our special case.
 # TODO: Change this after DDev 1.19.6 is released and we can merge hooks.
