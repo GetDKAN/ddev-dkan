@@ -10,8 +10,6 @@ set -eu -o pipefail
 ddev dkan-init --force
 ddev dkan-site-install
 
-ddev drush pm-enable dkan_js_frontend -y
-
 mkdir -p sites/default/files/uploaded_resources
 mkdir -p sites/default/files/resources
 
