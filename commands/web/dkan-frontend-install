@@ -3,18 +3,13 @@
 
 ## Description: Add the decoupled frontend for DKAN.
 ## Usage: dkan-frontend-install
-## Flags: [{"Name":"theme", "Usage":"Whether or not to install default front-end Drupal theme. 0 or 1.", "DefValue": "1"}]
-## Example: "ddev dkan-frontend-install" (will install default frontend theme by default), "ddev dkan-frontend-install --theme 0"
 
 # TODO: Make a CI flag.
 
 FRONTEND_TMP='src/tmp'
 FRONTEND_DOCROOT_DIR='docroot/frontend'
 FRONTEND_VCS_URL='https://github.com/GetDKAN/data-catalog-app/'
-# TODO: no-node-sass is the known-good branch, so we should move that forward to be a release.
-#FRONTEND_VCS_REF='cypress-update-8.7.0'
-#FRONTEND_VCS_REF='1.0.4'
-FRONTEND_VCS_REF='no-node-sass'
+FRONTEND_VCS_REF='1.1.0'
 
 if [[ -L $FRONTEND_DOCROOT_DIR ]]; then
   echo "ERROR: Symlink $FRONTEND_DOCROOT_DIR already exists."
@@ -33,10 +28,6 @@ if [ ! -z "$DKAN_MODULE_PATH" ]; then
     fi
   fi
 fi
-
-drush pm-enable dkan_js_frontend -y
-drush config-set system.site page.front '/home' -y
-drush cr
 
 echo " ** Gathering frontend application: $FRONTEND_VCS_REF from $FRONTEND_VCS_URL"
 
