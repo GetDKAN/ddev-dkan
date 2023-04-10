@@ -35,7 +35,7 @@ teardown() {
 
   # Run a test group that does not exist, since we're not actually testing
   # PHP code here.
-  run ddev dkan-test-phpunit --group this-group-should-not-exist
+  run ddev dkan-phpunit --group this-group-should-not-exist
   assert_output --partial 'Starting PHPUnit test run'
   assert_output --partial 'No tests executed!'
 }

@@ -10,9 +10,7 @@ Your process should set up the site:
 
 Then run the tests:
 
-    ddev dkan dkan-test-phpunit
-
-This command will call the `dkan-test-users` command to create test users.
+    ddev dkan dkan-phpunit
 
 ## Testing with Cypress locally
 
