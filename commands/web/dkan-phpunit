@@ -1,10 +1,9 @@
 #!/bin/bash
 
-## Description: (DEPRECATED - use dkan-phpunit) Run PHPUnit tests for the DKAN module.
-## Usage: dkan-test-phpunit <arguments>
+## Description: Run PHPUnit tests for the DKAN module.
+## Usage: dkan-phpunit <arguments>
 
-# Avoid some XDebug error messages.
-export XDEBUG_MODE=coverage
+export XDEBUG_MODE=coverage,debug
 
 TEST_PATH="docroot/modules/contrib/dkan"
 TEST_SUITE="DKAN Test Suite"
@@ -15,12 +14,6 @@ if [[ ! -f $PHPUNIT_BINARY ]] ; then
   echo "Unable to find PHPUnit executable at $PHPUNIT_BINARY. Performing composer install."
   composer install --no-progress
 fi
-
-# Ensure prophecy.
-composer require --dev phpspec/prophecy-phpunit:^2
-
-# Add fixture users.
-./.ddev/commands/web/dkan-test-users
 
 echo "Starting PHPUnit test run."
 DDEV_PATH="$PWD"
@@ -40,9 +33,5 @@ DRUPAL_ROOT="/var/www/html/docroot" \
   --fail-on-risky \
   "$@"
 TEST_RESULTS=$?
-
-# Clean up fixture users.
-cd $DDEV_PATH || exit 1
-./.ddev/commands/web/dkan-test-users --remove
 
 exit $TEST_RESULTS
