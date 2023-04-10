@@ -4,13 +4,13 @@
 
 Your process should set up the site:
 
-    ddev dkan dkan-init
+    ddev dkan-init
     # optionally: ddev dkan-init --moduledev
     ddev dkan-site-install
 
 Then run the tests:
 
-    ddev dkan dkan-phpunit
+    ddev dkan-phpunit
 
 The tests will run by default with xdebug in "coverage" mode, to facilitate building
 coverage reports in XML or HTML. If you want to use a step debugger locally, add the
