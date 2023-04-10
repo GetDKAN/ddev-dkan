@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#ddev-generated
 ## Description: Run PHPUnit tests for the DKAN module.
 ## Usage: dkan-phpunit <arguments>
 
