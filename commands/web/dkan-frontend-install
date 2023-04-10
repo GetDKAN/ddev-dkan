@@ -9,7 +9,7 @@
 FRONTEND_TMP='src/tmp'
 FRONTEND_DOCROOT_DIR='docroot/frontend'
 FRONTEND_VCS_URL='https://github.com/GetDKAN/data-catalog-app/'
-FRONTEND_VCS_REF='1.1.0'
+FRONTEND_VCS_REF='1.3.0'
 
 if [[ -L $FRONTEND_DOCROOT_DIR ]]; then
   echo "ERROR: Symlink $FRONTEND_DOCROOT_DIR already exists."
