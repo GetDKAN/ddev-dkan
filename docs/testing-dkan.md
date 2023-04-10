@@ -12,6 +12,10 @@ Then run the tests:
 
     ddev dkan dkan-phpunit
 
+The tests will run by default with xdebug in "coverage" mode, to facilitate building
+coverage reports in XML or HTML. If you want to use a step debugger locally, add the
+`--debug` flag before any other flags or arguments.
+
 ## Testing with Cypress locally
 
 You will need a locally-installed Cypress binary, version 8. (DKAN frontend

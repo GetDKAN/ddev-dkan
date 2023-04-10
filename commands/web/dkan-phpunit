@@ -1,10 +1,28 @@
 #!/bin/bash
 
 #ddev-generated
-## Description: Run PHPUnit tests for the DKAN module.
-## Usage: dkan-phpunit <arguments>
+## Description: Run PHPUnit tests for the DKAN module. Any flags/args will be passed to phpunit (except --debug).
+## Usage: dkan-phpunit [flags] [args]
+## Flags: [{"Name":"debug", "Usage":"Put xdebug in debug mode. Always put first if using."}]
 
-export XDEBUG_MODE=coverage,debug
+XDEBUG_MODE=coverage
+
+while :; do
+  case ${1:-} in
+  --debug)
+    XDEBUG_MODE=debug
+    ;;
+  --) # End of all options.
+    break
+    ;;
+  *) # Default case: No more options, so break out of the loop.
+    break ;;
+  esac
+  shift
+done
+
+
+export XDEBUG_MODE
 
 TEST_PATH="docroot/modules/contrib/dkan"
 TEST_SUITE="DKAN Test Suite"
