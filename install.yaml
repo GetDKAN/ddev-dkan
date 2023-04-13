@@ -63,6 +63,7 @@ project_files:
   - commands/web/dkan-frontend-build
   - commands/web/dkan-frontend-install
   - commands/web/dkan-get-env-for-phpunit
+  - commands/web/dkan-phpunit
   - commands/web/dkan-site-install
   - commands/web/dkan-test-phpunit
   - commands/web/dkan-test-users

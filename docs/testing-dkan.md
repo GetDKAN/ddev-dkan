@@ -4,15 +4,17 @@
 
 Your process should set up the site:
 
-    ddev dkan dkan-init
+    ddev dkan-init
     # optionally: ddev dkan-init --moduledev
     ddev dkan-site-install
 
 Then run the tests:
 
-    ddev dkan dkan-test-phpunit
+    ddev dkan-phpunit
 
-This command will call the `dkan-test-users` command to create test users.
+The tests will run by default with xdebug in "coverage" mode, to facilitate building
+coverage reports in XML or HTML. If you want to use a step debugger locally, add the
+`--debug` flag before any other flags or arguments.
 
 ## Testing with Cypress locally
 
