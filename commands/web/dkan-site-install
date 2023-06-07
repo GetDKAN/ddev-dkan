@@ -10,9 +10,19 @@ set -eu -o pipefail
 
 drush site:install minimal --site-name="DKAN" -y
 drush pm-enable dkan config json_form_widget datetime field_ui file link menu_ui options path text toolbar admin_toolbar admin_toolbar_tools -y
-drush role:create "administrator" "administrator" -y
-drush theme:enable claro
-drush config-set system.theme default claro -y
+
+# Create administrator role and assign to user 1
+drush role:create "administrator" "Administrator" -y
+drush config-set user.role.administrator is_admin true -y
+drush user:role:add "administrator" --uid=1
+
+# Enable Claro and Olivero themes.
+drush theme:enable claro olivero
+drush config-set system.theme admin claro -y
+drush config-set system.theme default olivero -y
+drush config-set node.settings use_admin_theme true -y
+
+# Disable CSS/JS preprocessing
 drush config-set system.performance css.preprocess 0 -y
 drush config-set system.performance js.preprocess 0 -y
 
