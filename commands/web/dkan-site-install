@@ -8,13 +8,13 @@
 # Fail early, fail often.
 set -eu -o pipefail
 
-drush site:install minimal --site-name="DKAN" -y
+drush site:install minimal --site-name="DKAN" --account-name="admin" -y
 drush pm-enable dkan file link options admin_toolbar admin_toolbar_tools -y
 
 # Create administrator role and assign to user 1
 drush role:create "administrator" "Administrator" -y
 drush config-set user.role.administrator is_admin true -y
-drush user:role:add "administrator" --uid=1
+drush user:role:add "administrator" admin
 
 # Enable Claro and Olivero themes.
 drush theme:enable claro olivero
