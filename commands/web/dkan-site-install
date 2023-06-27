@@ -9,7 +9,7 @@
 set -eu -o pipefail
 
 drush site:install minimal --site-name="DKAN" --account-name="admin" -y
-drush pm-enable dkan file link options automated_cron menu_ui admin_toolbar admin_toolbar_tools -y
+drush pm-enable dkan automated_cron admin_toolbar admin_toolbar_tools -y
 
 # Create administrator role and assign to user 1
 drush role:create "administrator" "Administrator" -y
