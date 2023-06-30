@@ -18,7 +18,7 @@ setup() {
   ddev dkan-init
   ddev dkan-site-install
 
-  ddev drush pm-enable dkan dkan_js_frontend config_update_ui -y
+  ddev drush pm-enable dkan dkan_js_frontend -y
 }
 
 teardown() {
