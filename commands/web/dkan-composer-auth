@@ -1,0 +1,12 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Build the frontend for DKAN.
+## Usage: dkan-composer-auth
+
+# Fail early, fail often.
+set -eu -o pipefail
+
+bash -c 'echo "{\"github-oauth\": {\"github.com\": \"$GITHUB_TOKEN\"}}"' > ~/.composer/auth.json
+
+echo "Added Composer auth for github."

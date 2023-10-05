@@ -78,6 +78,9 @@ if [ $INIT_MODULEDEV = true ]; then
   command -v git
 fi
 
+# woot bandwidth
+ddev dkan-composer-auth
+
 if [ $INIT_FORCE = true ]; then
   ddev composer create getdkan/recommended-project:$INIT_PROJECT_VERSION@dev --no-install -y
 else
@@ -90,7 +93,7 @@ if [ $INIT_MODULEDEV = true ]; then
   ddev composer require getdkan/dkan:@dev --no-install
 fi
 
-ddev composer install
+ddev composer install --verbose
 
 # Adjust settings for our special case.
 # TODO: Change this after DDev 1.19.6 is released and we can merge hooks.
