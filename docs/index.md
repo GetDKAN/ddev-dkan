@@ -1,4 +1,6 @@
-# DDEV-DKAN add-on
+---
+title: "DDEV-DKAN add-on"
+---
 
 The DDEV-DKAN add-on provides configuration and specialized commands for dealing
 with a DKAN Drupal project in the DDEV environment.
@@ -6,7 +8,7 @@ with a DKAN Drupal project in the DDEV environment.
 Note that all the DKAN commands which come with this addon have documentation built-in. At the command line, you can
 ask for help with any one of them with `ddev [command] --help` like this:
 
-    % ddev dkan-init --help
+    $ ddev dkan-init --help
     Build the Drupal codebase for a DKAN site. (shell host container command)
 
     Usage:

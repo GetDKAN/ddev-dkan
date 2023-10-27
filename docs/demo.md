@@ -1,7 +1,7 @@
 # Run The DKAN Demo Site
 
-Note: As of DDev 1.19.5, these instructions require managing the settings.php
-file. After DDev 1.19.6 is released, this will (hopefully) not be required.
+Note: As of DDEV 1.19.5, these instructions require managing the settings.php
+file. After DDEV 1.19.6 is released, this will (hopefully) not be required.
 
     mkdir my-project && cd my-project
     ddev config --auto
