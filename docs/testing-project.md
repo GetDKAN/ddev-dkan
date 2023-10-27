@@ -50,7 +50,7 @@ Be sure and document the use of this command in your project's `README.md` :-)
 
 Currently, the project Cypress test runner assumes that you have Cypress
 installed locally on your machine. The runner will run this version of
-Cypress against the DDev environment.
+Cypress against the DDEV environment.
 
 Begin by installing Cypress. For DKAN, we require Cypress 8.7.
 
@@ -59,7 +59,7 @@ Begin by installing Cypress. For DKAN, we require Cypress 8.7.
     npx cypress info
 
 Next you'll need to set up the site itself, so there is a live site in
-DDev to test against.
+DDEV to test against.
 
     ddev dkan-init
     ddev dkan-site-install

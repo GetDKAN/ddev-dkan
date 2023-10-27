@@ -1,13 +1,13 @@
-[![tests](https://github.com/getdkan/dkan-ddev-addon/actions/workflows/tests.yml/badge.svg)](https://github.com/drud/ddev-dkan-ddev-addon/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2023.svg)
+[![tests](https://github.com/getdkan/ddev-dkan/actions/workflows/tests.yml/badge.svg)](https://github.com/drud/ddev-dkan-ddev-addon/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2023.svg)
 
-## What is dkan-ddev-addon?
+## What is ddev-dkan?
 
-DKAN DDev Add-on provides commands and config for development of
+DDEV-DKAN add-on provides commands and config for development of
 DKAN itself and DKAN-enabled Drupal sites in a local docker environment.
 
 ## Documentation
 
-Documentation lives in Github Pages: https://getdkan.github.io/dkan-ddev-addon/
+Documentation lives in Github Pages: https://getdkan.github.io/ddev-dkan/
 
 ## Testing
 
