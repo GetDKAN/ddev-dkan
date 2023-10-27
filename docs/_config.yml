@@ -1,1 +1,9 @@
 theme: minima
+header_pages:
+  - getting-started.md
+titles_from_headings:
+  enabled:     true
+  strip_title: true
+minima:
+  social_links:
+    - { platform: github,  user_url: "https://github.com/getdkan/ddev-dkan" }
