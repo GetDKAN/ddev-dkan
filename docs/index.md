@@ -1,7 +1,7 @@
-# DKAN DDev Addon
+# DDEV-DKAN add-on
 
-The DKAN DDEv Addon provides configuration and specialized commands for dealing
-with a DKAN Drupal project in the DDEv environment.
+The DDEV-DKAN add-on provides configuration and specialized commands for dealing
+with a DKAN Drupal project in the DDEV environment.
 
 Note that all the DKAN commands which come with this addon have documentation built-in. At the command line, you can
 ask for help with any one of them with `ddev [command] --help` like this:
