@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting started with DKAN DDev Addon &mdash; DKAN DDEV Addon Documentation  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/dkan.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Frontend Application Management" href="frontend.html" />
+    <link rel="prev" title="DKAN DDev Addon" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DKAN DDEV Addon Documentation
+          </a>
+              <div class="version">
+                1.x
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started with DKAN DDev Addon</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#start-a-new-dkan-site">Start a new DKAN site</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing-to-dkan">Contributing to DKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#decoupled-frontend-app-installation-and-build">Decoupled Frontend app installation and build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build">Build</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-commands">Additional Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="frontend.html">Frontend Application Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Run The DKAN Demo Site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dktl-convert.html">Convert DKAN-Tools project to DDEV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing-debug-phpunit.html">Debugging a PHPUnit test with DDev</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing-dkan.html">Testing the DKAN module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing-project.html">Testing your local development project.</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DKAN DDEV Addon Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting started with DKAN DDev Addon</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/getting-started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started-with-dkan-ddev-addon">
+<h1>Getting started with DKAN DDev Addon<a class="headerlink" href="#getting-started-with-dkan-ddev-addon" title="Link to this heading"></a></h1>
+<section id="start-a-new-dkan-site">
+<h2>Start a new DKAN site<a class="headerlink" href="#start-a-new-dkan-site" title="Link to this heading"></a></h2>
+<p>First, make a directory for your project.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">mkdir<span class="w"> </span>my-project<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>my-project</span>
+</pre></div></div><p>Give DDev just enough configuration to get started.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ddev<span class="w"> </span>config<span class="w"> </span>--auto</span>
+</pre></div></div><p>Grab the DKAN addon to get helpful DKAN commands.
+Note that eventually we’ll be ‘official’ and you won’t have
+to install this from a tarball.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ddev<span class="w"> </span>get<span class="w"> </span>https://github.com/GetDKAN/dkan-ddev-addon/archive/refs/heads/main.tar.gz</span>
+</pre></div></div><p>Make sure we’re using the addon.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ddev<span class="w"> </span>restart</span>
+</pre></div></div><p>Initialize the site.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ddev<span class="w"> </span>dkan-init</span>
+</pre></div></div><p>This will ask you if it’s OK to remove most of the files in your project.
+You can answer yes since there’s nothing there right now anyway.
+Now install Drupal.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ddev<span class="w"> </span>dkan-site-install</span>
+</pre></div></div><p>Now we have a useful DKAN-based Drupal site, so let’s take a look, and use the
+standard tools to log in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ddev<span class="w"> </span>launch</span>
+<span class="prompt1">ddev<span class="w"> </span>drush<span class="w"> </span>status-report</span>
+<span class="prompt1">ddev<span class="w"> </span>drush<span class="w"> </span>uli</span>
+</pre></div></div><p>Note that if you need help with any of the DDev commands, you can add <cite>–help</cite>
+on the command line and get help:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ddev</span> <span class="n">dkan</span><span class="o">-</span><span class="n">init</span> <span class="o">--</span><span class="n">help</span>
+<span class="n">Build</span> <span class="n">the</span> <span class="n">Drupal</span> <span class="n">codebase</span> <span class="k">for</span> <span class="n">a</span> <span class="n">DKAN</span> <span class="n">site</span><span class="o">.</span> <span class="p">(</span><span class="n">shell</span> <span class="n">host</span> <span class="n">container</span> <span class="n">command</span><span class="p">)</span>
+
+<span class="n">Usage</span><span class="p">:</span>
+    <span class="n">ddev</span> <span class="n">dkan</span><span class="o">-</span><span class="n">init</span> <span class="p">[</span><span class="n">flags</span><span class="p">]</span>
+
+<span class="n">Examples</span><span class="p">:</span>
+    <span class="n">dkan</span><span class="o">-</span><span class="n">init</span>
+    <span class="n">dkan</span><span class="o">-</span><span class="n">init</span> <span class="o">--</span><span class="n">project</span><span class="o">-</span><span class="n">version</span> <span class="mf">10.0</span><span class="o">.</span><span class="n">x</span><span class="o">-</span><span class="n">dev</span>
+
+<span class="n">Flags</span><span class="p">:</span>
+<span class="o">--</span><span class="n">force</span>             <span class="n">Force</span> <span class="n">init</span> <span class="n">even</span> <span class="k">if</span> <span class="n">there</span> <span class="n">are</span> <span class="n">files</span> <span class="n">present</span> <span class="n">which</span> <span class="n">could</span> <span class="n">be</span> <span class="n">deleted</span><span class="o">.</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>          <span class="n">help</span> <span class="k">for</span> <span class="n">dkan</span><span class="o">-</span><span class="n">init</span>
+<span class="o">--</span><span class="n">moduledev</span>         <span class="n">Set</span> <span class="n">up</span> <span class="n">the</span> <span class="n">file</span> <span class="n">system</span> <span class="k">for</span> <span class="n">DKAN</span> <span class="n">module</span> <span class="n">development</span><span class="o">.</span>
+<span class="o">--</span><span class="n">project</span><span class="o">-</span><span class="n">version</span>   <span class="n">Specify</span> <span class="n">a</span> <span class="n">Drupal</span> <span class="n">core</span> <span class="n">version</span><span class="o">.</span> <span class="n">Default</span> <span class="mf">9.5</span><span class="o">.</span><span class="n">x</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span>
+
+<span class="n">Global</span> <span class="n">Flags</span><span class="p">:</span>
+<span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="o">--</span><span class="n">json</span><span class="o">-</span><span class="n">output</span>   <span class="n">If</span> <span class="n">true</span><span class="p">,</span> <span class="n">user</span><span class="o">-</span><span class="n">oriented</span> <span class="n">output</span> <span class="n">will</span> <span class="n">be</span> <span class="ow">in</span> <span class="n">JSON</span> <span class="nb">format</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="contributing-to-dkan">
+<h2>Contributing to DKAN<a class="headerlink" href="#contributing-to-dkan" title="Link to this heading"></a></h2>
+<p>If you are doing development work on the DKAN module itself, add the –moduledev flag to the dkan-init command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ddev<span class="w"> </span>dkan-init<span class="w"> </span>--moduledev</span>
+</pre></div></div><p>This will clone the dkan project into its own directory and tell Composer to
+use that repo as the getdkan/dkan package.</p>
+</section>
+<section id="decoupled-frontend-app-installation-and-build">
+<h2>Decoupled Frontend app installation and build<a class="headerlink" href="#decoupled-frontend-app-installation-and-build" title="Link to this heading"></a></h2>
+<p>DKAN can integrate with a JS/headless app. The DKAN DDev addon has special
+commands for dealing with this.</p>
+<section id="install">
+<h3>Install<a class="headerlink" href="#install" title="Link to this heading"></a></h3>
+<p>First we gather all the dependencies and files necessary for the frontend:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ddev<span class="w"> </span>dkan-frontend-install</span>
+</pre></div></div></section>
+<section id="build">
+<h3>Build<a class="headerlink" href="#build" title="Link to this heading"></a></h3>
+<p>Now that you have all the dependencies, you can build the frontend:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ddev<span class="w"> </span>dkan-frontend-build</span>
+</pre></div></div><p>Currently this command essentially calls <cite>npm run build</cite> within the web container
+of DDev.</p>
+</section>
+</section>
+<section id="additional-commands">
+<h2>Additional Commands<a class="headerlink" href="#additional-commands" title="Link to this heading"></a></h2>
+<p>Run <cite>ddev</cite> by itself to get a list of commands available to you.</p>
+<p>Run <cite>ddev get –list –all</cite> to get a list of other DDEV add-ons.</p>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ddev.readthedocs.io/en/stable/users/usage/">DDEV Documentation</a></p></li>
+<li><p><a class="reference external" href="https://demo.getdkan.org/modules/contrib/dkan/docs/index.html">DKAN Documentation</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="DKAN DDev Addon" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="frontend.html" class="btn btn-neutral float-right" title="Frontend Application Management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, CivicActions.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -52,7 +52,6 @@ pre_install_actions:
 project_files:
   - config.dkan.yaml
   - commands/cypress/cypress
-  - commands/doxygen/dkan-docs
   - commands/host/dkan-demo
   - commands/host/dkan-frontend-test-cypress
   - commands/host/dkan-init
@@ -68,8 +67,6 @@ project_files:
   - commands/web/dkan-test-phpunit
   - commands/web/dkan-test-users
   - commands/web/project-test-phpunit
-  - docker-compose.doxygen.yaml
-  - doxygen-build/Dockerfile
   - misc/docker-compose.cypress.yaml
   - misc/phpunit.xml
   - misc/settings.dkan.php

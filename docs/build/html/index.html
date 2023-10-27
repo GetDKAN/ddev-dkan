@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DKAN DDev Addon &mdash; DKAN DDEV Addon Documentation  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/dkan.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting started with DKAN DDev Addon" href="getting-started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            DKAN DDEV Addon Documentation
+          </a>
+              <div class="version">
+                1.x
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started with DKAN DDev Addon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frontend.html">Frontend Application Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Run The DKAN Demo Site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dktl-convert.html">Convert DKAN-Tools project to DDEV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing-debug-phpunit.html">Debugging a PHPUnit test with DDev</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing-dkan.html">Testing the DKAN module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing-project.html">Testing your local development project.</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">DKAN DDEV Addon Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">DKAN DDev Addon</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dkan-ddev-addon">
+<h1>DKAN DDev Addon<a class="headerlink" href="#dkan-ddev-addon" title="Link to this heading"></a></h1>
+<p>The DKAN DDEv Addon provides configuration and specialized commands for dealing
+with a DKAN Drupal project in the DDEv environment.</p>
+<p>Note that all the DKAN commands which come with this addon have documentation built-in. At the command line, you can
+ask for help with any one of them with <cite>ddev [command] –help</cite> like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ddev</span> <span class="n">dkan</span><span class="o">-</span><span class="n">init</span> <span class="o">--</span><span class="n">help</span>
+<span class="n">Build</span> <span class="n">the</span> <span class="n">Drupal</span> <span class="n">codebase</span> <span class="k">for</span> <span class="n">a</span> <span class="n">DKAN</span> <span class="n">site</span><span class="o">.</span> <span class="p">(</span><span class="n">shell</span> <span class="n">host</span> <span class="n">container</span> <span class="n">command</span><span class="p">)</span>
+
+<span class="n">Usage</span><span class="p">:</span>
+<span class="n">ddev</span> <span class="n">dkan</span><span class="o">-</span><span class="n">init</span> <span class="p">[</span><span class="n">flags</span><span class="p">]</span>
+
+<span class="n">Flags</span><span class="p">:</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>        <span class="n">help</span> <span class="k">for</span> <span class="n">dkan</span><span class="o">-</span><span class="n">init</span>
+<span class="o">--</span><span class="n">moduledev</span>   <span class="n">Set</span> <span class="n">up</span> <span class="n">the</span> <span class="n">file</span> <span class="n">system</span> <span class="k">for</span> <span class="n">DKAN</span> <span class="n">module</span> <span class="n">development</span><span class="o">.</span>
+
+<span class="n">Global</span> <span class="n">Flags</span><span class="p">:</span>
+<span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="o">--</span><span class="n">json</span><span class="o">-</span><span class="n">output</span>   <span class="n">If</span> <span class="n">true</span><span class="p">,</span> <span class="n">user</span><span class="o">-</span><span class="n">oriented</span> <span class="n">output</span> <span class="n">will</span> <span class="n">be</span> <span class="ow">in</span> <span class="n">JSON</span> <span class="nb">format</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started with DKAN DDev Addon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frontend.html">Frontend Application Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Run The DKAN Demo Site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dktl-convert.html">Convert DKAN-Tools project to DDEV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing-debug-phpunit.html">Debugging a PHPUnit test with DDev</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing-dkan.html">Testing the DKAN module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing-project.html">Testing your local development project.</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting-started.html" class="btn btn-neutral float-right" title="Getting started with DKAN DDev Addon" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, CivicActions.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

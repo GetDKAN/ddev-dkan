@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Testing your local development project. &mdash; DKAN DDEV Addon Documentation  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/dkan.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Testing the DKAN module" href="testing-dkan.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DKAN DDEV Addon Documentation
+          </a>
+              <div class="version">
+                1.x
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started with DKAN DDev Addon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frontend.html">Frontend Application Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Run The DKAN Demo Site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dktl-convert.html">Convert DKAN-Tools project to DDEV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing-debug-phpunit.html">Debugging a PHPUnit test with DDev</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing-dkan.html">Testing the DKAN module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Testing your local development project.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-set-up-your-tests">How to set up your tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#phpunit-setup">PHPUnit setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cypress-setup">Cypress setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DKAN DDEV Addon Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Testing your local development project.</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/testing-project.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="testing-your-local-development-project">
+<h1>Testing your local development project.<a class="headerlink" href="#testing-your-local-development-project" title="Link to this heading"></a></h1>
+<section id="how-to-set-up-your-tests">
+<h2>How to set up your tests<a class="headerlink" href="#how-to-set-up-your-tests" title="Link to this heading"></a></h2>
+<p>Or: An Opinionated Test Runner</p>
+<p>This documentation will tell you how to set up your Drupal web site
+project so it can be tested in a predictable manner.</p>
+<p>If your project layout is correct, you can use these commands to run tests:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">ddev<span class="w"> </span>project-test-phpunit</span>
+<span class="prompt1">ddev<span class="w"> </span>project-test-cypress</span>
+</pre></div></div><section id="phpunit-setup">
+<h3>PHPUnit setup<a class="headerlink" href="#phpunit-setup" title="Link to this heading"></a></h3>
+<p>Your site needs a <cite>phpunit.xml</cite> configuration file for PHPUnit.</p>
+<p>A template configuration file is provided in <cite>.ddev/misc/phpunit.xml</cite>.</p>
+<p>This file must be placed at <cite>docroot/modules/custom</cite>. It will govern
+the PHPUnit configuration for all tests within <cite>docroot/modules/custom</cite>.
+PHPUnit will be run within this directory.</p>
+<p>You can put this file where it belongs by copying it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">cp<span class="w"> </span>.ddev/misc/phpunit.xml<span class="w"> </span>docroot/modules/custom</span>
+</pre></div></div><p>This PHPUnit configuration file defines a test suite called Custom Test Suite.
+This suite covers all the tests in the custom modules directory.</p>
+<p>Run the tests with this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ddev<span class="w"> </span>project-test-phpunit</span>
+</pre></div></div><p>You can add arguments as if you were running the PHPUnit executable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ddev<span class="w"> </span>project-test-phpunit<span class="w"> </span>--filter<span class="w"> </span>SpecialTest::testSpecialMethod</span>
+</pre></div></div><p>If you find that your project needs more specialized setup than this
+for testing, you can make your own PHPUnit testing command. You can
+use <cite>.ddev/commands/web/project-test-phpunit</cite> as a starting point by
+copying it, changing the name, and changing the Description and Usage
+fields at the top.</p>
+<p>Be sure and document the use of this command in your project’s <cite>README.md</cite> :-)</p>
+</section>
+<section id="cypress-setup">
+<h3>Cypress setup<a class="headerlink" href="#cypress-setup" title="Link to this heading"></a></h3>
+<p>Currently, the project Cypress test runner assumes that you have Cypress
+installed locally on your machine. The runner will run this version of
+Cypress against the DDev environment.</p>
+<p>Begin by installing Cypress. For DKAN, we require Cypress 8.7.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">npm<span class="w"> </span>install<span class="w"> </span>--location<span class="o">=</span>global<span class="w"> </span>cypress@8.7</span>
+<span class="prompt1">npx<span class="w"> </span>cypress<span class="w"> </span>verify</span>
+<span class="prompt1">npx<span class="w"> </span>cypress<span class="w"> </span>info</span>
+</pre></div></div><p>Next you’ll need to set up the site itself, so there is a live site in
+DDev to test against.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ddev<span class="w"> </span>dkan-init</span>
+<span class="prompt1">ddev<span class="w"> </span>dkan-site-install</span>
+</pre></div></div><p>Other fixture commands may be required before the tests run. For instance,
+you may need to run <cite>ddev dkan-test-users</cite> or some other command.</p>
+<p>Cypress tests for your site should be in the <cite>tests/cypress</cite> directory,
+though this may change.</p>
+<p>Now you can run the tests:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ddev<span class="w"> </span>project-test-cypress</span>
+</pre></div></div><p>Much like the PHPUnit command, if you find that your project needs more
+specialized setup than this for testing, you can make your own Cypress
+testing command. You can use <cite>.ddev/commands/web/project-test-cypress</cite>
+as a starting point by copying it, changing the name, and changing the
+Description and Usage fields at the top.</p>
+<p>Be sure and document the use of this command in your project’s <cite>README.md</cite> :-)</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="testing-dkan.html" class="btn btn-neutral float-left" title="Testing the DKAN module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, CivicActions.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
