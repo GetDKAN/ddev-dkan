@@ -1,4 +1,4 @@
-Getting started with DKAN DDev Addon
+Getting started with DKAN DDEV Add-on
 ====================================
 
 Start a new DKAN site
@@ -10,13 +10,13 @@ First, make a directory for your project.
 
     mkdir my-project && cd my-project
 
-Give DDev just enough configuration to get started.
+Give DDEV just enough configuration to get started.
 
 .. prompt:: bash $
 
     ddev config --auto
 
-Grab the DKAN addon to get helpful DKAN commands.
+Grab the DKAN add-on to get helpful DKAN commands.
 Note that eventually we'll be 'official' and you won't have
 to install this from a tarball.
 
@@ -53,7 +53,7 @@ standard tools to log in:
     ddev drush status-report
     ddev drush uli
 
-Note that if you need help with any of the DDev commands, you can add `--help`
+Note that if you need help with any of the DDEV commands, you can add `--help`
 on the command line and get help:
 
 .. code-block::
@@ -92,7 +92,7 @@ use that repo as the getdkan/dkan package.
 Decoupled Frontend app installation and build
 ---------------------------------------------
 
-DKAN can integrate with a JS/headless app. The DKAN DDev addon has special
+DKAN can integrate with a JS/headless app. The DKAN DDEV addon has special
 commands for dealing with this.
 
 Install
@@ -114,7 +114,7 @@ Now that you have all the dependencies, you can build the frontend:
     ddev dkan-frontend-build
 
 Currently this command essentially calls `npm run build` within the web container
-of DDev.
+of DDEV.
 
 Additional Commands
 -------------------

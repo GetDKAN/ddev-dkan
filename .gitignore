@@ -1,5 +1,6 @@
 .idea
 .vscode
 
+docs/build
 tests/bats
 tests/test_helper
