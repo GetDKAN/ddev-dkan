@@ -20,7 +20,9 @@ Make sure we're using the addon.
 
     ddev restart
 
-Initialize the site.
+Initialize the site. The current default Drupal version is 10.1.x
+To initialize DKAN for a different version of Drupal, add --project-version
+to the following command like '--project-version 10.0.x-dev'.
 
     ddev dkan-init
 
