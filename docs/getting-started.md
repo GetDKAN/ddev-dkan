@@ -93,7 +93,3 @@ of DDEV.
 Run `ddev` by itself to get a list of commands available to you.
 
 Run `ddev get --list --all` to get a list of other DDEV add-ons.
-## Additional Resources
-
-- [DDEV Documentation](https://ddev.readthedocs.io/en/stable/users/usage/)
-- [DKAN Documentation](https://demo.getdkan.org/modules/contrib/dkan/docs/index.html)

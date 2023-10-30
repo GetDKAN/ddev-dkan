@@ -5,6 +5,9 @@ title: "DDEV-DKAN add-on"
 The DDEV-DKAN add-on provides configuration and specialized commands for dealing
 with a DKAN Drupal project in the DDEV environment.
 
+- [DDEV Documentation](https://ddev.readthedocs.io/en/stable/users/usage/)
+- [DKAN Documentation](https://dkan.readthedocs.io/en/latest/index.html)
+
 Note that all the DKAN commands which come with this addon have documentation built-in. At the command line, you can
 ask for help with any one of them with `ddev [command] --help` like this:
 
@@ -29,4 +32,3 @@ ask for help with any one of them with `ddev [command] --help` like this:
 - [Testing the DKAN module](testing-dkan.md)
 - [Debugging PHPUnit tests in DDev](testing-debug-phpunit.md)
 - [Testing your local development project](testing-project.md)
-- [Generate DKAN Documentation](docs.md)
