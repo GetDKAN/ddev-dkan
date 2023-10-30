@@ -1,4 +1,6 @@
-# Build a DKAN Demo Site
+# Build a DKAN demo site
+
+The following commands will create a Drupal site with DKAN enabled and a sample react frontend for you to test out.
 
     mkdir my-project && cd my-project
     ddev config --auto
