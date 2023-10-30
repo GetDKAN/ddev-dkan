@@ -14,7 +14,7 @@ Grab the DKAN addon to get helpful DKAN commands.
 Note that eventually we'll be 'official' and you won't have
 to install this from a tarball.
 
-    ddev get https://github.com/GetDKAN/dkan-ddev-addon/archive/refs/heads/main.tar.gz
+    ddev get https://github.com/GetDKAN/ddev-dkan/archive/refs/heads/main.tar.gz
 
 Make sure we're using the addon.
 
@@ -93,7 +93,3 @@ of DDEV.
 Run `ddev` by itself to get a list of commands available to you.
 
 Run `ddev get --list --all` to get a list of other DDEV add-ons.
-## Additional Resources
-
-- [DDEV Documentation](https://ddev.readthedocs.io/en/stable/users/usage/)
-- [DKAN Documentation](https://demo.getdkan.org/modules/contrib/dkan/docs/index.html)

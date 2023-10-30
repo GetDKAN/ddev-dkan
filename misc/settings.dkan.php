@@ -2,7 +2,7 @@
 /**
  * @file
  * #ddev-generated: Automatically generated Drupal settings file.
- * DKAN-DDev-addon manages this file and may delete or overwrite the file unless this
+ * ddev-dkan manages this file and may delete or overwrite the file unless this
  * comment is removed.  It is recommended that you leave this file alone.
  */
 

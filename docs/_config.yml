@@ -4,6 +4,11 @@ header_pages:
 titles_from_headings:
   enabled:     true
   strip_title: true
+github_username: GetDKAN/ddev-dkan
 minima:
   social_links:
     - { platform: github,  user_url: "https://github.com/getdkan/ddev-dkan" }
+plugins:
+  - jekyll-seo-tag
+sass:
+  quiet_deps: true
