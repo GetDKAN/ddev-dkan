@@ -1,6 +1,6 @@
 #ddev-generated
 
-type: drupal9
+type: drupal10
 docroot: docroot
 php_version: "8.1"
 webserver_type: apache-fpm
