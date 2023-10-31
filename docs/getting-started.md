@@ -14,7 +14,7 @@ Grab the DKAN add-on to get helpful DKAN commands.
 
     ddev get getdkan/ddev-dkan
 
-Make sure we're using the addon.
+Make sure we're using the add-on.
 
     ddev restart
 
@@ -68,7 +68,7 @@ use that repo as the getdkan/dkan package.
 
 ## Decoupled Frontend app installation and build
 
-DKAN can integrate with a JS/headless app. The DKAN DDEV addon has special
+DKAN can integrate with a JS/headless app. The DKAN DDEV add-on has special
 commands for dealing with this.
 
 ### Install

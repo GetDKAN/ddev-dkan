@@ -10,7 +10,7 @@ in a containerized environment.
 - [Drupal Documentation](https://www.drupal.org/docs/getting-started/system-requirements)
 - [DKAN Documentation](https://dkan.readthedocs.io/en/latest/index.html)
 
-Note that all the DKAN commands which come with this addon have documentation built-in. At the command line, you can
+Note that all the DKAN commands which come with this add-on have documentation built-in. At the command line, you can
 ask for help with any one of them with `ddev [command] --help` like this:
 
     $ ddev dkan-init --help

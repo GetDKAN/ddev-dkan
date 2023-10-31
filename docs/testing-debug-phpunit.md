@@ -1,6 +1,6 @@
 # Debugging a PHPUnit test with DDEV
 
-This documentation is specific to using the DKAN DDEV addon, but can be
+This documentation is specific to using the DKAN DDEV add-on, but can be
 generalized for many other use-cases.
 
 Currently, we're only going to talk about using PHPStorm. Do you have
@@ -100,7 +100,7 @@ Now head back to the test runner configuration and paste that in for environment
 If you jumped the gun and clicked 'Apply' and 'OK' at this point, and tried to run the tests, you might have some success
 with the runner. However, you'd see a lot of test fails.
 
-That's because for DKAN, we must create users on the Drupal site. The DKAN addon allows for this with this command:
+That's because for DKAN, we must create users on the Drupal site. The DKAN add-on allows for this with this command:
 
     ddev dkan-test-users
 
