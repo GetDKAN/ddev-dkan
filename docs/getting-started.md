@@ -10,9 +10,7 @@ Give DDEV just enough configuration to get started.
 
     ddev config --auto
 
-Grab the DKAN addon to get helpful DKAN commands.
-Note that eventually we'll be 'official' and you won't have
-to install this from a tarball.
+Grab the DKAN add-on to get helpful DKAN commands.
 
     ddev get getdkan/ddev-dkan
 
