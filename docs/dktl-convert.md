@@ -22,12 +22,12 @@ Use the web root information to configure DDEV:
     cd your_project_root
     ddev config --project-type drupal9 --docroot YOUR_WEBROOT_VALUE --create-docroot
 
-This command will set up an initial state of configuration. We're going to override this with the dkan-ddev-addon in
+This command will set up an initial state of configuration. We're going to override this with ddev-dkan in
 the next step, but DDEV requires that we do this first.
 
-### Get the DKAN DDEV addon.
+### Get the DKAN DDEV add-on.
 
-    ddev get https://github.com/GetDKAN/dkan-ddev-addon/archive/refs/heads/main.tar.gz
+    ddev get getdkan/ddev-dkan
     ddev restart
 
 This will pull down some configuration and scripts. We must then restart the DDEV environment after this.
@@ -87,7 +87,7 @@ and much like the modules and themes above we should move it.
 
 Let's state up-front that it's complicated here.
 
-First of all, we'll follow the instructions for the DKAN DDEV addon, and add the DKAN-specific config to settings.php.
+First of all, we'll follow the instructions for the DKAN DDEV add-on, and add the DKAN-specific config to settings.php.
 
     cat .ddev/misc/settings.dkan-snippet.php.txt >> docroot/sites/default/settings.php
     cp .ddev/misc/settings.dkan.php docroot/sites/default/settings.dkan.php
