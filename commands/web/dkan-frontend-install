@@ -37,6 +37,7 @@ echo " ** Switching to latest tag: $tag"
 
 git -C docroot/data-catalog-app checkout $tag -b latest
 mv docroot/data-catalog-app "$FRONTEND_DOCROOT_DIR"
+rm -rf "$FRONTEND_DOCROOT_DIR"/.git
 
 cd $FRONTEND_DOCROOT_DIR || exit
 # Don't fill the screen with warnings, only errors.
