@@ -14,7 +14,6 @@ setup() {
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
   ddev restart >/dev/null
-  ddev dkan-init --force
 }
 
 teardown() {
@@ -62,8 +61,8 @@ teardown() {
 
   touch composer.json
 
-  run ddev dkan-init --project-version 10.0.x-dev
-  assert_output --partial "Using project version: 10.0.x-dev"
+  run ddev dkan-init --project-version 10.1.x-dev
+  assert_output --partial "Using project version: 10.1.x-dev"
   assert_output --partial "Found composer.json"
   assert_failure
 
