@@ -11,6 +11,7 @@ setup() {
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
   cd "${TESTDIR}"
+  rm -rf *
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
   ddev restart >/dev/null
@@ -61,8 +62,8 @@ teardown() {
 
   touch composer.json
 
-  run ddev dkan-init --project-version 10.1.x-dev
-  assert_output --partial "Using project version: 10.1.x-dev"
+  run ddev dkan-init --project-version 10.0.x-dev
+  assert_output --partial "Using project version: 10.0.x-dev"
   assert_output --partial "Found composer.json"
   assert_failure
 
