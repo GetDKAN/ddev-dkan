@@ -6,8 +6,11 @@
 
 # TODO: Make a CI flag.
 
+FRONTEND_TMP='src/tmp'
 FRONTEND_DOCROOT_DIR='docroot/frontend'
 FRONTEND_VCS_URL='https://github.com/GetDKAN/data-catalog-app/'
+
+
 
 if [[ -L $FRONTEND_DOCROOT_DIR ]]; then
   echo "ERROR: Symlink $FRONTEND_DOCROOT_DIR already exists."
@@ -27,17 +30,16 @@ if [ ! -z "$DKAN_MODULE_PATH" ]; then
   fi
 fi
 
-echo " ** Gathering frontend application: $FRONTEND_VCS_URL"
+echo " ** Finding latest tag for $FRONTEND_VCS_URL"
 
-git clone "$FRONTEND_VCS_URL".git docroot/data-catalog-app
-git -C docroot/data-catalog-app fetch --tags
-tag=$(git -C docroot/data-catalog-app describe --tags `git -C docroot/data-catalog-app rev-list --tags --max-count=1`)
+FRONTEND_VCS_REF=$(curl -s https://api.github.com/repos/getdkan/data-catalog-app/releases/latest | jq -r '.tag_name')
 
-echo " ** Switching to latest tag: $tag"
+echo " ** Gathering frontend application: $FRONTEND_VCS_REF from $FRONTEND_VCS_URL"
 
-git -C docroot/data-catalog-app checkout $tag -b latest
-mv docroot/data-catalog-app "$FRONTEND_DOCROOT_DIR"
-rm -rf "$FRONTEND_DOCROOT_DIR"/.git
+mkdir -p $FRONTEND_TMP
+wget -O $FRONTEND_TMP/data-catalog-app-$FRONTEND_VCS_REF.zip "$FRONTEND_VCS_URL"/archive/"$FRONTEND_VCS_REF".zip
+unzip $FRONTEND_TMP/data-catalog-app-$FRONTEND_VCS_REF.zip -d docroot/
+mv docroot/data-catalog-app-$FRONTEND_VCS_REF "$FRONTEND_DOCROOT_DIR"
 
 cd $FRONTEND_DOCROOT_DIR || exit
 # Don't fill the screen with warnings, only errors.
