@@ -5,8 +5,9 @@ setup() {
   load 'test_helper/bats-assert/load'
 
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
-  export PROJNAME=test-dkan-ddev-addon
+  export PROJNAME=test-dkan-frontend-local
   export TESTDIR=~/tmp/$PROJNAME
+  rm -rf $TESTDIR
   mkdir -p $TESTDIR
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} || true
