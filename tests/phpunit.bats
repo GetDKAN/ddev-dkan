@@ -5,16 +5,17 @@ setup() {
   load 'test_helper/bats-assert/load'
 
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
-  export PROJNAME=test-dkan-ddev-addon
+  export PROJNAME=test-dkan-phpunit
   export TESTDIR=~/tmp/$PROJNAME
-  mkdir -p $TESTDIR
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} || true
+  rm -rf $TESTDIR
+  mkdir -p $TESTDIR
   cd "${TESTDIR}"
+  pwd
+
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
-  ddev restart
-
   ddev dkan-init --force
   # TODO: Change this after https://www.drupal.org/project/moderated_content_bulk_publish/issues/3301389
   ddev composer require drupal/pathauto:^1.10
