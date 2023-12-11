@@ -6,15 +6,21 @@ setup() {
 
   export SUT_DIR=$(pwd)
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
-  export PROJNAME=test-dkan-ddev-addon
+  export PROJNAME=test-dkan-phpunit
   export TESTDIR=~/tmp/$PROJNAME
-  mkdir -p $TESTDIR
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} || true
+  rm -rf $TESTDIR
+  mkdir -p $TESTDIR
   cd "${TESTDIR}"
+  pwd
+
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
+  ddev dkan-init --force
+  mv .ddev/misc/docker-compose.cypress.yaml .ddev/docker-compose.cypress.yml
   ddev restart
+  ddev dkan-site-install
 }
 
 teardown() {
