@@ -39,10 +39,9 @@ jobs:
     strategy:
       matrix:
         ddev_version: [stable, HEAD]
-      #        ddev_version: [stable, edge, HEAD, PR]
       fail-fast: false
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -85,7 +84,7 @@ jobs:
         if: github.event.inputs.debug_enabled == 'true'
 
       - name: tests
-        run: ./tests/bats/bin/bats ./tests/
+        run: ./tests/bats/bin/bats ./tests
 
       # keepalive-workflow adds a dummy commit if there's no other action here, keeps
       # GitHub from turning off tests after 60 days

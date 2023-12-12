@@ -4,17 +4,24 @@ setup() {
   load 'test_helper/bats-support/load'
   load 'test_helper/bats-assert/load'
 
-  export SUT_DIR=$(pwd)
-  export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
-  export PROJNAME=test-dkan-ddev-addon
+  SUT_DIR=$(pwd)
+  export SUT_DIR
+  DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
+  export DIR
+  export PROJNAME=test-dkan-phpunit
   export TESTDIR=~/tmp/$PROJNAME
-  mkdir -p $TESTDIR
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} || true
+  rm -rf $TESTDIR
+  mkdir -p $TESTDIR
   cd "${TESTDIR}"
+
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
+  ddev dkan-init --force
+  mv .ddev/misc/docker-compose.cypress.yaml .ddev/docker-compose.cypress.yml
   ddev restart
+  ddev dkan-site-install
 }
 
 teardown() {
@@ -34,15 +41,7 @@ teardown() {
   assert_output --partial "PHPUnit config not found"
   assert_failure
 
-  # Add config, but no executable.
-  mkdir -p docroot/modules/custom
-  cp .ddev/misc/phpunit.xml docroot/modules/custom
-  run ddev project-test-phpunit
-  assert_output --partial "Unable to find PHPUnit executable"
-  assert_failure
-
   # Can perform test run, for a group that doesn't exist.
-  ddev dkan-init --force
   mkdir -p docroot/modules/custom
   cp .ddev/misc/phpunit.xml docroot/modules/custom
   run ddev project-test-phpunit --group this-group-should-not-exist

@@ -5,12 +5,13 @@ setup() {
   load 'test_helper/bats-assert/load'
 
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
-  export TESTDIR=~/tmp/test-addon-template
+  export TESTDIR=~/tmp/test-addon-init
   mkdir -p $TESTDIR
-  export PROJNAME=test-addon-template
+  export PROJNAME=test-addon-init
   export DDEV_NON_INTERACTIVE=true
-  ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
   cd "${TESTDIR}"
+  ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
+  rm -rf *
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
   ddev restart >/dev/null
@@ -61,8 +62,8 @@ teardown() {
 
   touch composer.json
 
-  run ddev dkan-init --project-version 10.1.x-dev
-  assert_output --partial "Using project version: 10.1.x-dev"
+  run ddev dkan-init --project-version 10.0.x-dev
+  assert_output --partial "Using project version: 10.0.x-dev"
   assert_output --partial "Found composer.json"
   assert_failure
 
