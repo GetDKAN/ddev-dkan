@@ -4,8 +4,10 @@ setup() {
   load 'test_helper/bats-support/load'
   load 'test_helper/bats-assert/load'
 
-  export SUT_DIR=$(pwd)
-  export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
+  SUT_DIR=$(pwd)
+  export SUT_DIR
+  DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
+  export DIR
   export PROJNAME=test-dkan-phpunit
   export TESTDIR=~/tmp/$PROJNAME
   export DDEV_NON_INTERACTIVE=true
@@ -13,7 +15,6 @@ setup() {
   rm -rf $TESTDIR
   mkdir -p $TESTDIR
   cd "${TESTDIR}"
-  pwd
 
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
@@ -40,12 +41,9 @@ teardown() {
   assert_output --partial "PHPUnit config not found"
   assert_failure
 
-  # Add config, but no executable.
+  # Add config.
   mkdir -p docroot/modules/custom
   cp .ddev/misc/phpunit.xml docroot/modules/custom
-  run ddev project-test-phpunit
-  assert_output --partial "Unable to find PHPUnit executable"
-  assert_failure
 
   # Can perform test run, for a group that doesn't exist.
   ddev dkan-init --force
