@@ -19,7 +19,7 @@ drush user:role:add "administrator" admin
 # Enable Claro and Olivero themes.
 drush theme:enable claro olivero
 drush config-set system.theme admin claro -y
-drush config-set system.theme default olivero -y
+drush config-set system.theme default stark -y
 drush config-set node.settings use_admin_theme true -y
 
 # Disable CSS/JS preprocessing
