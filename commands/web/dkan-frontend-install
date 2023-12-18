@@ -9,7 +9,6 @@
 FRONTEND_TMP='src/tmp'
 FRONTEND_DOCROOT_DIR='docroot/frontend'
 FRONTEND_VCS_URL='https://github.com/GetDKAN/data-catalog-app/'
-FRONTEND_VCS_REF='1.3.0'
 
 if [[ -L $FRONTEND_DOCROOT_DIR ]]; then
   echo "ERROR: Symlink $FRONTEND_DOCROOT_DIR already exists."
@@ -28,6 +27,10 @@ if [ ! -z "$DKAN_MODULE_PATH" ]; then
     fi
   fi
 fi
+
+echo " ** Finding latest tag for $FRONTEND_VCS_URL"
+
+FRONTEND_VCS_REF=$(curl -s https://api.github.com/repos/getdkan/data-catalog-app/releases/latest | jq -r '.tag_name')
 
 echo " ** Gathering frontend application: $FRONTEND_VCS_REF from $FRONTEND_VCS_URL"
 
