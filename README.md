@@ -1,4 +1,4 @@
-[![tests](https://github.com/getdkan/ddev-dkan/actions/workflows/tests.yml/badge.svg)](https://github.com/drud/ddev-dkan-ddev-addon/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2023.svg)
+[![tests](https://github.com/GetDKAN/ddev-dkan/actions/workflows/tests.yml/badge.svg)](https://github.com/GetDKAN/ddev-dkan/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
 
 ## What is ddev-dkan?
 

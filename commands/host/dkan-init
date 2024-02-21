@@ -16,7 +16,7 @@ export DKAN_DIRECTORY=dkan
 # Defaults.
 INIT_MODULEDEV=false
 INIT_FORCE=false
-INIT_PROJECT_VERSION="10.1.x-dev"
+INIT_PROJECT_VERSION="10.2.x-dev"
 
 # Glean flag arguments.
 while :; do
