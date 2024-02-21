@@ -13,6 +13,7 @@ setup() {
   cd "${TESTDIR}"
   ddev config --project-name=${PROJNAME}
   ddev get ${DIR}
+  ddev stop
   ddev start -y >/dev/null
   ddev dkan-init --force
   ddev dkan-site-install
