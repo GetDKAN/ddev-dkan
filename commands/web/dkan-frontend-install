@@ -46,6 +46,9 @@ npm --loglevel=error install
 
 drush pm-enable dkan_js_frontend -y
 drush config-set system.site page.front '/home' -y
+drush config-set system.site page.403 '/home' -y
+drush config-set system.site page.404 '/home' -y
+
 drush cr
 
 echo " ** Frontend install complete."
