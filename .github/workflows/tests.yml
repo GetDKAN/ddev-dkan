@@ -17,7 +17,7 @@ on:
 
 # This is required for "gautamkrishnar/keepalive-workflow"
 permissions:
-  contents: write
+  actions: write
 
 defaults:
   run:
@@ -88,5 +88,5 @@ jobs:
 
       # keepalive-workflow adds a dummy commit if there's no other action here, keeps
       # GitHub from turning off tests after 60 days
-      - uses: gautamkrishnar/keepalive-workflow@v1
+      - uses: gautamkrishnar/keepalive-workflow@v2
         if: matrix.ddev_version == 'stable'
