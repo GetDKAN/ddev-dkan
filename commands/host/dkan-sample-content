@@ -6,6 +6,7 @@
 
 ddev drush en sample_content -y
 ddev drush dkan:sample-content:create
+ddev drush queue:run localize_import
 ddev drush queue:run datastore_import
 ddev drush dkan:metastore-search:rebuild-tracker
 ddev drush sapi-i
