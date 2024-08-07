@@ -7,6 +7,11 @@
 # Avoid some XDebug error messages.
 export XDEBUG_MODE=coverage
 
+echo "**"
+echo "* The dkan-test-phpunit command is deprecated."
+echo "* Use dkan-phpunit instead."
+echo "**"
+
 TEST_PATH="docroot/modules/contrib/dkan"
 TEST_SUITE="DKAN Test Suite"
 PHPUNIT_BINARY=vendor/bin/phpunit
