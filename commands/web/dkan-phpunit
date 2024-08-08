@@ -34,6 +34,14 @@ if [[ ! -f $PHPUNIT_BINARY ]] ; then
   composer install --no-progress
 fi
 
+# Use the weitzman/dtt bootstrap if it exists.
+# Otherwise, Drupal's bootstrap.
+# TODO Eventually we can remove this and just use Drupal core.
+BOOTSTRAP_PATH=$DDEV_COMPOSER_ROOT/vendor/weitzman/drupal-test-traits/src/bootstrap.php
+if [[ ! -f $BOOTSTRAP_PATH ]] ; then
+  BOOTSTRAP_PATH=$DDEV_COMPOSER_ROOT/$DOCROOT/core/tests/bootstrap.php
+fi
+
 echo "Starting PHPUnit test run."
 DDEV_PATH="$PWD"
 cd $TEST_PATH || exit 1
@@ -48,7 +56,7 @@ DRUPAL_ROOT=$DDEV_COMPOSER_ROOT/$DOCROOT \
   SIMPLETEST_DB="mysql://db:db@$DDEV_PROJECT-db:3306/db" \
   $DDEV_PATH/$PHPUNIT_BINARY \
   --testsuite "$TEST_SUITE" \
-  --bootstrap $DDEV_COMPOSER_ROOT/$DOCROOT/core/tests/bootstrap.php \
+  --bootstrap $BOOTSTRAP_PATH \
   --fail-on-risky \
   "$@"
 TEST_RESULTS=$?
