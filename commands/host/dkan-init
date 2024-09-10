@@ -95,7 +95,6 @@ ddev composer install
 # Adjust settings for our special case.
 # TODO: Change this after DDev 1.19.6 is released and we can merge hooks.
 cat .ddev/misc/settings.dkan-snippet.php.txt >> $DDEV_DOCROOT/sites/default/settings.php
-#cp .ddev/misc/settings.dkan.php $DDEV_DOCROOT/sites/default/settings.dkan.php
 
 # TODO: Should this be in recommended-project as scaffold?
 #       or... in dkan module itself?
