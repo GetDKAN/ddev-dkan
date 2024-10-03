@@ -24,6 +24,13 @@ to the following command like '--project-version 10.0.x-dev'.
 
     ddev dkan-init
 
+** Note: if you are doing module development use the --moduledev flag.**
+
+This will clone the dkan project into its own directory and tell Composer to
+use that repo as the getdkan/dkan package.
+
+    ddev dkan-init --moduledev
+
 This will ask you if it's OK to remove most of the files in your project.
 You can answer yes since there's nothing there right now anyway.
 Now install Drupal.
