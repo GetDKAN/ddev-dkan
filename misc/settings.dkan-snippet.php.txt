@@ -3,3 +3,7 @@
 if (file_exists(__DIR__ . '/settings.dkan.php') && getenv('IS_DDEV_PROJECT') == 'true') {
   include __DIR__ . '/settings.dkan.php';
 }
+
+if (file_exists(DRUPAL_ROOT . '/modules/contrib/mysql57/settings.inc') && getenv('DDEV_DATABASE') == 'mysql:5.7') {
+  require DRUPAL_ROOT . '/modules/contrib/mysql57/settings.inc';
+}
