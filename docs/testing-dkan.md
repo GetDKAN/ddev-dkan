@@ -29,7 +29,7 @@ Now use ddev to build a site and then test it.
 
     mkdir myproject && cd myproject
     ddev config --auto
-    ddev get getdkan/ddev-dkan
+    ddev add-on get getdkan/ddev-dkan
     ddev restart
     ddev dkan-init
     ddev dkan-site-install
@@ -42,7 +42,7 @@ And you can substitute the local dev DKAN module in this scenario as well:
 
     mkdir myproject && cd myproject
     ddev config --auto
-    ddev get getdkan/ddev-dkan
+    ddev add-on get getdkan/ddev-dkan
     ddev restart
     ddev dkan-init --moduledev
     cd dkan

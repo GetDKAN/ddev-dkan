@@ -12,7 +12,7 @@ Give DDEV just enough configuration to get started.
 
 Grab the DKAN add-on to get helpful DKAN commands.
 
-    ddev get getdkan/ddev-dkan
+    ddev add-on get getdkan/ddev-dkan
 
 Make sure we're using the add-on.
 
@@ -102,4 +102,4 @@ of DDEV.
 
 Run `ddev` by itself to get a list of commands available to you.
 
-Run `ddev get --list --all` to get a list of other DDEV add-ons.
+Run `ddev add-on list` to get a list of other DDEV add-ons.
