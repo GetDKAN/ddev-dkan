@@ -1,0 +1,48 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Create a db dump file for update tests.
+## Usage: dkan-update-test-dump
+## Aliases: dkan-utd
+## Example: ddev dkan-utd
+
+## See https://www.drupal.org/node/2536494.
+
+# Fail early, fail often.
+set -eu -o pipefail
+
+# Exit if fixtures directory does not exist.
+if [ ! -d "docroot/modules/contrib/dkan/tests/fixtures/update" ]; then
+  echo "The directory tests/fixtures/update does not exist in the DKAN module."
+  exit 1
+fi
+
+if [ -d "dkan" ]; then
+  cd dkan
+  # Get latest release tag
+  BRANCH=$(git describe --tags --abbrev=0)
+  FILENAME="update-$BRANCH.php.gz"
+  cd ..
+else
+  FILENAME="update.php.gz"
+fi
+
+# If the file already exists, prompt the user to overwrite it.
+if [ -f "docroot/modules/contrib/dkan/tests/fixtures/update/$FILENAME" ]; then
+  read -p "The file $FILENAME already exists. Overwrite? (y/n) " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    # Prompt user to enter a new filename.
+    read -p "Enter a new filename w/o extension (e.g. update-my-new-feaure): " FILENAME
+    FILENAME="$FILENAME.php.gz"
+  fi
+fi
+
+php $DDEV_DOCROOT/core/scripts/db-tools.php dump-database-d8-mysql \
+  | gzip > $DDEV_DOCROOT/modules/contrib/dkan/tests/fixtures/update/$FILENAME
+
+echo "Database dump for update tests created at $DDEV_DOCROOT/modules/contrib/dkan/tests/fixtures/update/$FILENAME"
+echo ""
+echo "For a test in DKAN's tests/src/Functional direcory, add this to \$databaseDumpFiles[]:"
+echo "  __DIR__ . '/fixtures/update/$FILENAME'"
+
