@@ -27,7 +27,7 @@ the next step, but DDEV requires that we do this first.
 
 ### Get the DKAN DDEV add-on.
 
-    ddev get getdkan/ddev-dkan
+    ddev add-on get getdkan/ddev-dkan
     ddev restart
 
 This will pull down some configuration and scripts. We must then restart the DDEV environment after this.
