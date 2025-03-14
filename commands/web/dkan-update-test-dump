@@ -21,24 +21,27 @@ else
   FILENAME="update.php.gz"
 fi
 
+FIXTURES_DIR="$DDEV_DOCROOT/modules/contrib/dkan/tests/fixtures/update"
+
 # If the file already exists, prompt the user to overwrite it.
-if [ -f "docroot/modules/contrib/dkan/tests/fixtures/update/$FILENAME" ]; then
+if [ -f "$FIXTURES_DIR/$FILENAME" ]; then
+  echo ""
   read -p "The file $FILENAME already exists. Overwrite? (y/n) " -n 1 -r
-  echo
   if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    # Prompt user to enter a new filename.
-    read -p "Enter a new filename w/o extension (e.g. update-my-new-feaure): " FILENAME
-    FILENAME="$FILENAME.php.gz"
+    echo ""
+    echo "Exiting, delete or rename $FILENAME and run again."
+    exit 0
   fi
 fi
 
 # Create folder dkan/tests/fixtures/update if it does not exist.
-mkdir -p $DDEV_DOCROOT/modules/contrib/dkan/tests/fixtures/update
+mkdir -p $FIXTURES_DIR
 
 php $DDEV_DOCROOT/core/scripts/db-tools.php dump-database-d8-mysql \
-  | gzip > $DDEV_DOCROOT/modules/contrib/dkan/tests/fixtures/update/$FILENAME
+  | gzip > $FIXTURES_DIR/$FILENAME
 
-echo "Database dump for update tests created at $DDEV_DOCROOT/modules/contrib/dkan/tests/fixtures/update/$FILENAME"
+echo ""
+echo "Database dump for update tests created at $FIXTURES_DIR/$FILENAME"
 echo ""
 echo "For a test in DKAN's tests/src/Functional direcory, add this to \$databaseDumpFiles[]:"
 echo "  __DIR__ . '/fixtures/update/$FILENAME'"

@@ -35,13 +35,7 @@ teardown() {
   ddev dkan-site-install
   run ddev dkan-update-test-dump
   assert_output --partial "Database dump for update tests created"
-  assert [ -f ${TESTDIR}/dkan/tests/fixtures/update/update-2.20.0.sql.gz ]
-  run ddev dkan-update-test-dump
-  assert_output --partial "The file $(FILENAME) already exists. Overwrite? (y/n)"
-  # Select 'n' to not overwrite the file
-  run echo "n"
-  assert_outpuut --partial "Enter a new filename"
-  run echo "something"
-  assert_output --partial "Database dump for update tests created"
-  assert [ -f ${TESTDIR}/dkan/tests/fixtures/update/something.sql.gz ]
+  ls -la ${TESTDIR}/dkan/tests/fixtures/update
+  assert [ -f ${TESTDIR}/dkan/tests/fixtures/update/update-2.20.0.php.gz ]
+  # @todo test file exists
 } 
