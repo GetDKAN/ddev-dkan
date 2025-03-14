@@ -18,21 +18,23 @@ Make sure we're using the add-on.
 
     ddev restart
 
-Initialize the site. The current default Drupal version is 10.1.x
+Initialize the site. The current default Drupal version is 10.3.x
 To initialize DKAN for a different version of Drupal, add --project-version
-to the following command like '--project-version 10.0.x-dev'.
+to the following command like '--project-version 11.0.x-dev'.
 
     ddev dkan-init
 
 
-> **NOTE**
+> [!NOTE]
 >
 > If you are doing module development use the _--moduledev_ flag.
 >
-> This will clone the dkan project into its own directory and tell Composer to
-> use that repo as the getdkan/dkan package.
-
-    ddev dkan-init --moduledev
+> This will clone the dkan project into its own directory at the root of the project
+> and tell Composer to use that repo as the getdkan/dkan package.
+>
+>   `ddev dkan-init --moduledev`
+>
+> You can make edits to this directory to create PRs on dkan.
 
 This will ask you if it's OK to remove most of the files in your project.
 You can answer yes since there's nothing there right now anyway.
@@ -40,8 +42,8 @@ Now install Drupal.
 
     ddev dkan-site-install
 
-Now we have a useful DKAN-based Drupal site, so let's take a look, and use the
-standard tools to log in:
+Now we have a Drupal site with DKAN enabled, use the
+standard commands to log in:
 
     ddev launch
     ddev drush status-report
