@@ -11,12 +11,6 @@
 # Fail early, fail often.
 set -eu -o pipefail
 
-# Exit if fixtures directory does not exist.
-if [ ! -d "docroot/modules/contrib/dkan/tests/fixtures/update" ]; then
-  echo "The directory tests/fixtures/update does not exist in the DKAN module."
-  exit 1
-fi
-
 if [ -d "dkan" ]; then
   cd dkan
   # Get latest release tag
@@ -38,6 +32,9 @@ if [ -f "docroot/modules/contrib/dkan/tests/fixtures/update/$FILENAME" ]; then
   fi
 fi
 
+# Create folder dkan/tests/fixtures/update if it does not exist.
+mkdir -p $DDEV_DOCROOT/modules/contrib/dkan/tests/fixtures/update
+
 php $DDEV_DOCROOT/core/scripts/db-tools.php dump-database-d8-mysql \
   | gzip > $DDEV_DOCROOT/modules/contrib/dkan/tests/fixtures/update/$FILENAME
 
@@ -45,4 +42,7 @@ echo "Database dump for update tests created at $DDEV_DOCROOT/modules/contrib/dk
 echo ""
 echo "For a test in DKAN's tests/src/Functional direcory, add this to \$databaseDumpFiles[]:"
 echo "  __DIR__ . '/fixtures/update/$FILENAME'"
+echo ""
+echo "If you have checked out another tag or branch to create the dump, make
+sure to checkout your feature branch again before committing the dump file."
 
