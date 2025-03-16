@@ -14,6 +14,7 @@ Grab the DKAN add-on to get helpful DKAN commands.
 
     ddev add-on get getdkan/ddev-dkan
 
+For DDEV versions older than v1.23.5, run `ddev get getdkan/ddev-dkan`.
 Make sure we're using the add-on.
 
     ddev restart
@@ -104,4 +105,4 @@ of DDEV.
 
 Run `ddev` by itself to get a list of commands available to you.
 
-Run `ddev add-on list` to get a list of other DDEV add-ons.
+Run `ddev add-on list --all` to get a list of other DDEV add-ons.
