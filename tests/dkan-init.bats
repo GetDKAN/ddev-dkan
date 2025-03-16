@@ -41,10 +41,6 @@ teardown() {
   refute_output --partial "Setting up for local DKAN module development"
   assert_output --partial "Site codebase initialized"
   assert_output --partial "Using project version:"
-
-  # Make sure we added our directories.
-  assert [ -d "docroot/sites/default/files/uploaded_resources" ]
-  assert [ -d "docroot/sites/default/files/resources" ]
 }
 
 @test "dkan-init-moduledev" {

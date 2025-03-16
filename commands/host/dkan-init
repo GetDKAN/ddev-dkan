@@ -5,6 +5,7 @@
 ## Usage: dkan-init [flags]
 ## Example: dkan-init\ndkan-init --project-version 10.0.x-dev
 ## Flags: [{"Name":"moduledev", "Usage":"Set up the file system for DKAN module development."},{"Name":"project-version", "Usage":"Specify a Drupal core version. Default 9.5.x-dev."},{"Name":"force", "Usage":"Force init even if there are files present which could be deleted."}]
+## Aliases: dkan:init
 
 # Fail early, fail often.
 set -euo pipefail
@@ -90,17 +91,28 @@ if [ $INIT_MODULEDEV = true ]; then
   ddev composer require getdkan/dkan:@dev --no-install
 fi
 
+echo "Setting up default DKAN config."
+ddev delete --omit-snapshot --yes
+ddev mutagen reset
+ddev config --performance-mode=none
+ddev config --docroot=docroot
+ddev config --database=mysql:5.7
+ddev config --project-type=drupal
+ddev config --php-version=8.3
+ddev config --webserver-type=apache-fpm
+ddev config --router-http-port=80
+ddev config --router-https-port=443
+ddev config --xdebug-enabled=false
+ddev config --database=mysql:5.7
+ddev config --use-dns-when-possible=true
+ddev config --composer-version=2
+ddev config --nodejs-version=16
+ddev config --web-environment-add="COMPOSER_MEMORY_LIMIT=-1"
+ddev config --web-environment-add="PHP_MEM_LIMIT=256M"
+ddev config --web-environment-add="PHP_CLI_MEM_LIMIT=512M"
+ddev restart
+
 ddev composer install
 
-# Adjust settings for our special case.
-# TODO: Change this after DDev 1.19.6 is released and we can merge hooks.
-cat .ddev/misc/settings.dkan-snippet.php.txt >> $DDEV_DOCROOT/sites/default/settings.php
-
-# TODO: Should this be in recommended-project as scaffold?
-#       or... in dkan module itself?
-mkdir -p $DDEV_DOCROOT/sites/default/files/uploaded_resources
-mkdir -p $DDEV_DOCROOT/sites/default/files/resources
-chmod -R 777 $DDEV_DOCROOT/sites/default/files
-chmod u+w $DDEV_DOCROOT/sites/default
-
 echo "Site codebase initialized."
+echo "Install the site with: ddev dkan-site-install"
