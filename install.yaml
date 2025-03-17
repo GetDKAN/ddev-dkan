@@ -73,6 +73,7 @@ project_files:
   - misc/testUsers.json
   - php/dkan-php.ini
   - mysql/datastore.cnf
+  - mysql/my.cnf
 
 # List of files and directories that are copied into the global .ddev directory
 # DDEV environment variables can be interpolated into these filenames
