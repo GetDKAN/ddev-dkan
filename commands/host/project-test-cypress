@@ -5,8 +5,8 @@
 ## Usage: project-test-cypress <arguments>
 
 # This command assumes you have cypress installed globally.
-# (As of this writing, DKAN needs Cypress 8.7, but your project may differ.)
-#   npm install --location=global cypress@8.7
+# (As of this writing, DKAN needs Cypress 14.1.0, but your project may differ.)
+#   npm install --location=global cypress@14.1.0
 #   npx cypress verify
 #   npx cypress info
 
@@ -14,7 +14,7 @@
 set -u -o pipefail
 
 export CYPRESS_TEST_PATH=tests
-export CYPRESS_VERSION=8.7
+export CYPRESS_VERSION=14.1.0
 
 echo "Starting project Cypress tests."
 
