@@ -93,11 +93,14 @@ fi
 
 echo "Setting up default DKAN config."
 ddev delete --omit-snapshot --yes
+ddev config --performance-mode=none
 ddev config --docroot=docroot
 ddev config --database=mysql:5.7
 ddev config --project-type=drupal10
 ddev config --php-version=8.3
 ddev config --webserver-type=apache-fpm
+ddev config --router-http-port=80
+ddev config --router-https-port=443
 ddev config --nodejs-version=16
 ddev config --web-environment-add="COMPOSER_MEMORY_LIMIT=-1"
 ddev config --web-environment-add="PHP_MEM_LIMIT=256M"
