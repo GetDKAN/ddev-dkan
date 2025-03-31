@@ -10,21 +10,10 @@ in a containerized environment.
 - [Drupal Documentation](https://www.drupal.org/docs/getting-started/system-requirements)
 - [DKAN Documentation](https://dkan.readthedocs.io/en/latest/index.html)
 
-Note that all the DKAN commands which come with this add-on have documentation built-in. At the command line, you can
-ask for help with any one of them with `ddev [command] --help` like this:
+Note that all the DKAN commands which come with this add-on have documentation built-in.
+Run ddev by itself to get a list of commands available to you. Ask for help with any one of them with:
 
-    $ ddev dkan-init --help
-    Build the Drupal codebase for a DKAN site. (shell host container command)
-
-    Usage:
-    ddev dkan-init [flags]
-
-    Flags:
-    -h, --help        help for dkan-init
-    --moduledev   Set up the file system for DKAN module development.
-
-    Global Flags:
-    -j, --json-output   If true, user-oriented output will be in JSON format.
+    ddev [command] --help
 
 ## Sections:
 
