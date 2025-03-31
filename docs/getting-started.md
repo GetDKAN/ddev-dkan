@@ -19,14 +19,15 @@ Make sure we're using the add-on.
 
     ddev restart
 
-Initialize the site. The current default Drupal version is 10.3.x
+### Initialize the site.
+The current default Drupal version is 10.3.x
 To initialize DKAN for a different version of Drupal, add --project-version
 to the following command like '--project-version 11.0.x-dev'.
 
     ddev dkan-init
 
 
-> [!NOTE]
+> **NOTE**
 >
 > If you are doing module development use the _--moduledev_ flag.
 >
@@ -39,7 +40,8 @@ to the following command like '--project-version 11.0.x-dev'.
 
 This will ask you if it's OK to remove most of the files in your project.
 You can answer yes since there's nothing there right now anyway.
-Now install Drupal.
+
+### Install Drupal.
 
     ddev dkan-site-install
 
@@ -49,6 +51,12 @@ standard commands to log in:
     ddev launch
     ddev drush status-report
     ddev drush uli
+
+You can modify your project build by adding your own config.{project}.yaml file to override the .ddev/config.yaml.
+Or update the config.yaml with the ddev config commands, such as:
+
+    ddev config --php-version=8.2 --database=mysql:8.0
+
 
 Note that if you need help with any of the DDEV commands, you can add `--help`
 on the command line and get help:
