@@ -2,8 +2,6 @@
 .vscode
 
 docs/_site
-docs/Gemfile
-docs/Gemfile.lock
 
 tests/bats
 tests/test_helper

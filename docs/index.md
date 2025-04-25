@@ -23,3 +23,4 @@ Run ddev by itself to get a list of commands available to you. Ask for help with
 - [Testing the DKAN module](testing-dkan.md)
 - [Debugging PHPUnit tests in DDEV](testing-debug-phpunit.md)
 - [Testing your local development project](testing-project.md)
+- [Build the ddev-dkan add-on documentation locally](build-docs.md)
