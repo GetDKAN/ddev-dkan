@@ -9,7 +9,7 @@
 set -eu -o pipefail
 
 drush site:install minimal --site-name="DKAN" --account-name="admin" -y
-drush pm-enable dkan harvest datastore automated_cron admin_toolbar admin_toolbar_tools -y
+drush pm-enable dkan metastore json_form_widget metastore_admin metastore_search harvest datastore automated_cron admin_toolbar_tools -y
 
 # Create administrator role and assign to user 1
 drush role:create "administrator" "Administrator" -y
