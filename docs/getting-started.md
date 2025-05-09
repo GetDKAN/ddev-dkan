@@ -48,7 +48,7 @@ Or update the config.yaml with the ddev config commands, such as:
 
     ddev config --php-version=8.4
 
-The database will be mysql:5.7 at this point, you can change this to any of the supported database types.
+The database will be mysql:5.7 at this point, you can change this to any of the supported [database types](https://ddev.readthedocs.io/en/stable/users/extend/database-types/).
 
     ddev debug migrate-database mysql:8.0
 
