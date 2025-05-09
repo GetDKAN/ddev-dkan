@@ -15,7 +15,8 @@ Grab the DKAN add-on to get helpful DKAN commands.
     ddev add-on get getdkan/ddev-dkan
 
 For DDEV versions older than v1.23.5, run `ddev get getdkan/ddev-dkan`.
-Make sure we're using the add-on.
+
+Restart so that the add-on commands will be available.
 
     ddev restart
 
@@ -46,7 +47,7 @@ You can answer yes since there's nothing there right now anyway.
 You can modify your project build by adding your own config.{project}.yaml file to override the .ddev/config.yaml.
 Or update the config.yaml with the ddev config commands, such as:
 
-    ddev config --php-version=8.4
+    ddev config --php-version=8.4 --project-type=drupal11
 
 The database will be mysql:5.7 at this point, you can change this to any of the supported [database types](https://ddev.readthedocs.io/en/stable/users/extend/database-types/).
 
