@@ -15,16 +15,19 @@ Grab the DKAN add-on to get helpful DKAN commands.
     ddev add-on get getdkan/ddev-dkan
 
 For DDEV versions older than v1.23.5, run `ddev get getdkan/ddev-dkan`.
-Make sure we're using the add-on.
+
+Restart so that the add-on commands will be available.
 
     ddev restart
 
 ### Initialize the site.
-The current default Drupal version is 10.3.x
-To initialize DKAN for a different version of Drupal, add --project-version
-to the following command like '--project-version 11.0.x-dev'.
+The dkan-init command will set up a Drupal 10.4.x build.
 
     ddev dkan-init
+
+To initialize DKAN for a different version of Drupal, add the `--project-version` flag to specify a different version of Drupal.
+
+    ddev dkan-init --project-version 11.1.x-dev
 
 
 > **NOTE**
@@ -41,6 +44,15 @@ to the following command like '--project-version 11.0.x-dev'.
 This will ask you if it's OK to remove most of the files in your project.
 You can answer yes since there's nothing there right now anyway.
 
+You can modify your project build by adding your own config.{project}.yaml file to override the .ddev/config.yaml.
+Or update the config.yaml with the ddev config commands, such as:
+
+    ddev config --php-version=8.4 --project-type=drupal11
+
+The database will be mysql:5.7 at this point, you can change this to any of the supported [database types](https://ddev.readthedocs.io/en/stable/users/extend/database-types/).
+
+    ddev debug migrate-database mysql:8.0
+
 ### Install Drupal.
 
     ddev dkan-site-install
@@ -51,12 +63,6 @@ standard commands to log in:
     ddev launch
     ddev drush status-report
     ddev drush uli
-
-You can modify your project build by adding your own config.{project}.yaml file to override the .ddev/config.yaml.
-Or update the config.yaml with the ddev config commands, such as:
-
-    ddev config --php-version=8.2 --database=mysql:8.0
-
 
 Note that if you need help with any of the DDEV commands, you can add `--help`
 on the command line and get help:
