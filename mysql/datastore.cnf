@@ -2,8 +2,6 @@
 
 [mysqld]
 local_infile=ON
-skip-log-bin
-transaction_write_set_extraction=OFF
 
 [client]
 loose-local-infile=ON
