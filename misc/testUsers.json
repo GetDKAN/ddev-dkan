@@ -1,5 +1,6 @@
 [
   {
+    "#ddev-generated": true,
     "name": "testapiuser",
     "mail": "testapiuser@test.com",
     "role": "api_user"
