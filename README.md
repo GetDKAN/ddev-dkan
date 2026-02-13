@@ -1,5 +1,8 @@
 [![tests](https://github.com/GetDKAN/ddev-dkan/actions/workflows/tests.yml/badge.svg)](https://github.com/GetDKAN/ddev-dkan/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
 
+> [!IMPORTANT]
+> As of DKAN v2.22, we recommend the DDEV [Drupal Contrib add-on](https://github.com/ddev/ddev-drupal-contrib) and workflow to work directly on the DKAN codebase. This will let you clone the module directly from its git repository and stand up a minimal site around it with a flexible stack and no need to manage an entire website codebase.
+
 ## What is ddev-dkan?
 
 DDEV-DKAN add-on provides commands and config for development of
